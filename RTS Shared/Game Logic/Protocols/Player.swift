@@ -7,9 +7,15 @@
 
 import Foundation
 
-protocol Player {
+class Player {
     
-    var name: String {get set}
-    var uuid: UUID {get}
+    var name: String
+    var uuid: UUID
     
+    var position: Vector = Vector()
+    
+    init(name: String) {
+        self.name = name
+        self.uuid = UUID()
+    }
 }
