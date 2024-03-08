@@ -9,6 +9,8 @@ import Foundation
 
 class RTSGameDelegate {
     
+    var game: RTSGame?
+    
     func gameDidStart(_ game: RTSGame) {
         
     }
@@ -19,6 +21,10 @@ class RTSGameDelegate {
     
     func gameDidEnd(_ game: RTSGame) {
         
+    }
+    
+    func setGame(_ game: RTSGame) {
+        self.game = game
     }
     
 }

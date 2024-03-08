@@ -11,7 +11,8 @@ import Network
 class RTSCommunicationDelegate {
     
     var connection: NWConnection
-    var listener: NWListener
+    
+    var game: RTSGame?
     
     init() {
         
@@ -41,17 +42,13 @@ class RTSCommunicationDelegate {
         connection.start(queue: .global())
         
         connection.receive(minimumIncompleteLength: 0, maximumLength: Int.max) { content, contentContext, isComplete, error in
-            
             if (isComplete) {
-                
-                if content != nil {
-                    
-                    let action = RTSGameAction.init(from: <#T##Data#>)
-                    
+                if let data = content {
+                    if let action = RTSActionType.initActionFrom(data) {
+                        self.didRecieve(action)
+                    }
                 }
-                
             }
-            
         }
         
     }
@@ -62,7 +59,17 @@ class RTSCommunicationDelegate {
     }
     
     func didRecieve(_ action: RTSGameAction) {
-        
+        if let game = self.game {
+            if action.checkCompatibility(with: game) {
+                if !action.applyAction(to: game) {
+                    fatalError("failed to apply Action")
+                }
+            }
+        }
+    }
+    
+    func setGame(_ game: RTSGame) {
+        self.game = game
     }
     
 }

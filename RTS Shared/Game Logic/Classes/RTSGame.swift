@@ -22,6 +22,9 @@ class RTSGame {
         self.players = players
         self.selfPlayer = selfPlayer
         self.map = map
+        
+        commDelegate?.setGame(self)
+        delegate?.setGame(self)
     }
     
     //function to start the game

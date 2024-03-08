@@ -36,7 +36,7 @@ enum RTSActionType: UInt8 {
     case playerPlaceFence = 1
     case playerFireOn = 2
     
-    static func initActionFrom(_ data: Data) -> RTSGameAction {
+    static func initActionFrom(_ data: Data) -> RTSGameAction? {
         
         let RTSData = RTSActionData(data: data)
         let type = RTSData.getActionType()
@@ -49,7 +49,7 @@ enum RTSActionType: UInt8 {
         case .playerFireOn:
             fatalError("not implemented")
         default:
-            fatalError("unknown type")
+            return nil
         }
         
     }
