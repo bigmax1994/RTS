@@ -11,7 +11,7 @@ class RTSGame {
     
     var delegate: RTSGameDelegate?
     var commDelegate: RTSCommunicationDelegate?
-    var players: [Player]
+    var players: [UUID : Player]
     var selfPlayer: Player?
     var map: RTSMap
     
@@ -19,7 +19,9 @@ class RTSGame {
     init(players: [Player], map: RTSMap, selfPlayer: Player? = nil, delegate: RTSGameDelegate? = nil, commDelegate: RTSCommunicationDelegate? = nil) {
         self.delegate = delegate
         self.commDelegate = commDelegate
-        self.players = players
+        self.players = players.reduce(into: [UUID : Player](), { partialResult, player in
+            partialResult[player.uuid] = player
+        })
         self.selfPlayer = selfPlayer
         self.map = map
         
@@ -33,7 +35,7 @@ class RTSGame {
         map.reset()
         
         //determine player starting positions
-        for player in players {
+        for player in players.values {
             player.moveTo(map.distributePlayer())
         }
         
@@ -49,7 +51,9 @@ class RTSGame {
             
             p.moveBy(vec)
             
+            //send info to delegates
             self.delegate?.playerDidMove(self, player: p, to: p.getPosition())
+            self.commDelegate?.playerDidMove(p, to: p.getPosition())
             
         }
         

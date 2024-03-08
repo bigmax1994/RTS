@@ -29,6 +29,47 @@ struct RTSActionData {
         return data.subdata(in: RTSActionData.contentIndex..<self.data.endIndex)
     }
     
+    init(_ action: RTSGameAction) {
+        
+        let contentData = action.data
+        let serverInfo:UInt8 = 0
+        let actionType:UInt8 = RTSActionType.getActionType(action).rawValue
+        
+        var d = Data([serverInfo, actionType])
+        d.append(contentData)
+        
+        self.data = d
+        
+    }
+    
+    init(_ data: Data) {
+        self.data = data
+    }
+    
+    static func initActionFrom(_ data: Data) -> RTSGameAction? {
+        
+        let RTSData = RTSActionData(data)
+        return initActionFrom(RTSData)
+        
+    }
+    
+    static func initActionFrom(_ data: RTSActionData) -> RTSGameAction? {
+        
+        let type = data.getActionType()
+        
+        switch type {
+        case .playerMove:
+            return RTSPlayerMoveAction(data.data)
+        case .playerPlaceFence:
+            fatalError("not implemented")
+        case .playerFireOn:
+            fatalError("not implemented")
+        default:
+            return nil
+        }
+        
+    }
+    
 }
 
 enum RTSActionType: UInt8 {
@@ -36,20 +77,13 @@ enum RTSActionType: UInt8 {
     case playerPlaceFence = 1
     case playerFireOn = 2
     
-    static func initActionFrom(_ data: Data) -> RTSGameAction? {
-        
-        let RTSData = RTSActionData(data: data)
-        let type = RTSData.getActionType()
-        
-        switch type {
-        case .playerMove:
-            fatalError("not implemented")
-        case .playerPlaceFence:
-            fatalError("not implemented")
-        case .playerFireOn:
-            fatalError("not implemented")
+    static func getActionType(_ action: RTSGameAction) -> RTSActionType {
+    
+        switch action {
+        case is RTSPlayerMoveAction:
+            return .playerMove
         default:
-            return nil
+            fatalError("unknown action type")
         }
         
     }

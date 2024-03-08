@@ -27,4 +27,10 @@ class RTSGameDelegate {
         self.game = game
     }
     
+    func userDidClick(on pos: Vector2) {
+        
+        game?.move(pos)
+        
+    }
+    
 }

@@ -13,7 +13,9 @@ class RTSMap {
         case grass
         case mountain
         case water
-        case fence
+        case post
+        case activePost
+        case closedPost
     }
     
     enum MapShape {
@@ -27,15 +29,20 @@ class RTSMap {
     var rowLength: [Int]
     var shape: MapShape
     
+    var circles: [UUID : [Int]] = [:]
+    
     init(pixelSize: Float, maxWidth: Int, maxHeight: Int, shape: MapShape = .square) {
         
         self.pixelSize = pixelSize
         self.shape = shape
         
-        if shape == .square {
+        switch shape {
+        case .square:
+            
             self.rowLength = [Int](repeating: maxWidth, count: maxHeight)
             self.tiles = [TileType](repeating: .grass, count: maxWidth * maxHeight)
-        }else{
+            
+        default:
             fatalError("not implemented")
         }
         
@@ -43,13 +50,16 @@ class RTSMap {
     
     func distributePlayer() -> Vector2 {
         
-        if self.shape == .square {
-            let x:Float = Float.random(in: 0.0 ... Float(rowLength[0]))
-            let y:Float = Float.random(in: 0.0 ... Float(rowLength[0]))
+        switch shape {
+        case .square:
+            
+            let x:Float = Float.random(in: 0.0 ... (Float(rowLength[0]) * pixelSize))
+            let y:Float = Float.random(in: 0.0 ... (Float(rowLength.count) * pixelSize))
             
             let pos = Vector2(x: x, y: y)
             return pos
-        }else{
+                
+        default:
             fatalError("not implemented")
         }
         
@@ -57,15 +67,27 @@ class RTSMap {
     
     func reset() {
         
-        var index:Int? = tiles.firstIndex(of: .fence)
+        self.circles = [:]
         
-        while(index != nil) {
+        tiles.replace([.closedPost], with: [.post])
+        tiles.replace([.activePost], with: [.post])
+        
+    }
+    
+    func checkIfPositionIsInBounds(_ pos: Vector2) -> Bool {
+        
+        switch shape {
+        case .square:
             
-            tiles[index!] = .grass
-            
-            index = tiles.firstIndex(of: .fence)
-            
+            return pos.x >= 0 && 
+                pos.x <= Float(rowLength[0]) * pixelSize &&
+                pos.y >= 0 &&
+                pos.x <= Float(rowLength.count) * pixelSize
+                
+        default:
+            fatalError("not implemented")
         }
+        
     }
     
 }

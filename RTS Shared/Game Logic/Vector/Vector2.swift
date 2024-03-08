@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Vector2 {
+struct Vector2: Byteable {
+    
     var x: Float
     var y: Float
     
@@ -28,6 +29,26 @@ struct Vector2 {
     
     func toArray() -> [Float] {
         return [x,y]
+    }
+    
+    static let byteSize: Int = 2 * Float.byteSize
+    
+    var data: Data {
+        
+        var data = x.data
+        data.append(y.data)
+        
+        return data
+    }
+    
+    init(_ data: Data) {
+        
+        let xData = data.subdata(in: 0 ..< Float.byteSize)
+        let yData = data.subdata(in: Float.byteSize ..< 2 * Float.byteSize)
+        
+        self.x = Float(xData)
+        self.y = Float(yData)
+        
     }
     
 }

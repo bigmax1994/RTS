@@ -44,7 +44,7 @@ class RTSCommunicationDelegate {
         connection.receive(minimumIncompleteLength: 0, maximumLength: Int.max) { content, contentContext, isComplete, error in
             if (isComplete) {
                 if let data = content {
-                    if let action = RTSActionType.initActionFrom(data) {
+                    if let action = RTSActionData.initActionFrom(data) {
                         self.didRecieve(action)
                     }
                 }
@@ -53,17 +53,22 @@ class RTSCommunicationDelegate {
         
     }
     
+    func playerDidMove(_ player: Player, to position: Vector2) {
+        
+        let action = RTSPlayerMoveAction(uuid: player.uuid, position: player.getPosition())
+        send(action)
+        
+    }
+    
     func send(_ action: RTSGameAction) {
-        let data = action.encode()
+        let data = action.data
         connection.send(content: data, completion: .idempotent)
     }
     
     func didRecieve(_ action: RTSGameAction) {
         if let game = self.game {
-            if action.checkCompatibility(with: game) {
-                if !action.applyAction(to: game) {
-                    fatalError("failed to apply Action")
-                }
+            if !action.applyAction(to: game) {
+                fatalError("failed to apply Action")
             }
         }
     }

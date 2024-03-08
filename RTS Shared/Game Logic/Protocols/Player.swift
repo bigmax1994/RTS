@@ -12,6 +12,8 @@ class Player {
     var name: String
     var uuid: UUID
     
+    var isFree: Bool = true
+    
     private var position: Vector2 = Vector2()
     
     init(name: String) {

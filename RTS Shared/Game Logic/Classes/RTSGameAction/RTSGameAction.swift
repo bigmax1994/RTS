@@ -7,13 +7,10 @@
 
 import Foundation
 
-protocol RTSGameAction {
+protocol RTSGameAction: Byteable {
     
     func checkCompatibility(with game: RTSGame) -> Bool
     
     func applyAction(to game: RTSGame) -> Bool
-    
-    func encode() -> Data
-    init(from data: Data)
     
 }
