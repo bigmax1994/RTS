@@ -30,6 +30,48 @@
 		F47CC1332B97415E00125D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CC0FA2B97415E00125D78 /* Assets.xcassets */; };
 		F47CC1342B97415E00125D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CC0FA2B97415E00125D78 /* Assets.xcassets */; };
 		F47CC1352B97415E00125D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CC0FA2B97415E00125D78 /* Assets.xcassets */; };
+		F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
+		F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
+		F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
+		F4EF7AF62B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */; };
+		F4EF7AF72B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */; };
+		F4EF7AF82B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */; };
+		F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE32B9B950600A70A56 /* RTSGame.swift */; };
+		F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE32B9B950600A70A56 /* RTSGame.swift */; };
+		F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE32B9B950600A70A56 /* RTSGame.swift */; };
+		F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */; };
+		F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */; };
+		F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */; };
+		F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */; };
+		F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */; };
+		F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */; };
+		F4EF7B022B9B950600A70A56 /* RTSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE72B9B950600A70A56 /* RTSData.swift */; };
+		F4EF7B032B9B950600A70A56 /* RTSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE72B9B950600A70A56 /* RTSData.swift */; };
+		F4EF7B042B9B950600A70A56 /* RTSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE72B9B950600A70A56 /* RTSData.swift */; };
+		F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE82B9B950600A70A56 /* RTSMap.swift */; };
+		F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE82B9B950600A70A56 /* RTSMap.swift */; };
+		F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE82B9B950600A70A56 /* RTSMap.swift */; };
+		F4EF7B082B9B950600A70A56 /* RTSGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE92B9B950600A70A56 /* RTSGameSettings.swift */; };
+		F4EF7B092B9B950600A70A56 /* RTSGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE92B9B950600A70A56 /* RTSGameSettings.swift */; };
+		F4EF7B0A2B9B950600A70A56 /* RTSGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AE92B9B950600A70A56 /* RTSGameSettings.swift */; };
+		F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEB2B9B950600A70A56 /* VectorCalc.swift */; };
+		F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEB2B9B950600A70A56 /* VectorCalc.swift */; };
+		F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEB2B9B950600A70A56 /* VectorCalc.swift */; };
+		F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEC2B9B950600A70A56 /* Vector2.swift */; };
+		F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEC2B9B950600A70A56 /* Vector2.swift */; };
+		F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEC2B9B950600A70A56 /* Vector2.swift */; };
+		F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AED2B9B950600A70A56 /* Vector4.swift */; };
+		F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AED2B9B950600A70A56 /* Vector4.swift */; };
+		F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AED2B9B950600A70A56 /* Vector4.swift */; };
+		F4EF7B142B9B950600A70A56 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEE2B9B950600A70A56 /* Vector3.swift */; };
+		F4EF7B152B9B950600A70A56 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEE2B9B950600A70A56 /* Vector3.swift */; };
+		F4EF7B162B9B950600A70A56 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AEE2B9B950600A70A56 /* Vector3.swift */; };
+		F4EF7B172B9B950600A70A56 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF02B9B950600A70A56 /* Player.swift */; };
+		F4EF7B182B9B950600A70A56 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF02B9B950600A70A56 /* Player.swift */; };
+		F4EF7B192B9B950600A70A56 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF02B9B950600A70A56 /* Player.swift */; };
+		F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
+		F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
+		F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +94,20 @@
 		F47CC1242B97415E00125D78 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F47CC1272B97415E00125D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTS_macOS.entitlements; sourceTree = "<group>"; };
+		F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameDelegate.swift; sourceTree = "<group>"; };
+		F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSCommunicationDelegate.swift; sourceTree = "<group>"; };
+		F4EF7AE32B9B950600A70A56 /* RTSGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGame.swift; sourceTree = "<group>"; };
+		F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSPlayerMoveAction.swift; sourceTree = "<group>"; };
+		F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameAction.swift; sourceTree = "<group>"; };
+		F4EF7AE72B9B950600A70A56 /* RTSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSData.swift; sourceTree = "<group>"; };
+		F4EF7AE82B9B950600A70A56 /* RTSMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSMap.swift; sourceTree = "<group>"; };
+		F4EF7AE92B9B950600A70A56 /* RTSGameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameSettings.swift; sourceTree = "<group>"; };
+		F4EF7AEB2B9B950600A70A56 /* VectorCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorCalc.swift; sourceTree = "<group>"; };
+		F4EF7AEC2B9B950600A70A56 /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
+		F4EF7AED2B9B950600A70A56 /* Vector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector4.swift; sourceTree = "<group>"; };
+		F4EF7AEE2B9B950600A70A56 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		F4EF7AF02B9B950600A70A56 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		F4EF7AF22B9B950600A70A56 /* Byteable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Byteable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +149,8 @@
 		F47CC0F62B97415C00125D78 /* RTS Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F4EF7ADE2B9B950600A70A56 /* Delegates */,
+				F4EF7AE12B9B950600A70A56 /* Game Logic */,
 				F47CC0F72B97415C00125D78 /* Shaders.metal */,
 				F47CC0F82B97415C00125D78 /* Renderer.swift */,
 				F47CC0F92B97415C00125D78 /* ShaderTypes.h */,
@@ -142,6 +200,74 @@
 				F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */,
 			);
 			path = "RTS macOS";
+			sourceTree = "<group>";
+		};
+		F4EF7ADE2B9B950600A70A56 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */,
+				F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		F4EF7AE12B9B950600A70A56 /* Game Logic */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AE22B9B950600A70A56 /* Classes */,
+				F4EF7AEA2B9B950600A70A56 /* Vector */,
+				F4EF7AEF2B9B950600A70A56 /* Protocols */,
+				F4EF7AF12B9B950600A70A56 /* Helpers */,
+			);
+			path = "Game Logic";
+			sourceTree = "<group>";
+		};
+		F4EF7AE22B9B950600A70A56 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AE42B9B950600A70A56 /* RTSGameAction */,
+				F4EF7AE32B9B950600A70A56 /* RTSGame.swift */,
+				F4EF7AE82B9B950600A70A56 /* RTSMap.swift */,
+				F4EF7AE92B9B950600A70A56 /* RTSGameSettings.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F4EF7AE42B9B950600A70A56 /* RTSGameAction */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */,
+				F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */,
+				F4EF7AE72B9B950600A70A56 /* RTSData.swift */,
+			);
+			path = RTSGameAction;
+			sourceTree = "<group>";
+		};
+		F4EF7AEA2B9B950600A70A56 /* Vector */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AEB2B9B950600A70A56 /* VectorCalc.swift */,
+				F4EF7AEC2B9B950600A70A56 /* Vector2.swift */,
+				F4EF7AED2B9B950600A70A56 /* Vector4.swift */,
+				F4EF7AEE2B9B950600A70A56 /* Vector3.swift */,
+			);
+			path = Vector;
+			sourceTree = "<group>";
+		};
+		F4EF7AEF2B9B950600A70A56 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AF02B9B950600A70A56 /* Player.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F4EF7AF12B9B950600A70A56 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AF22B9B950600A70A56 /* Byteable.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,10 +405,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4EF7B082B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F47CC12D2B97415E00125D78 /* Renderer.swift in Sources */,
+				F4EF7AF62B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F47CC12A2B97415E00125D78 /* Shaders.metal in Sources */,
+				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
+				F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */,
+				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
+				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
+				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
+				F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */,
+				F4EF7B142B9B950600A70A56 /* Vector3.swift in Sources */,
+				F4EF7B172B9B950600A70A56 /* Player.swift in Sources */,
+				F4EF7B022B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,10 +430,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4EF7B092B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F47CC12E2B97415E00125D78 /* Renderer.swift in Sources */,
+				F4EF7AF72B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F47CC12B2B97415E00125D78 /* Shaders.metal in Sources */,
+				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
+				F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */,
+				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
+				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
+				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
+				F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */,
+				F4EF7B152B9B950600A70A56 /* Vector3.swift in Sources */,
+				F4EF7B182B9B950600A70A56 /* Player.swift in Sources */,
+				F4EF7B032B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +455,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4EF7B0A2B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F47CC12F2B97415E00125D78 /* Renderer.swift in Sources */,
+				F4EF7AF82B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F47CC12C2B97415E00125D78 /* Shaders.metal in Sources */,
+				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
+				F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */,
+				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
+				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
+				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
+				F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */,
+				F4EF7B162B9B950600A70A56 /* Vector3.swift in Sources */,
+				F4EF7B192B9B950600A70A56 /* Player.swift in Sources */,
+				F4EF7B042B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
