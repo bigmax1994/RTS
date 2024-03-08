@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Vector {
+struct Vector2 {
     var x: Float
     var y: Float
     
@@ -24,6 +24,10 @@ struct Vector {
     init(angle: Float, length: Float = 1) {
         self.x = length * cos(angle)
         self.y = length * sin(angle)
+    }
+    
+    func toArray() -> [Float] {
+        return [x,y]
     }
     
 }
