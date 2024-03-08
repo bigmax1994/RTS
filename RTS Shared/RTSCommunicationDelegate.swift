@@ -6,11 +6,59 @@
 //
 
 import Foundation
+import Network
 
 class RTSCommunicationDelegate {
     
-    func send(_ action: RTSGameAction) {
+    var connection: NWConnection
+    var listener: NWListener
+    
+    init() {
         
+        let host: NWEndpoint.Host = "127.0.0.1"
+        let port: NWEndpoint.Port = 8461
+        self.connection = NWConnection(host: host, port: port, using: .udp)
+        
+        connection.stateUpdateHandler = { (newState) in
+            switch (newState) {
+            case .preparing:
+                NSLog("NWConnection entered state: preparing")
+            case .ready:
+                NSLog("NWConnection entered state: ready")
+            case .setup:
+                NSLog("NWConnection entered state: setup")
+            case .cancelled:
+                NSLog("NWConnection entered state: cancelled")
+            case .waiting:
+                NSLog("NWConnection entered state: waiting")
+            case .failed:
+                NSLog("NWConnection entered state: failed")
+            default:
+                NSLog("NWConnection entered an unknown state")
+            }
+        }
+        
+        connection.start(queue: .global())
+        
+        connection.receive(minimumIncompleteLength: 0, maximumLength: Int.max) { content, contentContext, isComplete, error in
+            
+            if (isComplete) {
+                
+                if content != nil {
+                    
+                    let action = RTSGameAction.init(from: <#T##Data#>)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func send(_ action: RTSGameAction) {
+        let data = action.encode()
+        connection.send(content: data, completion: .idempotent)
     }
     
     func didRecieve(_ action: RTSGameAction) {
