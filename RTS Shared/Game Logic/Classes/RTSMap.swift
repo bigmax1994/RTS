@@ -41,13 +41,13 @@ class RTSMap {
         
     }
     
-    func distributePlayer() -> Vector {
+    func distributePlayer() -> Vector2 {
         
         if self.shape == .square {
             let x:Float = Float.random(in: 0.0 ... Float(rowLength[0]))
             let y:Float = Float.random(in: 0.0 ... Float(rowLength[0]))
             
-            let pos = Vector(x: x, y: y)
+            let pos = Vector2(x: x, y: y)
             return pos
         }else{
             fatalError("not implemented")

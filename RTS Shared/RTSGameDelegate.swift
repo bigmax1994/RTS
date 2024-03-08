@@ -13,7 +13,7 @@ class RTSGameDelegate {
         
     }
     
-    func gameDidRecievePlayerAction(_ game: RTSGame, from player: Player) {
+    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2) {
         
     }
     
