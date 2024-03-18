@@ -14,6 +14,12 @@
 		F45280762BA457D200BF6D92 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45280742BA457D200BF6D92 /* Quad.swift */; };
 		F45280772BA457D200BF6D92 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45280742BA457D200BF6D92 /* Quad.swift */; };
 		F4534A652BA8778800505014 /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A642BA8778800505014 /* RTSTests.swift */; };
+		F4534A762BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
+		F4534A772BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
+		F4534A782BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
+		F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A792BA8950400505014 /* MatrixCalc.swift */; };
+		F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A792BA8950400505014 /* MatrixCalc.swift */; };
+		F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A792BA8950400505014 /* MatrixCalc.swift */; };
 		27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
@@ -100,6 +106,8 @@
 		F45280742BA457D200BF6D92 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 		F4534A622BA8778800505014 /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4534A642BA8778800505014 /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
+		F4534A752BA893F900505014 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		F4534A792BA8950400505014 /* MatrixCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalc.swift; sourceTree = "<group>"; };
 		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
 		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
@@ -176,6 +184,24 @@
 				F4534A642BA8778800505014 /* RTSTests.swift */,
 			);
 			path = RTSTests;
+			sourceTree = "<group>";
+		};
+		F4534A7D2BA8950900505014 /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				F4534A752BA893F900505014 /* Matrix.swift */,
+				F4534A792BA8950400505014 /* MatrixCalc.swift */,
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+		F4534A7E2BA8951500505014 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF7AEA2B9B950600A70A56 /* Vector */,
+				F4534A7D2BA8950900505014 /* Matrix */,
+			);
+			path = Math;
 			sourceTree = "<group>";
 		};
 		F462F7642BA85D6300AA21DE /* Vertex Helpers */ = {
@@ -272,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				F4EF7AE22B9B950600A70A56 /* Classes */,
-				F4EF7AEA2B9B950600A70A56 /* Vector */,
 				F4EF7AEF2B9B950600A70A56 /* Protocols */,
 				F4EF7AF12B9B950600A70A56 /* Helpers */,
 			);
@@ -323,6 +348,7 @@
 		F4EF7AF12B9B950600A70A56 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F4534A7E2BA8951500505014 /* Math */,
 				F4EF7AF22B9B950600A70A56 /* Byteable.swift */,
 			);
 			path = Helpers;
@@ -543,9 +569,11 @@
 				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F45280752BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				F4534A762BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -571,9 +599,11 @@
 				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F45280762BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				F4534A772BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -599,9 +629,11 @@
 				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
 				F45280772BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				F4534A782BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
