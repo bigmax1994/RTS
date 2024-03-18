@@ -9,7 +9,7 @@ import Foundation
 
 struct Matrix {
     
-    private var elements: [Float]
+    var elements: [Float]
     var columns: Int
     var rows: Int
     
@@ -28,6 +28,14 @@ struct Matrix {
         }
         self.columns = elements[0].count
         self.rows = elements.count
+        
+    }
+    
+    init(columns: Int, rows: Int) {
+        
+        self.elements = [Float](repeating: 0, count: columns * rows)
+        self.columns = columns
+        self.rows = rows
         
     }
     
