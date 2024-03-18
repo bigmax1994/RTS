@@ -14,13 +14,18 @@ class RTSMap_square:RTSMap{
         self.tileSize = 2/Float(max(width, height))
         self.shape = shape
         self.tiles = [TileType](repeating: .grass, count: width * height)
-        for j in 0..<width{
-            self.tiles[j] = TileType.forbidden
-        }
-        for j in (height-1)*width..<height*width{
-            self.tiles[j] = TileType.forbidden
-        }
+        self.makeForbiddenArea()
         self.calculateBorderTiles()
+        print(self.tiles)
+    }
+    func makeForbiddenArea(){
+        for n in 0..<self.width * self.height{
+            let i = n/width
+            let j = n%width
+            if abs(i - width/2)+abs(j - height/2) > (width + height)/4{
+                self.tiles[n] = TileType.forbidden
+            }
+        }
     }
 
     override func tileIndex_to_position(_ index: Int) -> Vector2 {

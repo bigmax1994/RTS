@@ -72,7 +72,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         commDelegate = RTSCommunicationDelegate()
         
-        let map = RTSMap(pixelSize: 1, maxWidth: 100, maxHeight: 100)
+        let map = RTSMap_square(width: 10, height: 15)
         let players = [Player(name: "Max")]
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
@@ -86,13 +86,13 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             let y = Float(i) * tileSize.height - 1
             let endY = Float(i + 1) * tileSize.height - 1
             
-            for j in 0..<map.rowLength[i] {
+            for j in 0..<map.width {
                 
                 let x = Float(j) * tileSize.height - 1
                 let endX = Float(j + 1) * tileSize.width - 1
                     
                 var color:[Float]
-                switch map.tiles[i * map.height + j] {
+                switch map.tiles[i * map.width + j] {
                 case .grass:
                     color = [0, 1, 0]
                 case .water:
@@ -105,6 +105,10 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
                     color = [0.4176, 0.4153, 0.7561]
                 case .closedPost:
                     color = [0.6186, 0.4153, 0.7561]
+                case .forbidden:
+                    color = [0,0,0]
+                case .border:
+                    color = [0.4, 0.4, 0.4]
                 }
                 
                 let quad = Quad(fromX: x, fromY: y, toX: endX, toY: endY, color: color)

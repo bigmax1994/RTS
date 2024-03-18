@@ -17,6 +17,7 @@ class RTSMap {
         case activePost
         case closedPost
         case forbidden
+        case border
     }
     
     enum MapShape {
@@ -51,20 +52,15 @@ class RTSMap {
         self.borderTiles = [Int]()
         for i in 0..<tiles.count {
             if tiles[i] == .forbidden {
-                let pos = tileIndex_to_position(i) + Vector2(x:tileSize/2, y:tileSize/2)
-                let (angle, range) = {switch self.shape {
-                    case .square:
-                        return (Float.pi/2, 0..<4)
-                    case .circle:
-                        return (Float.pi/6, 0..<6)
-                    default:
-                        return (1, 0..<1)
-                }}()
-                for j in range {
-                    let neighborIndex = position_to_tileIndex(pos + Vector2(angle: angle * Float(j), length: tileSize))
-                    //print("\(i) checking \(neighborIndex) at angle \(angle * Float(j)) to \(Vector2(angle: angle * Float(j), length: tileSize))")
-                    if 0<=neighborIndex && neighborIndex < self.tiles.count && self.tiles[neighborIndex] != .forbidden {
+                var neighbors: [Int] = []
+                if i%width>0{neighbors.append(i-1)}
+                if i%width<width-1{neighbors.append(i+1)}
+                if i/width>0{neighbors.append(i-width)}
+                if i/width<height-1{neighbors.append(i+width)}
+                for j in neighbors {
+                    if self.tiles[j] != .forbidden {
                         borderTiles.append(i)
+                        self.tiles[i] = TileType.border
                         break
                     }
                 }
