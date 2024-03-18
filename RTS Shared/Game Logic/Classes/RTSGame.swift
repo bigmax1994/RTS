@@ -36,7 +36,7 @@ class RTSGame {
         
         //determine player starting positions
         for player in players.values {
-            player.moveTo(map.distributePlayer())
+            player.moveTo(map.distributePlayer(target: Vector2()))
         }
         
     }

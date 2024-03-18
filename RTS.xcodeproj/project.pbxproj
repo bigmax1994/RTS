@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
+		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
+		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
+		27A2D8F82BA8791800F215AA /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8F72BA8791800F215AA /* RTSTests.swift */; };
 		F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1022B97415E00125D78 /* AppDelegate.swift */; };
 		F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1042B97415E00125D78 /* GameViewController.swift */; };
 		F47CC1082B97415E00125D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CC1062B97415E00125D78 /* Main.storyboard */; };
@@ -74,7 +78,20 @@
 		F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		27A2D8F92BA8791800F215AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47CC0F22B97415C00125D78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F47CC11F2B97415E00125D78;
+			remoteInfo = "RTS macOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
+		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		F47CC0F92B97415C00125D78 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -111,6 +128,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		27A2D8F22BA8791800F215AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F47CC0FC2B97415E00125D78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,6 +159,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27A2D8F62BA8791800F215AA /* RTSTests */ = {
+			isa = PBXGroup;
+			children = (
+				27A2D8F72BA8791800F215AA /* RTSTests.swift */,
+			);
+			path = RTSTests;
+			sourceTree = "<group>";
+		};
 		F47CC0F12B97415C00125D78 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +174,7 @@
 				F47CC1012B97415E00125D78 /* RTS iOS */,
 				F47CC1112B97415E00125D78 /* RTS tvOS */,
 				F47CC1212B97415E00125D78 /* RTS macOS */,
+				27A2D8F62BA8791800F215AA /* RTSTests */,
 				F47CC1002B97415E00125D78 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,6 +198,7 @@
 				F47CC0FF2B97415E00125D78 /* RTS.app */,
 				F47CC1102B97415E00125D78 /* RTS.app */,
 				F47CC1202B97415E00125D78 /* RTS.app */,
+				27A2D8F52BA8791800F215AA /* RTSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,6 +262,7 @@
 				F4EF7AE42B9B950600A70A56 /* RTSGameAction */,
 				F4EF7AE32B9B950600A70A56 /* RTSGame.swift */,
 				F4EF7AE82B9B950600A70A56 /* RTSMap.swift */,
+				27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */,
 				F4EF7AE92B9B950600A70A56 /* RTSGameSettings.swift */,
 			);
 			path = Classes;
@@ -273,6 +308,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		27A2D8F42BA8791800F215AA /* RTSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A2D8FB2BA8791800F215AA /* Build configuration list for PBXNativeTarget "RTSTests" */;
+			buildPhases = (
+				27A2D8F12BA8791800F215AA /* Sources */,
+				27A2D8F22BA8791800F215AA /* Frameworks */,
+				27A2D8F32BA8791800F215AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27A2D8FA2BA8791800F215AA /* PBXTargetDependency */,
+			);
+			name = RTSTests;
+			productName = RTSTests;
+			productReference = 27A2D8F52BA8791800F215AA /* RTSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F47CC0FE2B97415E00125D78 /* RTS iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F47CC1382B97415E00125D78 /* Build configuration list for PBXNativeTarget "RTS iOS" */;
@@ -331,9 +384,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					27A2D8F42BA8791800F215AA = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = F47CC11F2B97415E00125D78;
+					};
 					F47CC0FE2B97415E00125D78 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -361,11 +418,19 @@
 				F47CC0FE2B97415E00125D78 /* RTS iOS */,
 				F47CC10F2B97415E00125D78 /* RTS tvOS */,
 				F47CC11F2B97415E00125D78 /* RTS macOS */,
+				27A2D8F42BA8791800F215AA /* RTSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		27A2D8F32BA8791800F215AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F47CC0FD2B97415E00125D78 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +466,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		27A2D8F12BA8791800F215AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A2D8F82BA8791800F215AA /* RTSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F47CC0FB2B97415E00125D78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,6 +490,7 @@
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */,
@@ -442,6 +516,7 @@
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */,
@@ -467,6 +542,7 @@
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
+				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */,
@@ -477,6 +553,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27A2D8FA2BA8791800F215AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F47CC11F2B97415E00125D78 /* RTS macOS */;
+			targetProxy = 27A2D8F92BA8791800F215AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F47CC1062B97415E00125D78 /* Main.storyboard */ = {
@@ -522,6 +606,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		27A2D8FC2BA8791800F215AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X43FG24ML2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MagnusSaurbier.RTSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RTS";
+			};
+			name = Debug;
+		};
+		27A2D8FD2BA8791800F215AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X43FG24ML2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MagnusSaurbier.RTSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RTS";
+			};
+			name = Release;
+		};
 		F47CC1362B97415E00125D78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -643,7 +771,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
+				DEVELOPMENT_TEAM = X43FG24ML2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -674,7 +802,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
+				DEVELOPMENT_TEAM = X43FG24ML2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -765,7 +893,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
+				DEVELOPMENT_TEAM = X43FG24ML2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -795,7 +923,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
+				DEVELOPMENT_TEAM = X43FG24ML2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -819,6 +947,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27A2D8FB2BA8791800F215AA /* Build configuration list for PBXNativeTarget "RTSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A2D8FC2BA8791800F215AA /* Debug */,
+				27A2D8FD2BA8791800F215AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F47CC0F52B97415C00125D78 /* Build configuration list for PBXProject "RTS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
