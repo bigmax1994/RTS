@@ -24,7 +24,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         let fac:Float = 0.9
         
-        let tileSize:(width: Float, height: Float) = (width: fac * 2/Float(game.map.rowLength[0]), height: fac * 2/Float(game.map.rowLength.count))
+        let tileSize:(width: Float, height: Float) = (width: fac * 2/Float(game.map.width), height: fac * 2/Float(game.map.height))
         
         let playerPos:Vector2 = player.getPosition()
         let playerX = playerPos.x - tileSize.width / 2
@@ -77,9 +77,9 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        let tileSize:(width: Float, height: Float) = (width: 2/Float(map.rowLength[0]), height: 2/Float(map.rowLength.count))
+        let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
         
-        for i in 0..<map.rowLength.count {
+        for i in 0..<map.height {
             
             var v:[Vertex] = []
             
@@ -92,7 +92,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
                 let endX = Float(j + 1) * tileSize.width - 1
                     
                 var color:[Float]
-                switch map.tiles[i * map.rowLength.count + j] {
+                switch map.tiles[i * map.height + j] {
                 case .grass:
                     color = [0, 1, 0]
                 case .water:
