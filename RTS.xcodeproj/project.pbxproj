@@ -224,6 +224,14 @@
 			path = Math;
 			sourceTree = "<group>";
 		};
+		F4534A7F2BA898A600505014 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				27A2D8F72BA8791800F215AA /* RTSTests.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		F462F7642BA85D6300AA21DE /* Vertex Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,6 +790,25 @@
 			};
 			name = Release;
 		};
+		F4534A802BA898A700505014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = RTSTests;
+			};
+			name = Debug;
+		};
+		F4534A812BA898A700505014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = RTSTests;
+			};
+			name = Release;
+		};
 		F47CC1362B97415E00125D78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1025,7 +1052,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1055,7 +1082,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1093,6 +1120,15 @@
 			buildConfigurations = (
 				F4534A682BA8778800505014 /* Debug */,
 				F4534A692BA8778800505014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4534A822BA89B0200505014 /* Build configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4534A802BA898A700505014 /* Debug */,
+				F4534A812BA898A700505014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

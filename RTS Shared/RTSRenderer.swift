@@ -12,7 +12,8 @@ import simd
 
 class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
-    let inFlightSemaphore: DispatchSemaphore = DispatchSemaphore(value: 3)
+    static let renderedFrames = 3
+    let inFlightSemaphore: DispatchSemaphore = DispatchSemaphore(value: renderedFrames)
     
     func gameDidStart(_ game: RTSGame) {
         
@@ -130,6 +131,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 0.1, color: [1,0,0])
         
         self.vertecies.append(contentsOf: playerQuad.verticies)
+        self.vertecies[vertecies.count - 1].pos.z = -0.1
         
         self.device = metalKitView.device!
         

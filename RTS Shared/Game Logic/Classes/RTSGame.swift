@@ -47,8 +47,13 @@ class RTSGame {
         //check if current device is controlling a player
         if let p = self.selfPlayer {
             
-            let vec = RTSGame.movementSpeed * direction.normalized()
+            //get relative direction to player position
+            let relativeDirection = direction - p.getPosition()
             
+            //get movement vector from movement speed
+            let vec = RTSGame.movementSpeed * relativeDirection.normalized()
+            
+            //move the player
             p.moveBy(vec)
             
             //send info to delegates

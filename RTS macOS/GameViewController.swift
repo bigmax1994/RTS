@@ -43,11 +43,15 @@ class GameViewController: NSViewController {
     }
     
     override func mouseDown(with event: NSEvent) {
-        let x = Float(event.locationInWindow.x - (event.window?.frame.width ?? 0) / 2)
-        let y = Float(event.locationInWindow.y - (event.window?.frame.height ?? 0) / 2)
-        
-        let pos = Vector2(x: x, y: y)
-        self.renderer.userDidClick(on: pos)
+        if let window = event.window {
+            let x = 2 * Float(event.locationInWindow.x / window.frame.width) - 1
+            let y = 2 * Float(event.locationInWindow.y / window.frame.height) - 1
+            
+            let pos = Vector2(x: x, y: y)
+            self.renderer.userDidClick(on: pos)
+                          
+        }
+                              
     }
     
 }

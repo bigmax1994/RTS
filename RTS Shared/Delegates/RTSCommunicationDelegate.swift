@@ -16,7 +16,7 @@ class RTSCommunicationDelegate {
     
     init() {
         
-        let host: NWEndpoint.Host = "131.159.194.191"
+        let host: NWEndpoint.Host = "131.159.211.112"
         let port: NWEndpoint.Port = 8461
         self.connection = NWConnection(host: host, port: port, using: .udp)
         

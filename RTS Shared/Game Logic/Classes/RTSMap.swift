@@ -71,7 +71,7 @@ class RTSMap {
     func tileIndex_to_position(_ index: Int) -> Vector2 {
         fatalError("not implemented!")
     }
-    func position_to_tileIndex(_ position: Vector2) -> Int{
+    func position_to_tileIndex(_ position: Vector2) -> Int {
         fatalError("not implemented")
     }
     
