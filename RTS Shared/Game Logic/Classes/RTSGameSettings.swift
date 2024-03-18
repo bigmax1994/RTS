@@ -9,6 +9,6 @@ import Foundation
 
 extension RTSGame {
     
-    static let movementSpeed: Float = 1
+    static let movementSpeed: Float = 0.01
     
 }
