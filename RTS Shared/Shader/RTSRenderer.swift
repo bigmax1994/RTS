@@ -66,8 +66,6 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     var vertecies: [Vertex] = []
     
-    var updated = true
-    
     init?(metalKitView: MTKView) {
         
         commDelegate = RTSCommunicationDelegate()
@@ -156,6 +154,22 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
     }
     
+    func addPlayerMeshesTo(_ game: RTSGame, with device: MTLDevice) {
+        
+        //let allocator = MTKMeshBufferAllocator(device: device)
+        
+        let assetURL = Bundle.main.url(forResource: "Drone", withExtension: "obj")
+        let asset = MDLAsset(url: assetURL)
+        
+        for player in game.players.values {
+            
+            let mesh = asset.childObjects(of: MDLMesh.self).first as? MDLMesh
+            player.mesh = try? MTKMesh(mesh: MDLMesh, device: device)
+            
+        }
+        
+    }
+    
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         
     }
@@ -180,10 +194,12 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
                 if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
                     renderEncoder.label = "Primary Render Encoder"
                     
+                    let buffer = self.game!.selfPlayer!.mesh!.vertexBuffers.first!.buffer
+                    
                     //set vertecies and state
                     renderEncoder.setRenderPipelineState(pipelineState)
-                    renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-                    renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertecies.count)
+                    renderEncoder.setVertexBuffer(buffer, offset: 0, index: 0)
+                    renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: buffer.coun)
                     /// Render scene using render encoder
                     
                     renderEncoder.endEncoding()
@@ -195,6 +211,17 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             }
             
             commandBuffer.commit()
+        }
+        
+    }
+    
+    func getVerticies() -> MTLBuffer {
+        
+        let v = self.vertecies
+        for player in self.game?.players.values {
+            for buffer in player.mesh?.vertexBuffers {
+                
+            }
         }
         
     }

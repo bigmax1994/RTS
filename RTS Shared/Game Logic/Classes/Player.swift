@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ModelIO
 
 class Player {
     
@@ -16,9 +17,14 @@ class Player {
     
     private var position: Vector2 = Vector2()
     
+    var mesh: MDLMesh?
+    
     init(name: String) {
         self.name = name
         self.uuid = UUID()
+        
+        self.mesh = MDLMesh(vertexBuffer: <#T##MDLMeshBuffer#>, vertexCount: <#T##Int#>, descriptor: <#T##MDLVertexDescriptor#>, submeshes: <#T##[MDLSubmesh]#>)
+        
     }
     
     func moveBy(_ vec: Vector2) {
