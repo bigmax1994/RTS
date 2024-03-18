@@ -11,7 +11,7 @@ import MetalKit
 // Our macOS specific view controller
 class GameViewController: NSViewController {
 
-    var renderer: Renderer!
+    var renderer: RTSRenderer!
     var mtkView: MTKView!
 
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class GameViewController: NSViewController {
 
         mtkView.device = defaultDevice
 
-        guard let newRenderer = Renderer(metalKitView: mtkView) else {
+        guard let newRenderer = RTSRenderer(metalKitView: mtkView) else {
             print("Renderer cannot be initialized")
             return
         }
@@ -41,4 +41,13 @@ class GameViewController: NSViewController {
 
         mtkView.delegate = renderer
     }
+    
+    override func mouseDown(with event: NSEvent) {
+        let x = Float(event.locationInWindow.x - (event.window?.frame.width ?? 0) / 2)
+        let y = Float(event.locationInWindow.y - (event.window?.frame.height ?? 0) / 2)
+        
+        let pos = Vector2(x: x, y: y)
+        self.renderer.userDidClick(on: pos)
+    }
+    
 }

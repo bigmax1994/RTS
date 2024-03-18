@@ -7,30 +7,18 @@
 
 import Foundation
 
-class RTSGameDelegate {
+protocol RTSGameDelegate {
     
-    var game: RTSGame?
+    var game: RTSGame? { get set }
     
-    func gameDidStart(_ game: RTSGame) {
-        
-    }
+    func gameDidStart(_ game: RTSGame)
     
-    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2) {
-        
-    }
+    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2)
     
-    func gameDidEnd(_ game: RTSGame) {
-        
-    }
+    func gameDidEnd(_ game: RTSGame)
     
-    func setGame(_ game: RTSGame) {
-        self.game = game
-    }
+    func setGame(_ game: RTSGame)
     
-    func userDidClick(on pos: Vector2) {
-        
-        game?.move(pos)
-        
-    }
+    func userDidClick(on pos: Vector2)
     
 }
