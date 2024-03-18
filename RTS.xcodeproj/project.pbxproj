@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
+		2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
+		2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
 		27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
@@ -102,6 +105,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSHeightMap.swift; sourceTree = "<group>"; };
 		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
 		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
@@ -178,6 +182,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2715C2A72BA8986100AAC167 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				27A2D8F72BA8791800F215AA /* RTSTests.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		2715C2AA2BA898ED00AAC167 /* RTSMaps */ = {
+			isa = PBXGroup;
+			children = (
+				2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */,
+			);
+			path = RTSMaps;
+			sourceTree = "<group>";
+		};
 		F4534A632BA8778800505014 /* RTSTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +250,7 @@
 				F47CC1212B97415E00125D78 /* RTS macOS */,
 				F4534A632BA8778800505014 /* RTSTests */,
 				F47CC1002B97415E00125D78 /* Products */,
-				F4534A7F2BA898A600505014 /* Recovered References */,
+				2715C2A72BA8986100AAC167 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,6 +335,7 @@
 		F4EF7AE22B9B950600A70A56 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2715C2AA2BA898ED00AAC167 /* RTSMaps */,
 				F4EF7AE42B9B950600A70A56 /* RTSGameAction */,
 				F4EF7AE32B9B950600A70A56 /* RTSGame.swift */,
 				F4EF7AE82B9B950600A70A56 /* RTSMap.swift */,
@@ -367,7 +388,7 @@
 /* Begin PBXNativeTarget section */
 		27A2D8F42BA8791800F215AA /* RTSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F4534A822BA89B0200505014 /* Build configuration list */;
+			buildConfigurationList = 2715C2AB2BA898ED00AAC167 /* Build configuration list */;
 			buildPhases = (
 				27A2D8F12BA8791800F215AA /* Sources */,
 			);
@@ -584,6 +605,7 @@
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B142B9B950600A70A56 /* Vector3.swift in Sources */,
+				2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
 				F4EF7B172B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B022B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
@@ -614,6 +636,7 @@
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B152B9B950600A70A56 /* Vector3.swift in Sources */,
+				2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
 				F4EF7B182B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B032B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
@@ -644,6 +667,7 @@
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B162B9B950600A70A56 /* Vector3.swift in Sources */,
+				2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
 				F4EF7B192B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B042B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
@@ -703,6 +727,25 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2715C2A82BA8986200AAC167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = RTSTests;
+			};
+			name = Debug;
+		};
+		2715C2A92BA8986200AAC167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = RTSTests;
+			};
+			name = Release;
+		};
 		F4534A682BA8778800505014 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1063,6 +1106,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2715C2AB2BA898ED00AAC167 /* Build configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2715C2A82BA8986200AAC167 /* Debug */,
+				2715C2A92BA8986200AAC167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F4534A6A2BA8778800505014 /* Build configuration list for PBXNativeTarget "RTSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
