@@ -33,7 +33,7 @@ struct Matrix {
     
     init(columns: Int, rows: Int) {
         
-        self.elements = [Float](repeating: 0, count: columns * rows)
+        self.elements = [Float](repeating: 0.0, count: columns * rows)
         self.columns = columns
         self.rows = rows
         
