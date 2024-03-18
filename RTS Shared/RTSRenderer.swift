@@ -73,52 +73,44 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         commDelegate = RTSCommunicationDelegate()
         
-        let map = RTSMap_square(width: 10, height: 15)
+        let map = RTSMap_square(width: 10, height: 10)
         let players = [Player(name: "Max")]
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
         let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
         
-        for i in 0..<map.height {
-            
-            var v:[Vertex] = []
-            
-            let y = Float(i) * tileSize.height - 1
-            let endY = Float(i + 1) * tileSize.height - 1
-            
-            for j in 0..<map.width {
-                
-                let x = Float(j) * tileSize.height - 1
-                let endX = Float(j + 1) * tileSize.width - 1
+        for (i, tile) in map.tiles.enumerated() {
                     
-                var color:[Float]
-                switch map.tiles[i * map.width + j] {
-                case .grass:
-                    color = [0, 1, 0]
-                case .water:
-                    color = [0, 0, 1]
-                case .mountain:
-                    color = [0.7631, 0.4432, 0.1306]
-                case .post:
-                    color = [0.5, 0.5, 0.5]
-                case .activePost:
-                    color = [0.4176, 0.4153, 0.7561]
-                case .closedPost:
-                    color = [0.6186, 0.4153, 0.7561]
-                case .forbidden:
-                    color = [0,0,0]
-                case .border:
-                    color = [0.4, 0.4, 0.4]
-                }
-                
-                let quad = Quad(fromX: x, fromY: y, toX: endX, toY: endY, color: color)
-                
-                v.append(contentsOf: quad.verticies)
-                
+            let pos = map.tileIndex_to_position(i)
+            let x = pos.x
+            let endX = x + tileSize.width
+            let y = pos.y
+            let endY = y + tileSize.height
+            
+            var color:[Float]
+            switch tile {
+            case .grass:
+                color = [0, 1, 0]
+            case .water:
+                color = [0, 0, 1]
+            case .mountain:
+                color = [0.7631, 0.4432, 0.1306]
+            case .post:
+                color = [0.5, 0.5, 0.5]
+            case .activePost:
+                color = [0.4176, 0.4153, 0.7561]
+            case .closedPost:
+                color = [0.6186, 0.4153, 0.7561]
+            case .forbidden:
+                color = [0,0,0]
+            case .border:
+                color = [0.4, 0.4, 0.4]
             }
             
-            self.vertecies.append(contentsOf: v)
+            let quad = Quad(fromX: x, fromY: y, toX: endX, toY: endY, color: color)
+            
+            self.vertecies.append(contentsOf: quad.verticies)
             
         }
         
@@ -131,7 +123,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 0.1, color: [1,0,0])
         
         self.vertecies.append(contentsOf: playerQuad.verticies)
-        self.vertecies[vertecies.count - 1].pos.z = -0.1
+        self.vertecies[vertecies.count - 1].pos.z = 0.1
         
         self.device = metalKitView.device!
         
