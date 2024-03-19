@@ -65,6 +65,7 @@ extension RTSRenderer {
         
         let tileIndex = map.position_to_tileIndex(pos)
         
+        print("tileIndex: \(tileIndex), pos: \(pos)")
         switch map.tiles[tileIndex] {
         case .grass:
             return [0, 1, 0]

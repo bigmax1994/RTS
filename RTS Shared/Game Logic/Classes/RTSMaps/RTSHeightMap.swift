@@ -13,13 +13,15 @@ class RTSHeightMap{
     init(n: Int){
         // random 2d vectors
         self.n = n
-        self.gradients = [Vector2](repeating: Vector2.random(), count: n)
+        self.gradients = [Vector2](repeating: Vector2.random(), count: n*n)
     }
     func evaluate(v: Vector2) -> Float{
         var sum:Float = 0
         let a = Float(self.n / 2)
         let i = Int(a * (v.x + 1))
         let j = Int(a * (v.y + 1))
+        
+        print("i: \(i), j: \(j)")
         
         let scaledI = Float(i)/Float(self.n)
         let scaledJ = Float(j)/Float(self.n)
@@ -29,13 +31,13 @@ class RTSHeightMap{
         if i>=0 && j>=0{
             sum += self.calc_contribution(v: v, grad_pos:grad_pos, gradient:self.gradients[i*n+j])
         }
-        if i<n && j>=0{
+        if i<n-1 && j>=0{
             sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.DOWN, gradient:self.gradients[(i+1)*n+j])
         }
-        if i>=0 && j<n{
+        if i>=0 && j<n-1{
             sum += self.calc_contribution(v: v, grad_pos:grad_pos+Vector2.RIGHT, gradient:self.gradients[i*n+j+1])
         }
-        if i<n && j<0{
+        if i<n-1 && j<n-1{
             sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.RIGHT+Vector2.DOWN, gradient:self.gradients[(i+1)*n+j+1])
         }
         
