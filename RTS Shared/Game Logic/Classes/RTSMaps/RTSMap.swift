@@ -45,7 +45,7 @@ class RTSMap {
 
         self.tiles = []
         self.borderTiles = []
-        self.heightMap = RTSHeightMap(n:7)
+        self.heightMap = RTSHeightMap(n:9)
         
     }
 

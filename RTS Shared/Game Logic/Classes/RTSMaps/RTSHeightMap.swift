@@ -11,11 +11,15 @@ class RTSHeightMap{
     let gradients: [Vector2]
     let n: Int
     let tileSize:Float
+    var min:Float
+    var max:Float
     init(n: Int){
         // random 2d vectors
         self.n = n
         self.tileSize = 2/Float(n+1)
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
+        self.min = 0
+        self.max = 0
 
     }
     func evaluate(v: Vector2) -> Float{
@@ -38,7 +42,9 @@ class RTSHeightMap{
         if i<n-1 && j<n-1{
             sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*(Vector2.RIGHT+Vector2.UP), gradient:self.gradients[(i+1)*n+j+1])
         }
-        return 0.5*sum + 5
+        if sum < min{min = sum}
+        if sum > max{max = sum}
+        return 0.9*sum+0.5
         
     }
     func evalutate(x:Float, y:Float) -> Float{

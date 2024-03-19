@@ -34,10 +34,10 @@ extension RTSRenderer {
                 let v3 = Vector2(x: xEnd, y: yStart)
                 let v4 = Vector2(x: xEnd, y: yEnd)
                 
-                let h1 = map.heightMap.evaluate(v: v1) / 10
-                let h2 = map.heightMap.evaluate(v: v2) / 10
-                let h3 = map.heightMap.evaluate(v: v3) / 10
-                let h4 = map.heightMap.evaluate(v: v4) / 10
+                let h1 = map.heightMap.evaluate(v: v1)
+                let h2 = map.heightMap.evaluate(v: v2)
+                let h3 = map.heightMap.evaluate(v: v3)
+                let h4 = map.heightMap.evaluate(v: v4)
                 
                 let c1 = [Float](repeating: h1, count: 3)//RTSRenderer.sampleMapColor(from: map, at: v1)
                 let c2 = [Float](repeating: h2, count: 3)//RTSRenderer.sampleMapColor(from: map, at: v2)
@@ -54,7 +54,7 @@ extension RTSRenderer {
             }
             
         }
-        
+        print("min: \(map.heightMap.min), max: \(map.heightMap.max)")
         return verticies
         
     }
