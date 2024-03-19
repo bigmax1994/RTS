@@ -182,11 +182,32 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             
             if let renderPassDescriptor = renderPassDescriptor {
                 
-                self.addBuffer(self.vertexBuffer, vertexCount: self.vertecies.count, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
-                clear = false
+                //self.addBuffer(self.vertexBuffer, vertexCount: self.vertecies.count, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
+                //clear = false
                 
-                self.addBuffer(self.mapBuffer, vertexCount: self.mapVertecies, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
+                //self.addBuffer(self.mapBuffer, vertexCount: self.mapVertecies, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
+                /*renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadAction.load
+                renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreAction.store
                 
+                renderPassDescriptor.depthAttachment.loadAction = MTLLoadAction.clear
+                renderPassDescriptor.depthAttachment.storeAction = MTLStoreAction.store*/
+                
+                /// Final pass rendering code here
+                if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
+                    renderEncoder.label = "Primary Render Encoder"
+                    
+                    //set vertecies and state
+                    renderEncoder.setRenderPipelineState(pipelineState)
+                    renderEncoder.setVertexBuffer(self.mapBuffer, offset: 0, index: 0)
+                    renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.mapVertecies)
+                    /// Render scene using render encoder
+                    
+                    renderEncoder.endEncoding()
+                    
+                    if let drawable = view.currentDrawable {
+                        commandBuffer.present(drawable)
+                    }
+                }
             }
             
             commandBuffer.commit()

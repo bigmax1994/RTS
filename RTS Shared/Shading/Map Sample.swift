@@ -34,18 +34,19 @@ extension RTSRenderer {
                 let v3 = Vector2(x: xEnd, y: yStart)
                 let v4 = Vector2(x: xEnd, y: yEnd)
                 
-                let h1 = map.heightMap.evaluate(v: v1)
-                let h2 = map.heightMap.evaluate(v: v2)
-                let h3 = map.heightMap.evaluate(v: v3)
-                let h4 = map.heightMap.evaluate(v: v4)
+                let h1 = map.heightMap.evaluate(v: v1) / 10
+                let h2 = map.heightMap.evaluate(v: v2) / 10
+                let h3 = map.heightMap.evaluate(v: v3) / 10
+                let h4 = map.heightMap.evaluate(v: v4) / 10
                 
-                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1)
-                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2)
-                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3)
-                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4)
-                
+                let c1 = [Float](repeating: h1, count: 3)//RTSRenderer.sampleMapColor(from: map, at: v1)
+                let c2 = [Float](repeating: h2, count: 3)//RTSRenderer.sampleMapColor(from: map, at: v2)
+                let c3 = [Float](repeating: h3, count: 3)//RTSRenderer.sampleMapColor(from: map, at: v3)
+                let c4 = [Float](repeating: h4, count: 3)//RTSRenderer.sampleMapColor(from: map, at: v4)
                 
                 verticies.append(Vertex(pos: v1, z: h1, color: c1))
+                verticies.append(Vertex(pos: v2, z: h2, color: c2))
+                verticies.append(Vertex(pos: v3, z: h3, color: c3))
                 verticies.append(Vertex(pos: v2, z: h2, color: c2))
                 verticies.append(Vertex(pos: v3, z: h3, color: c3))
                 verticies.append(Vertex(pos: v4, z: h4, color: c4))
