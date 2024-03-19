@@ -9,6 +9,11 @@ import Foundation
 
 struct Vector2: Byteable {
     
+    static let UP = Vector2(x:0, y:1)
+    static let RIGHT = Vector2(x:1, y:0)
+    static let DOWN = Vector2(x:0, y:-1)
+    static let LEFT = Vector2(x:-1, y:0)
+    
     var x: Float
     var y: Float
     
