@@ -37,7 +37,7 @@ class Object {
     init?(verticies: [Vertex], at pos: Vector3, rotated: Matrix, device: MTLDevice) {
         
         assert(verticies.count > 0, "empty Object")
-        assert(rotated.columns == rotated.rows && rotated.rows == 3, "")
+        assert(rotated.isOrthogonal && rotated.rows == 3, "matrix not Orthogonal")
         
         self.vertexCount = verticies.count
         
