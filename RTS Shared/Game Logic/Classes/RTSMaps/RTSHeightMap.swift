@@ -8,6 +8,31 @@
 import Foundation
 
 class RTSHeightMap{
+    let n: Int
+    var layers: [(RTSHeightMapLayer, Float)] //Layer, amplitude
+    var min:Float
+    var max:Float
+    init(n:Int, amplitudes:[Float]=[0.9, 0.3], nPosts:[Int]=[3, 9]){
+        self.n = n
+        self.layers = []
+        for (nPost, amplitude) in nPosts.enumerated().map({ (i, nPost) in
+            return (nPost, amplitudes[i])
+        }) {
+            self.layers.append((RTSHeightMapLayer(n:nPost), amplitude))
+        }
+        self.min = 0
+        self.max = 0
+    }
+    func evaluate(v:Vector2) -> Float{
+        var sum:Float = 0.5
+        for (layer, amplitude) in self.layers{
+            sum += amplitude*layer.evaluate(v: v)
+        }
+        return sum
+    }
+}
+
+class RTSHeightMapLayer{
     let gradients: [Vector2]
     let n: Int
     let tileSize:Float
@@ -44,7 +69,7 @@ class RTSHeightMap{
         }
         if sum < min{min = sum}
         if sum > max{max = sum}
-        return 0.9*sum+0.5
+        return 0.9*sum
         
     }
     func evalutate(x:Float, y:Float) -> Float{
@@ -54,7 +79,7 @@ class RTSHeightMap{
     func calc_contribution(v: Vector2, grad_pos:Vector2, gradient: Vector2)->Float{
         
         let d:Vector2 = Float(n+1)/Float(2) * (v - grad_pos)
-        return (d ** gradient) * RTSHeightMap.decay(d: d)
+        return (d ** gradient) * RTSHeightMapLayer.decay(d: d)
     }
     ///polynomial starting at (0,1) decays to (1,0) derivative at both ends is 0
     static func decay(_ r:Float) -> Float {
@@ -65,11 +90,11 @@ class RTSHeightMap{
     }
     ///decy in 2d
     static func decay(d: Vector2) -> Float {
-        return RTSHeightMap.decay(d.x, d.y)
+        return RTSHeightMapLayer.decay(d.x, d.y)
     }
     ///decay in 2d
     static func decay(_ dx:Float, _ dy:Float) -> Float {
-        return RTSHeightMap.decay(abs(dx)) * RTSHeightMap.decay(abs(dy))
+        return RTSHeightMapLayer.decay(abs(dx)) * RTSHeightMapLayer.decay(abs(dy))
     }
     
     func makeMatrix() -> Matrix{
@@ -78,7 +103,6 @@ class RTSHeightMap{
         for i in 0..<k{
             for j in 0..<k{
                 let pos = Vector2(x:Float(2*i)/Float(k)-1, y:Float(2*j)/Float(k)-1)
-                print("(\(pos)): \(self.evaluate(v: pos))")
                 M.elements[i*k+j] = self.evaluate(v: pos)
             }
         }

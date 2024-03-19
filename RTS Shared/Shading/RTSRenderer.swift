@@ -38,7 +38,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         commDelegate = RTSCommunicationDelegate()
         
-        let map = RTSMap_square(width: 10, height: 10)
+        let map = RTSMap_square(width: 50, height: 50)
         let players = [Player(name: "Max")]
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
@@ -113,7 +113,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             fatalError("failed to compile pipeline")
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 100), device: device, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 1000), device: device, label: "Map") {
             self.objects.append(mapObj)
         }
         

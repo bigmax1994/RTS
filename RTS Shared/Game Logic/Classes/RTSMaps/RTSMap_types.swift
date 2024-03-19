@@ -16,16 +16,6 @@ class RTSMap_square:RTSMap{
         self.tiles = [TileType](repeating: .grass, count: width * height)
         self.setTiles()
         self.calculateBorderTiles()
-        print(self.tiles)
-    }
-    func setTiles(){
-        for n in 0..<self.width * self.height{
-            let i = n/width
-            let j = n%width
-            if abs(i - width/2)+abs(j - height/2) > (width + height)/4{
-                self.tiles[n] = TileType.forbidden
-            }
-        }
     }
 
     override func tileIndex_to_position(_ index: Int) -> Vector2 {

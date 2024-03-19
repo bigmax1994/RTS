@@ -45,8 +45,19 @@ class RTSMap {
 
         self.tiles = []
         self.borderTiles = []
-        self.heightMap = RTSHeightMap(n:9)
+        self.heightMap = RTSHeightMap(n:7)
         
+    }
+    
+    func setTiles() {
+        for i in 0..<tiles.count{
+            let pos = tileIndex_to_position(i) + Float(tileSize)/Float(2) * (Vector2.UP+Vector2.RIGHT)
+            let height = heightMap.evaluate(v: pos)
+            if height < 0.41{ tiles[i] = TileType.water}
+            else if height < 0.62{ tiles[i] = TileType.grass}
+            else if height < 0.9{ tiles[i] = TileType.mountain}
+            else {tiles[i] = TileType.forbidden}
+        }
     }
 
     /// calculates Indices of all Tiles, that are forbidden but have a free neighbor
