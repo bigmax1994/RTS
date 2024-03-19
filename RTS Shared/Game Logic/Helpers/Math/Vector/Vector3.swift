@@ -7,7 +7,30 @@
 
 import Foundation
 
-struct Vector3 {
+struct Vector3: Byteable, Equatable {
+    
+    static var byteSize: Int = 3 * Float.byteSize
+    
+    var data: Data {
+        var data = x.data
+        data.append(y.data)
+        data.append(z.data)
+        
+        return data
+    }
+    
+    init(_ data: Data) {
+        
+        let xData = data.subdata(in: 0 ..< Float.byteSize)
+        let yData = data.subdata(in: Float.byteSize ..< 2 * Float.byteSize)
+        let zData = data.subdata(in: 2 * Float.byteSize ..< 3 * Float.byteSize)
+        
+        self.x = Float(xData)
+        self.y = Float(yData)
+        self.z = Float(zData)
+        
+    }
+    
     var x: Float
     var y: Float
     var z: Float

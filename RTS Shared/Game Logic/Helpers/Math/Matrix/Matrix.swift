@@ -39,4 +39,40 @@ struct Matrix {
         
     }
     
+    static func Identity(_ n: Int) -> Matrix {
+        
+        var m = Matrix(columns: n, rows: n)
+        for i in 0...(n-1) {
+            m[i, i] = 1
+        }
+        
+        return m
+        
+    }
+    
+    subscript(row: Int, column: Int) -> Float {
+        get {
+            assert(indexIsValid(row: row, column: column), "Index out of range")
+            return self.elements[(row * columns) + column]
+        }
+        set {
+            assert(indexIsValid(row: row, column: column), "Index out of range")
+            self.elements[(row * columns) + column] = newValue
+        }
+    }
+    
+    func indexIsValid(row: Int, column: Int) -> Bool {
+        
+        if row < 0 || column < 0 {
+            return false
+        }
+        
+        if row >= self.rows || column >= self.columns {
+            return false
+        }
+        
+        return true
+        
+    }
+    
 }

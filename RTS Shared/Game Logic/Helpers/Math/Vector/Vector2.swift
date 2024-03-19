@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Vector2: Byteable {
+struct Vector2: Byteable, Equatable {
     
     static let UP = Vector2(x:0, y:1)
     static let RIGHT = Vector2(x:1, y:0)
