@@ -10,9 +10,11 @@ import Foundation
 class RTSHeightMap{
     let gradients: [Vector2]
     let n: Int
+    let tileSize:Float
     init(n: Int){
         // random 2d vectors
         self.n = n
+        self.tileSize = 2/Float(n+1)
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
 
     }
@@ -28,19 +30,15 @@ class RTSHeightMap{
             sum += self.calc_contribution(v: v, grad_pos:grad_pos, gradient:self.gradients[i*n+j])
         }
         if i<n-1 && j>=0 && j<n{
-            sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.UP, gradient:self.gradients[(i+1)*n+j])
+            sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*Vector2.RIGHT, gradient:self.gradients[(i+1)*n+j])
         }
         if i>=0 && i<n && j<n-1{
-            sum += self.calc_contribution(v: v, grad_pos:grad_pos+Vector2.RIGHT, gradient:self.gradients[i*n+j+1])
+            sum += self.calc_contribution(v: v, grad_pos:grad_pos+tileSize*Vector2.UP, gradient:self.gradients[i*n+j+1])
         }
         if i<n-1 && j<n-1{
-            sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.RIGHT+Vector2.UP, gradient:self.gradients[(i+1)*n+j+1])
+            sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*(Vector2.RIGHT+Vector2.UP), gradient:self.gradients[(i+1)*n+j+1])
         }
-        
-        
-        print("evaluate at \(v) --> i: \(i), j: \(j), h: \(sum)")
-        
-        return 10*sum + 5
+        return 0.5*sum + 5
         
     }
     func evalutate(x:Float, y:Float) -> Float{
@@ -48,10 +46,8 @@ class RTSHeightMap{
     }
     ///calcualtes contribution of a given gradient to the evaluation at v
     func calc_contribution(v: Vector2, grad_pos:Vector2, gradient: Vector2)->Float{
-        if grad_pos != Vector2(x:0, y:0){
-            return 0
-        }
-        let d:Vector2 = 2/Float(n) * (v - grad_pos)
+        
+        let d:Vector2 = Float(n+1)/Float(2) * (v - grad_pos)
         return (d ** gradient) * RTSHeightMap.decay(d: d)
     }
     ///polynomial starting at (0,1) decays to (1,0) derivative at both ends is 0
@@ -59,7 +55,6 @@ class RTSHeightMap{
         let f:Float = 0<=r && r<=1 ? 1 : 0
         let square:Float = r*r
         let lambda:Float = f * 2 * r * square - 3 * square + 1
-        print("decay: \(r) -> \(lambda)")
         return lambda;
     }
     ///decy in 2d
