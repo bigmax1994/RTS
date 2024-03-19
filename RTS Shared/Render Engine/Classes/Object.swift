@@ -7,8 +7,11 @@
 
 import Foundation
 import Metal
+import MetalKit
 
 class Object {
+    
+    let label:String?
     
     var verticies: MTLBuffer
     var vertexCount: Int
@@ -16,25 +19,25 @@ class Object {
     var rotation: Matrix
     var position: Vector3
     
-    convenience init?(verticies: [Vertex], device: MTLDevice) {
+    convenience init?(verticies: [Vertex], device: MTLDevice, label: String? = nil) {
         
-        self.init(verticies: verticies, at: Vector3(), device: device)
-        
-    }
-    
-    convenience init?(verticies: [Vertex], at pos: Vector3, device: MTLDevice) {
-        
-        self.init(verticies: verticies, at: pos, rotated: Matrix.Identity(3), device: device)
+        self.init(verticies: verticies, at: Vector3(), device: device, label: label)
         
     }
     
-    convenience init?(verticies: [Vertex], at pos: Vector2, device: MTLDevice) {
+    convenience init?(verticies: [Vertex], at pos: Vector3, device: MTLDevice, label: String? = nil) {
         
-        self.init(verticies: verticies, at: Vector3(x: pos.x, y: pos.y, z: 0), device: device)
+        self.init(verticies: verticies, at: pos, rotated: Matrix.Identity(3), device: device, label: label)
         
     }
     
-    init?(verticies: [Vertex], at pos: Vector3, rotated: Matrix, device: MTLDevice) {
+    convenience init?(verticies: [Vertex], at pos: Vector2, device: MTLDevice, label: String? = nil) {
+        
+        self.init(verticies: verticies, at: Vector3(x: pos.x, y: pos.y, z: 0), device: device, label: label)
+        
+    }
+    
+    init?(verticies: [Vertex], at pos: Vector3, rotated: Matrix, device: MTLDevice, label: String? = nil) {
         
         assert(verticies.count > 0, "empty Object")
         assert(rotated.isOrthogonal && rotated.rows == 3, "matrix not Orthogonal")
@@ -52,6 +55,8 @@ class Object {
         self.rotation = rotated
         self.position = pos
         
+        self.label = label
+        
     }
     
     func moveTo(_ pos: Vector3) {
@@ -63,8 +68,35 @@ class Object {
     }
     
     func rotateTo(_ m: Matrix) {
+        assert(m.isOrthogonal && m.rows == 3, "matrix not Orthogonal")
+        self.rotation = m
+    }
+    
+    func rotateBy(_ m: Matrix) {
+        assert(m.isOrthogonal && m.rows == 3, "matrix not Orthogonal")
+        self.rotation = Matrix.fastDotAdd(A: self.rotation, B: m)
+    }
+    
+    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState) {
         
+        guard let currentDrawable = view.currentDrawable else {
+            return
+        }
         
+        guard let desc = view.currentRenderPassDescriptor else {
+            return
+        }
+        
+        guard let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: desc) else {
+            return
+        }
+        encoder.label = "Encoder for \(self.label ?? "N/A")"
+        
+        encoder.setRenderPipelineState(pipelineState)
+        encoder.setVertexBuffer(self.verticies, offset: 0, index: 0)
+        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.vertexCount)
+        
+        encoder.endEncoding()
         
     }
     

@@ -11,7 +11,7 @@ import Metal
 extension RTSRenderer {
     
     ///samples the map and returns a buffer of verticies to be rendered
-    static func sampleMap(from map: RTSMap, with LOD: Int, device: MTLDevice) -> (MTLBuffer, Int) {
+    static func sampleMap(from map: RTSMap, with LOD: Int) -> [Vertex] {
         
         if LOD < 1 {
             fatalError("incorrect LOD")
@@ -55,10 +55,7 @@ extension RTSRenderer {
             
         }
         
-        let dataSize = verticies.count * MemoryLayout.size(ofValue: verticies[0])
-        guard let buffer = device.makeBuffer(bytes: verticies, length: dataSize, options: []) else { fatalError("failed to create buffer") }
-        
-        return (buffer, verticies.count)
+        return verticies
         
     }
     

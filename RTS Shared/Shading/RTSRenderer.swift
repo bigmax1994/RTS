@@ -15,52 +15,13 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     static let renderedFrames = 3
     let inFlightSemaphore: DispatchSemaphore = DispatchSemaphore(value: renderedFrames)
     
-    func gameDidStart(_ game: RTSGame) {
-        
-    }
-    
-    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2) {
-        
-        let _ = self.vertecies.removeLast(6)
-        
-        let fac:Float = 0.9
-        
-        let tileSize:(width: Float, height: Float) = (width: fac * 2/Float(game.map.width), height: fac * 2/Float(game.map.height))
-        
-        let playerPos:Vector2 = player.getPosition()
-        let playerX = playerPos.x - tileSize.width / 2
-        let playerEndX = playerPos.x + tileSize.height / 2
-        let playerY = playerPos.y - tileSize.width / 2
-        let playerEndY = playerPos.y + tileSize.height / 2
-        
-        let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 0.1, color: [1,0,0])
-        
-        self.vertecies.append(contentsOf: playerQuad.verticies)
-        
-        let dataSize = self.vertecies.count * MemoryLayout.size(ofValue: self.vertecies[0])
-        self.vertexBuffer = device.makeBuffer(bytes: vertecies, length: dataSize, options: [])!
-        
-        updated = true
-    }
-    
-    func gameDidEnd(_ game: RTSGame) {
-        
-    }
-    
-    func setGame(_ game: RTSGame) {
-        self.game = game
-    }
-    
-    func userDidClick(on pos: Vector2) {
-        self.game?.move(pos)
-    }
-    
+    var objects:[Object] = []
     
     var device: MTLDevice
     var vertexBuffer: MTLBuffer!
     
-    var mapBuffer: MTLBuffer
-    var mapVertecies: Int
+    //var mapBuffer: MTLBuffer
+    //var mapVertecies: Int
     
     var commandQueue: MTLCommandQueue
     var pipelineState: MTLRenderPipelineState
@@ -152,7 +113,9 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             fatalError("failed to compile pipeline")
         }
         
-        (self.mapBuffer, self.mapVertecies) = RTSRenderer.sampleMap(from: map, with: 100, device: device)
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 100), device: device, label: "Map") {
+            self.objects.append(mapObj)
+        }
         
         super.init()
         
@@ -166,8 +129,6 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     func draw(in view: MTKView) {
         
-        var clear = true
-        
         _ = inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
 
         if let commandBuffer = commandQueue.makeCommandBuffer() {
@@ -180,34 +141,12 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             ///   holding onto the drawable and blocking the display pipeline any longer than necessary
             let renderPassDescriptor = view.currentRenderPassDescriptor
             
-            if let renderPassDescriptor = renderPassDescriptor {
-                
-                //self.addBuffer(self.vertexBuffer, vertexCount: self.vertecies.count, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
-                //clear = false
-                
-                //self.addBuffer(self.mapBuffer, vertexCount: self.mapVertecies, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
-                /*renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadAction.load
-                renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreAction.store
-                
-                renderPassDescriptor.depthAttachment.loadAction = MTLLoadAction.clear
-                renderPassDescriptor.depthAttachment.storeAction = MTLStoreAction.store*/
-                
-                /// Final pass rendering code here
-                if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
-                    renderEncoder.label = "Primary Render Encoder"
+            for object in objects {
+                object.draw(view, cmdBuffer: commandBuffer, pipelineState: self.pipelineState)
+            }
                     
-                    //set vertecies and state
-                    renderEncoder.setRenderPipelineState(pipelineState)
-                    renderEncoder.setVertexBuffer(self.mapBuffer, offset: 0, index: 0)
-                    renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.mapVertecies)
-                    /// Render scene using render encoder
-                    
-                    renderEncoder.endEncoding()
-                    
-                    if let drawable = view.currentDrawable {
-                        commandBuffer.present(drawable)
-                    }
-                }
+            if let drawable = view.currentDrawable {
+                commandBuffer.present(drawable)
             }
             
             commandBuffer.commit()
@@ -240,6 +179,44 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             }
         }
         
+    }
+    
+    func gameDidStart(_ game: RTSGame) {
+        
+    }
+    
+    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2) {
+        
+        let _ = self.vertecies.removeLast(6)
+        
+        let fac:Float = 0.9
+        
+        let tileSize:(width: Float, height: Float) = (width: fac * 2/Float(game.map.width), height: fac * 2/Float(game.map.height))
+        
+        let playerPos:Vector2 = player.getPosition()
+        let playerX = playerPos.x - tileSize.width / 2
+        let playerEndX = playerPos.x + tileSize.height / 2
+        let playerY = playerPos.y - tileSize.width / 2
+        let playerEndY = playerPos.y + tileSize.height / 2
+        
+        let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 0.1, color: [1,0,0])
+        
+        self.vertecies.append(contentsOf: playerQuad.verticies)
+        
+        let dataSize = self.vertecies.count * MemoryLayout.size(ofValue: self.vertecies[0])
+        self.vertexBuffer = device.makeBuffer(bytes: vertecies, length: dataSize, options: [])!
+    }
+    
+    func gameDidEnd(_ game: RTSGame) {
+        
+    }
+    
+    func setGame(_ game: RTSGame) {
+        self.game = game
+    }
+    
+    func userDidClick(on pos: Vector2) {
+        self.game?.move(pos)
     }
     
 }
