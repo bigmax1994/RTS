@@ -152,7 +152,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             fatalError("failed to compile pipeline")
         }
         
-        (self.mapBuffer, self.mapVertecies) = RTSRenderer.sampleMap(map, with: 100, device: device)
+        (self.mapBuffer, self.mapVertecies) = RTSRenderer.sampleMap(from: map, with: 100, device: device)
         
         super.init()
         
