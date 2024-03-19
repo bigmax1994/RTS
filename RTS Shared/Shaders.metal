@@ -11,7 +11,7 @@
 #include <simd/simd.h>
 
 // Including header shared between this Metal shader code and Swift/C code executing Metal API commands
-#import "ShaderTypes.h"
+//#import "ShaderTypes.h"
 
 using namespace metal;
 
@@ -27,25 +27,25 @@ typedef struct
     float3 color;
 } ColorInOut;
 
-vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant Vertex* vertices [[buffer(0)]], constant Uniforms & uniforms [[ buffer(BufferIndexUniforms) ]])
+typedef struct
+{
+    matrix_float4x4 rotationMatrix;
+    float4 position;
+} Uniforms;
+
+vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant Uniforms & uniforms [[ buffer(0) ]], constant Vertex* vertices [[buffer(1)]])
 {
     ColorInOut out;
 
     float4 position = float4(vertices[vid].pos, 1);
-    float size = .6;
-    position.z = .8 * size * (1 - position.z);
-    position.x = size * position.x;
-    position.y = size * position.y;
+    //position.z = 1 - position.z;
     
-    float alpha = 0.2;
-    float beta = 0.8;
+    /*float4x4 m = float4x4(float4(1, 0, 0.0, 0.0),
+                          float4(0, 0.8, 0.6, 0.0),
+                          float4(0.0, -0.6, 0.8, 0.0),
+                          float4(0.0, 0.0, 0.0, 1.0));*/
     
-    float4x4 m = float4x4(float4(cos(alpha), sin(alpha)*cos(beta), sin(alpha)*sin(beta), 0.0),
-                          float4(sin(alpha), cos(alpha)*cos(beta), -sin(beta)*cos(alpha), 0.0),
-                          float4(0.0, -sin(beta), cos(beta), 0.0),
-                          float4(0.0, 0.0, 0.0, 1.0));
-    
-    out.position = m * position;
+    out.position = uniforms.rotationMatrix * position + uniforms.position;
     out.color = vertices[vid].color;
 
     return out;

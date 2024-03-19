@@ -76,6 +76,20 @@ struct Vertex {
         
     }
     
+    init(x: Float, y: Float, z: Float, color: Vector3) {
+        
+        self.pos = simd_float3(x, y, z)
+        self.color = simd_float3(color.x, color.y, color.z)
+        
+    }
+    
+    init(pos: Vector3, color: Vector3) {
+        
+        self.pos = simd_float3(pos.x, pos.y, pos.z)
+        self.color = simd_float3(color.x, color.y, color.z)
+        
+    }
+    
     init(pos: Vector2, z: Float, color: [Float]) {
         
         self.pos = simd_float3(pos.x, pos.y, z)

@@ -131,8 +131,15 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         }
         
         if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 1000), device: device, label: "Map") {
+            let cameraRotation = Matrix.matrix4x4_rotation(radians: 1, axis: Vector3(x: 1, y: 0, z: 0))
+            //mapObj.rotateBy(cameraRotation)
             self.objects.append(mapObj)
         }
+        
+        if let sky = Skybox(color: Vector3(x: 38.0 / 255.0, y: 194.0 / 255.0, z: 220.0 / 255.0), device: device) {
+            //self.objects.append(sky)
+        }
+        
         do {
             //let p = try Vertex.readFile("Drone")
             //if let obj = Object(verticies: p, device: device, label: "drone") {
@@ -155,13 +162,10 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     private func updateGameState() {
         /// Update any game state before rendering
         
-        uniforms[0].projectionMatrix = projectionMatrix
+        let rotationAxis = Vector3(x: 0, y: 0.5, z: 1)
+        let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
+        objects[0].rotateBy(m)
         
-        let rotationAxis = SIMD3<Float>(1, 1, 0)
-        let modelMatrix = matrix4x4_rotation(radians: rotation, axis: rotationAxis)
-        let viewMatrix = matrix4x4_translation(0.0, 0.0, -8.0)
-        uniforms[0].modelViewMatrix = simd_mul(viewMatrix, modelMatrix)
-        rotation += 0.01
     }
     
     func draw(in view: MTKView) {
@@ -181,7 +185,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             let renderPassDescriptor = view.currentRenderPassDescriptor
             
             for object in objects {
-                object.draw(view, cmdBuffer: commandBuffer, pipelineState: self.pipelineState, dynamicUniformBuffer: dynamicUniformBuffer, uniformBufferIndex: uniformBufferIndex, uniformBufferOffset: uniformBufferOffset)
+                object.draw(view, cmdBuffer: commandBuffer, pipelineState: self.pipelineState, device: device)
             }
                     
             if let drawable = view.currentDrawable {
@@ -267,36 +271,3 @@ enum RendererError: Error {
 }
 
 
-// Generic matrix math utility functions
-func matrix4x4_rotation(radians: Float, axis: SIMD3<Float>) -> matrix_float4x4 {
-    let unitAxis = normalize(axis)
-    let ct = cosf(radians)
-    let st = sinf(radians)
-    let ci = 1 - ct
-    let x = unitAxis.x, y = unitAxis.y, z = unitAxis.z
-    return matrix_float4x4.init(columns:(vector_float4(    ct + x * x * ci, y * x * ci + z * st, z * x * ci - y * st, 0),
-                                         vector_float4(x * y * ci - z * st,     ct + y * y * ci, z * y * ci + x * st, 0),
-                                         vector_float4(x * z * ci + y * st, y * z * ci - x * st,     ct + z * z * ci, 0),
-                                         vector_float4(                  0,                   0,                   0, 1)))
-}
-
-func matrix4x4_translation(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> matrix_float4x4 {
-    return matrix_float4x4.init(columns:(vector_float4(1, 0, 0, 0),
-                                         vector_float4(0, 1, 0, 0),
-                                         vector_float4(0, 0, 1, 0),
-                                         vector_float4(translationX, translationY, translationZ, 1)))
-}
-
-func matrix_perspective_right_hand(fovyRadians fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) -> matrix_float4x4 {
-    let ys = 1 / tanf(fovy * 0.5)
-    let xs = ys / aspectRatio
-    let zs = farZ / (nearZ - farZ)
-    return matrix_float4x4.init(columns:(vector_float4(xs,  0, 0,   0),
-                                         vector_float4( 0, ys, 0,   0),
-                                         vector_float4( 0,  0, zs, -1),
-                                         vector_float4( 0,  0, zs * nearZ, 0)))
-}
-
-func radians_from_degrees(_ degrees: Float) -> Float {
-    return (degrees / 180) * .pi
-}

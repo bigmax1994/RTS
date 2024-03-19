@@ -94,10 +94,10 @@ struct Matrix {
                     
                 }
                 
-                if i == j && abs(sum - 1) > Float.ulpOfOne {
+                if i == j && abs(sum - 1) > 10 * Float.ulpOfOne {
                     return false
                 }
-                if i != j && abs(sum) > Float.ulpOfOne {
+                if i != j && abs(sum) > 10 * Float.ulpOfOne {
                     return false
                 }
                     
@@ -107,6 +107,36 @@ struct Matrix {
         
         return true
         
+    }
+    
+    //MARK:  Generic matrix math utility functions
+    static func matrix4x4_rotation(radians: Float, axis: Vector3) -> Matrix {
+        let unitAxis = axis.normalized()
+        let ct = cos(radians)
+        let st = sin(radians)
+        let ci = 1 - ct
+        let x = unitAxis.x, y = unitAxis.y, z = unitAxis.z
+        return Matrix([[ct + x * x * ci, y * x * ci + z * st, z * x * ci - y * st, 0],
+                       [x * y * ci - z * st,     ct + y * y * ci, z * y * ci + x * st, 0],
+                       [x * z * ci + y * st, y * z * ci - x * st,     ct + z * z * ci, 0],
+                       [0, 0, 0, 1]])
+    }
+
+    static func matrix4x4_translation(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix {
+        return Matrix([[1, 0, 0, 0],
+                       [0, 1, 0, 0],
+                       [0, 0, 1, 0],
+                       [translationX, translationY, translationZ, 1]])
+    }
+
+    static func matrix_perspective_right_hand(fovyRadians fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) -> Matrix {
+        let ys = 1 / tan(fovy * 0.5)
+        let xs = ys / aspectRatio
+        let zs = farZ / (nearZ - farZ)
+        return Matrix([[xs,  0, 0,   0],
+                        [0, ys, 0,   0],
+                        [0,  0, zs, -1],
+                        [0,  0, zs * nearZ, 0]])
     }
     
 }

@@ -33,6 +33,12 @@
 		F4534A942BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F4534A952BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F4534A962BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
+		F4534AA92BA9FC2600505014 /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AA82BA9FC2600505014 /* SkyBox.swift */; };
+		F4534AAA2BA9FC2600505014 /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AA82BA9FC2600505014 /* SkyBox.swift */; };
+		F4534AAB2BA9FC2600505014 /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AA82BA9FC2600505014 /* SkyBox.swift */; };
+		F4534AAD2BA9FC5300505014 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Uniforms.swift */; };
+		F4534AAE2BA9FC5300505014 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Uniforms.swift */; };
+		F4534AAF2BA9FC5300505014 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Uniforms.swift */; };
 		F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1022B97415E00125D78 /* AppDelegate.swift */; };
 		F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1042B97415E00125D78 /* GameViewController.swift */; };
 		F47CC1082B97415E00125D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CC1062B97415E00125D78 /* Main.storyboard */; };
@@ -123,6 +129,8 @@
 		F4534A792BA8950400505014 /* MatrixCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalc.swift; sourceTree = "<group>"; };
 		F4534A862BA9965600505014 /* Map Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map Sample.swift"; sourceTree = "<group>"; };
 		F4534A912BA9C77B00505014 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		F4534AA82BA9FC2600505014 /* SkyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBox.swift; sourceTree = "<group>"; };
+		F4534AAC2BA9FC5300505014 /* Uniforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Uniforms.swift; path = "RTS Shared/Render Engine/Classes/Uniforms.swift"; sourceTree = SOURCE_ROOT; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* RTSRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSRenderer.swift; sourceTree = "<group>"; };
 		F47CC0F92B97415C00125D78 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -247,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				F4534A912BA9C77B00505014 /* Object.swift */,
+				F4534AA82BA9FC2600505014 /* SkyBox.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -265,6 +274,7 @@
 			children = (
 				F41F82E22B9C627B006974CE /* Vertex.swift */,
 				F45280742BA457D200BF6D92 /* Quad.swift */,
+				F4534AAC2BA9FC5300505014 /* Uniforms.swift */,
 			);
 			path = "Vertex Helpers";
 			sourceTree = "<group>";
@@ -610,6 +620,7 @@
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
+				F4534AAD2BA9FC5300505014 /* Uniforms.swift in Sources */,
 				F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F4534A942BA9C77B00505014 /* Object.swift in Sources */,
@@ -620,6 +631,7 @@
 				F45280752BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A762BA893F900505014 /* Matrix.swift in Sources */,
+				F4534AA92BA9FC2600505014 /* SkyBox.swift in Sources */,
 				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -643,6 +655,7 @@
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
+				F4534AAE2BA9FC5300505014 /* Uniforms.swift in Sources */,
 				F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F4534A952BA9C77B00505014 /* Object.swift in Sources */,
@@ -653,6 +666,7 @@
 				F45280762BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A772BA893F900505014 /* Matrix.swift in Sources */,
+				F4534AAA2BA9FC2600505014 /* SkyBox.swift in Sources */,
 				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -676,6 +690,7 @@
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
+				F4534AAF2BA9FC5300505014 /* Uniforms.swift in Sources */,
 				F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F4534A962BA9C77B00505014 /* Object.swift in Sources */,
@@ -686,6 +701,7 @@
 				F45280772BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A782BA893F900505014 /* Matrix.swift in Sources */,
+				F4534AAB2BA9FC2600505014 /* SkyBox.swift in Sources */,
 				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -1064,7 +1080,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1095,7 +1111,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

@@ -19,6 +19,8 @@ class Object {
     var rotation: Matrix
     var position: Vector3
     
+    var uniforms: MTLBuffer!
+    
     convenience init?(verticies: [Vertex], device: MTLDevice, label: String? = nil) {
         
         self.init(verticies: verticies, at: Vector3(), device: device, label: label)
@@ -27,7 +29,7 @@ class Object {
     
     convenience init?(verticies: [Vertex], at pos: Vector3, device: MTLDevice, label: String? = nil) {
         
-        self.init(verticies: verticies, at: pos, rotated: Matrix.Identity(3), device: device, label: label)
+        self.init(verticies: verticies, at: pos, rotated: Matrix.Identity(4), device: device, label: label)
         
     }
     
@@ -40,7 +42,7 @@ class Object {
     init?(verticies: [Vertex], at pos: Vector3, rotated: Matrix, device: MTLDevice, label: String? = nil) {
         
         assert(verticies.count > 0, "empty Object")
-        assert(rotated.isOrthogonal && rotated.rows == 3, "matrix not Orthogonal")
+        assert(rotated.isOrthogonal && rotated.rows == 4, "matrix not Orthogonal")
         
         self.vertexCount = verticies.count
         
@@ -57,6 +59,8 @@ class Object {
         
         self.label = label
         
+        self.updateUniforms(device)
+        
     }
     
     func moveTo(_ pos: Vector3) {
@@ -68,16 +72,26 @@ class Object {
     }
     
     func rotateTo(_ m: Matrix) {
-        assert(m.isOrthogonal && m.rows == 3, "matrix not Orthogonal")
+        assert(m.isOrthogonal && m.rows == 4, "matrix not Orthogonal")
         self.rotation = m
     }
     
     func rotateBy(_ m: Matrix) {
-        assert(m.isOrthogonal && m.rows == 3, "matrix not Orthogonal")
+        assert(m.isOrthogonal && m.rows == 4, "matrix not Orthogonal")
         self.rotation = Matrix.fastDotAdd(A: self.rotation, B: m)
     }
     
-    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState, dynamicUniformBuffer: MTLBuffer, uniformBufferIndex: Int, uniformBufferOffset: Int) {
+    func updateUniforms(_ device: MTLDevice) {
+        
+        let u = Uniforms(matrix: self.rotation, position: self.position)
+        
+        if let buffer = device.makeBuffer(bytes: [u], length: MemoryLayout.size(ofValue: u)) {
+            self.uniforms = buffer
+        }
+        
+    }
+    
+    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState, device: MTLDevice) {
         
         guard let desc = view.currentRenderPassDescriptor else {
             return
@@ -88,11 +102,11 @@ class Object {
         }
         encoder.label = "Encoder for \(self.label ?? "N/A")"
         
-        encoder.setVertexBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
-        encoder.setFragmentBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+        self.updateUniforms(device)
+        encoder.setVertexBuffer(self.uniforms, offset: 0, index: 0)
         
         encoder.setRenderPipelineState(pipelineState)
-        encoder.setVertexBuffer(self.verticies, offset: 0, index: 0)
+        encoder.setVertexBuffer(self.verticies, offset: 0, index: 1)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.vertexCount)
         
         encoder.endEncoding()
