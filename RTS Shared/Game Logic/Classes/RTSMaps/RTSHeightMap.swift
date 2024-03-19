@@ -7,12 +7,19 @@
 
 import Foundation
 
+class RTSCrater{
+    static func evaluate(v:Vector2) -> Float{
+        return -(v.x+1)*(v.x-1)*(v.y+1)*(v.y-1) + 0.9
+    }
+}
 class RTSHeightMap{
     let n: Int
     var layers: [(RTSHeightMapLayer, Float)] //Layer, amplitude
     var min:Float
     var max:Float
-    init(n:Int, amplitudes:[Float]=[0.9, 0.3], nPosts:[Int]=[3, 9]){
+    let upshift:Float = 0.2
+    let steepness:Float = 5.0
+    init(n:Int, amplitudes:[Float]=[1.2, 0.4, 0.02, 0.01], nPosts:[Int]=[3, 13, 57, 91]){
         self.n = n
         self.layers = []
         for (nPost, amplitude) in nPosts.enumerated().map({ (i, nPost) in
@@ -24,11 +31,13 @@ class RTSHeightMap{
         self.max = 0
     }
     func evaluate(v:Vector2) -> Float{
-        var sum:Float = 0.5
+        var sum:Float = 0.0
         for (layer, amplitude) in self.layers{
             sum += amplitude*layer.evaluate(v: v)
         }
-        return Swift.max(sum, 0.4)
+        sum = 1/(1+exp(steepness*sum))
+        sum = sum*(1-upshift) + upshift/2
+        return Swift.max(sum, RTSMap.sealevel-0.05) + RTSCrater.evaluate(v: v)
     }
 }
 
@@ -69,7 +78,7 @@ class RTSHeightMapLayer{
         }
         if sum < min{min = sum}
         if sum > max{max = sum}
-        return 0.9*sum
+        return sum
         
     }
     func evalutate(x:Float, y:Float) -> Float{

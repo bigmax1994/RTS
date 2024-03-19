@@ -32,11 +32,17 @@ vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant Vertex* vertices
     ColorInOut out;
 
     float4 position = float4(vertices[vid].pos, 1);
-    position.z = 1 - position.z;
+    float size = .6;
+    position.z = .8 * size * (1 - position.z);
+    position.x = size * position.x;
+    position.y = size * position.y;
     
-    float4x4 m = float4x4(float4(1, 0, 0.0, 0.0),
-                          float4(0, 0.8, 0.6, 0.0),
-                          float4(0.0, -0.6, 0.8, 0.0),
+    float alpha = 0.2;
+    float beta = 0.8;
+    
+    float4x4 m = float4x4(float4(cos(alpha), sin(alpha)*cos(beta), sin(alpha)*sin(beta), 0.0),
+                          float4(sin(alpha), cos(alpha)*cos(beta), -sin(beta)*cos(alpha), 0.0),
+                          float4(0.0, -sin(beta), cos(beta), 0.0),
                           float4(0.0, 0.0, 0.0, 1.0));
     
     out.position = m * position;

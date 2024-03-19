@@ -9,6 +9,10 @@ import Foundation
 
 class RTSMap {
     
+    static let sealevel:Float = 0.3
+    static let grasstop:Float = 0.6
+    static let mountaintop:Float = 0.9
+    
     enum TileType {
         case grass
         case mountain
@@ -45,7 +49,7 @@ class RTSMap {
 
         self.tiles = []
         self.borderTiles = []
-        self.heightMap = RTSHeightMap(n:7)
+        self.heightMap = RTSHeightMap(n:2)
         
     }
     
@@ -53,9 +57,9 @@ class RTSMap {
         for i in 0..<tiles.count{
             let pos = tileIndex_to_position(i) + Float(tileSize)/Float(2) * (Vector2.UP+Vector2.RIGHT)
             let height = heightMap.evaluate(v: pos)
-            if height < 0.41{ tiles[i] = TileType.water}
-            else if height < 0.62{ tiles[i] = TileType.grass}
-            else if height < 0.9{ tiles[i] = TileType.mountain}
+            if height < RTSMap.sealevel{ tiles[i] = TileType.water}
+            else if height < RTSMap.grasstop{ tiles[i] = TileType.grass}
+            else if height < RTSMap.mountaintop{ tiles[i] = TileType.mountain}
             else {tiles[i] = TileType.forbidden}
         }
     }

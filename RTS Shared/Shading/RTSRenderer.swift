@@ -47,7 +47,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         commDelegate = RTSCommunicationDelegate()
         
-        let map = RTSMap_square(width: 50, height: 50)
+        let map = RTSMap_square(width: 100, height: 100)
         let players = [Player(name: "Max")]
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
