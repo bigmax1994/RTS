@@ -31,7 +31,7 @@ vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant Vertex* vertices
 {
     ColorInOut out;
 
-    float4 position = float4(vertices[vid].pos, 0);
+    float4 position = float4(vertices[vid].pos, 1);
     out.position = position;
     out.color = vertices[vid].color;
 
