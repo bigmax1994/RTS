@@ -30,6 +30,9 @@
 		F4534A872BA9965600505014 /* Map Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A862BA9965600505014 /* Map Sample.swift */; };
 		F4534A882BA9965600505014 /* Map Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A862BA9965600505014 /* Map Sample.swift */; };
 		F4534A892BA9965600505014 /* Map Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A862BA9965600505014 /* Map Sample.swift */; };
+		F4534A942BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
+		F4534A952BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
+		F4534A962BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1022B97415E00125D78 /* AppDelegate.swift */; };
 		F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1042B97415E00125D78 /* GameViewController.swift */; };
 		F47CC1082B97415E00125D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CC1062B97415E00125D78 /* Main.storyboard */; };
@@ -119,6 +122,7 @@
 		F4534A752BA893F900505014 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		F4534A792BA8950400505014 /* MatrixCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalc.swift; sourceTree = "<group>"; };
 		F4534A862BA9965600505014 /* Map Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map Sample.swift"; sourceTree = "<group>"; };
+		F4534A912BA9C77B00505014 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* RTSRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSRenderer.swift; sourceTree = "<group>"; };
 		F47CC0F92B97415C00125D78 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -240,6 +244,22 @@
 			path = Shading;
 			sourceTree = "<group>";
 		};
+		F4534A922BA9C77B00505014 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F4534A912BA9C77B00505014 /* Object.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F4534A932BA9C77B00505014 /* Render Engine */ = {
+			isa = PBXGroup;
+			children = (
+				F4534A922BA9C77B00505014 /* Classes */,
+			);
+			path = "Render Engine";
+			sourceTree = "<group>";
+		};
 		F462F7642BA85D6300AA21DE /* Vertex Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +288,7 @@
 				F4EF7ADE2B9B950600A70A56 /* Delegates */,
 				F4EF7AE12B9B950600A70A56 /* Game Logic */,
 				F4534A8A2BA9967700505014 /* Shading */,
+				F4534A932BA9C77B00505014 /* Render Engine */,
 				F47CC0F92B97415C00125D78 /* ShaderTypes.h */,
 				F47CC0FA2B97415E00125D78 /* Assets.xcassets */,
 			);
@@ -591,6 +612,7 @@
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
 				F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F4534A942BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
@@ -623,6 +645,7 @@
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
 				F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F4534A952BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
@@ -655,6 +678,7 @@
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
 				F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F4534A962BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,

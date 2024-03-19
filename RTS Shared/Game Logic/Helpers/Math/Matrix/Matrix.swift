@@ -75,4 +75,38 @@ struct Matrix {
         
     }
     
+    var isSquare: Bool {
+        return self.columns == self.rows
+    }
+    
+    var isOrthogonal: Bool {
+        if !isSquare { return false }
+        
+        for i in 0..<self.rows {
+            
+            for j in 0..<self.rows {
+                
+                var sum:Float = 0
+                
+                for k in 0..<self.columns {
+                    
+                    sum += self[i, k] * self[j, k]
+                    
+                }
+                
+                if i == j && abs(sum - 1) > Float.ulpOfOne {
+                    return false
+                }
+                if i != j && abs(sum) > Float.ulpOfOne {
+                    return false
+                }
+                    
+            }
+            
+        }
+        
+        return true
+        
+    }
+    
 }
