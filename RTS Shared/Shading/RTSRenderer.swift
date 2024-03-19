@@ -58,6 +58,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     var device: MTLDevice
     var vertexBuffer: MTLBuffer!
+    var mapBuffer: MTLBuffer
     var commandQueue: MTLCommandQueue
     var pipelineState: MTLRenderPipelineState
     
@@ -78,7 +79,9 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
+        self.mapBuffer = self.sampleMap(with: 100)
+        
+        /*let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
         
         for (i, tile) in map.tiles.enumerated() {
                     
@@ -112,7 +115,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             
             self.vertecies.append(contentsOf: quad.verticies)
             
-        }
+        }*/
         
         let playerPos:Vector2 = game!.selfPlayer!.getPosition()
         let playerX = playerPos.x - tileSize.width / 2
@@ -120,7 +123,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         let playerY = playerPos.y - tileSize.width / 2
         let playerEndY = playerPos.y + tileSize.height / 2
         
-        let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 0.1, color: [1,0,0])
+        let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 1, color: [1,0,0])
         
         self.vertecies.append(contentsOf: playerQuad.verticies)
         self.vertecies[vertecies.count - 1].pos.z = 0.1
