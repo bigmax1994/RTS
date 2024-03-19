@@ -2,10 +2,11 @@
 //  RTSTests.swift
 //  RTSTests
 //
-//  Created by Max Gasslitter Strobl on 18.03.24.
+//  Created by Magnus Saurbier on 19.03.24.
 //
 
 import XCTest
+@testable import RTS
 
 final class RTSTests: XCTestCase {
 
@@ -23,6 +24,7 @@ final class RTSTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        let heightmap = RTSHeightMap(4)
     }
 
     func testPerformanceExample() throws {

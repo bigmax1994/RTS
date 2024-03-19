@@ -9,6 +9,11 @@ import Foundation
 
 struct Vector2: Byteable {
     
+    static let UP = Vector2(x:0, y:1)
+    static let RIGHT = Vector2(x:1, y:0)
+    static let DOWN = Vector2(x:0, y:-1)
+    static let LEFT = Vector2(x:-1, y:0)
+    
     var x: Float
     var y: Float
     
@@ -32,7 +37,7 @@ struct Vector2: Byteable {
     }
 
     static func random() -> Vector2 {
-        return Vector2(x: random(min: -1, max: 1), y: random(min: -1, max: 1))
+        return Vector2(x: Float.random(in: -1 ... 1), y: Float.random(in: -1 ... 1))
     }
     
     static let byteSize: Int = 2 * Float.byteSize
