@@ -10,27 +10,34 @@ import Accelerate
 
 extension Matrix {
     
-    static func fastDotAdd(alpha: Float = 1, A: Matrix, transposeSelf: Bool = false, B: Matrix, transposeDot: Bool = false, beta: Float = 1, C: Matrix? = nil) -> Matrix {
+    static func fastDotAdd(alpha: Float = 1, A: Matrix, transposeA: Bool = false, B: Matrix, transposeB: Bool = false, beta: Float = 1, C: Matrix? = nil) -> Matrix {
+        
+        let m = transposeA ? A.columns : A.rows
+        let n = transposeB ? B.rows : B.columns
+        let k = transposeA ? A.rows : A.columns
+        let k1 = transposeB ? B.columns : B.rows
+        
+        assert(k == k1, "incompatible matricies")
         
         var output = C
         if output == nil {
-            output = Matrix(columns: A.columns, rows: B.rows)
+            output = Matrix(columns: n, rows: m)
         }
         
         cblas_sgemm(CblasRowMajor,
-                    transposeSelf ? CblasTrans : CblasNoTrans,
-                    transposeDot ? CblasTrans : CblasNoTrans,
-                    Int32(A.rows),
-                    Int32(B.columns),
-                    Int32(A.columns),
+                    CblasNoTrans,//transposeSelf ? CblasTrans : CblasNoTrans,
+                    CblasNoTrans,//transposeDot ? CblasTrans : CblasNoTrans,
+                    Int32(m),
+                    Int32(n),
+                    Int32(k),
                     alpha,
                     A.elements,
-                    Int32(A.rows),
+                    Int32(A.columns),
                     B.elements,
-                    Int32(B.rows),
+                    Int32(B.columns),
                     beta,
                     &output!.elements,
-                    Int32(output!.rows))
+                    Int32(output!.columns))
         
         return output!
         

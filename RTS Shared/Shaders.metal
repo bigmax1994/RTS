@@ -31,7 +31,7 @@ typedef struct
 typedef struct
 {
     matrix_float4x4 rotationMatrix;
-    float4 position;
+    float3 position;
 } Uniforms;
 
 typedef struct
@@ -45,9 +45,10 @@ vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransforma
     ColorInOut out;
     
     float4 position = float4(vertices[vid].pos, 1);
-    //position.z = 1 - position.z;
+    float4 moveBy = float4(uniforms.position, 0);
+    position.z = 1 - position.z;
     
-    out.position = cameraTransformation.rotationMatrix * (uniforms.rotationMatrix * position + uniforms.position);
+    out.position = cameraTransformation.rotationMatrix * (uniforms.rotationMatrix * position + moveBy);
     out.color = vertices[vid].color;
 
     return out;

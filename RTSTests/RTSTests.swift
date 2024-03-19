@@ -24,7 +24,19 @@ final class RTSTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        let heightmap = RTSHeightMap(4)
+        let heightmap = RTSHeightMap(n: 4)
+    }
+    
+    func testMatrixMult() throws {
+        
+        let A = Matrix(elements: [1, 0, 1, 0], columns: 2, rows: 2)
+        let B = Matrix(elements: [2, 3], columns: 1, rows: 2)
+        
+        let C = Matrix.fastDotAdd(A: A, B: B)
+        
+        print(C)
+        XCTAssert(C.elements == [2, 2], "incorrect output: \(C.elements))")
+        
     }
 
     func testPerformanceExample() throws {

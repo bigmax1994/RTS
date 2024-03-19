@@ -35,7 +35,6 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     var updated = true
     var gameTime = 0.0
-    var lastUpdate = 0.0
     
     init?(metalKitView: MTKView) {
         
@@ -109,14 +108,11 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         //let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
         //objects[0].rotateBy(m)
         
-        gameTime += 0.0166
-        if gameTime - lastUpdate > 0.3{
-            print("gameTime in RTSRenderer \(gameTime)")
-            lastUpdate = gameTime
-            let viewAngle = 0.01*gameTime
-            let lookAt = Vector3(x:Float(cos(viewAngle)), y:0.0, z:Float(sin(viewAngle)))
-            self.camera.setDir(lookAt)
-        }
+        gameTime += 0.1
+        let viewAngle = 0.01*gameTime
+        let lookAt = Vector3(x:Float(cos(viewAngle)), y:0.0, z:Float(sin(viewAngle)))
+        self.camera.setDir(lookAt)
+        
         let cTrafo = self.camera.getTrafo()
         self.cameraBuffer = device.makeBuffer(bytes: [cTrafo], length: MemoryLayout.size(ofValue: cTrafo))!
     }
