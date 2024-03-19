@@ -82,7 +82,7 @@ extension Vector3 {
         return Vector3(x: lhs.x / rhs, y: lhs.y / rhs, z: lhs.z / rhs)
     }
     
-    static func * (lhs: Vector3, rhs: Vector3) -> Float {
+    static func ** (lhs: Vector3, rhs: Vector3) -> Float {
         return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z
     }
     

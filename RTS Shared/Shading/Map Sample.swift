@@ -49,8 +49,8 @@ extension RTSRenderer {
                 let n1 = (v31 - v32) *-* (v31 - v33)
                 let n2 = (v32 - v34) *-* (v32 - v33)
                 
-                let l1 = abs(n1.normalized() * light)
-                let l2 = abs(n2.normalized() * light)
+                let l1 = abs(n1.normalized() ** light)
+                let l2 = abs(n2.normalized() ** light)
                 
                 let c1 = RTSRenderer.sampleMapColor(from: map, at: v1, fac: l1)
                 let c2 = RTSRenderer.sampleMapColor(from: map, at: v2, fac: l1)
