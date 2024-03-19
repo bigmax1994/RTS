@@ -13,7 +13,8 @@ class RTSHeightMap{
     init(n: Int){
         // random 2d vectors
         self.n = n
-        self.gradients = [Vector2](repeating: Vector2.random(), count: n*n)
+        self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
+
     }
     func evaluate(v: Vector2) -> Float{
         var sum:Float = 0
