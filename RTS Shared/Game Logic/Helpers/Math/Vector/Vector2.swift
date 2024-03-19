@@ -30,6 +30,10 @@ struct Vector2: Byteable {
     func toArray() -> [Float] {
         return [x,y]
     }
+
+    static func random() -> Vector2 {
+        return Vector2(x: random(min: -1, max: 1), y: random(min: -1, max: 1))
+    }
     
     static let byteSize: Int = 2 * Float.byteSize
     
