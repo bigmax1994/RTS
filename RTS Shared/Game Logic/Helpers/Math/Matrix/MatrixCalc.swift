@@ -14,7 +14,7 @@ extension Matrix {
         
         var output = C
         if output == nil {
-            output = Matrix(columns: A.rows, rows: B.columns)
+            output = Matrix(columns: A.columns, rows: B.rows)
         }
         
         cblas_sgemm(CblasRowMajor,

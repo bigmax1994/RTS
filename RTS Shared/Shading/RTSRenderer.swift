@@ -34,6 +34,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     var vertecies: [Vertex] = []
     
     var updated = true
+    var gameTime = 0.0
+    var lastUpdate = 0.0
     
     init?(metalKitView: MTKView) {
         
@@ -45,13 +47,14 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
         let cameraPos = Vector3(x: 0, y: 0, z: map.heightMap.evaluate(v: Vector2()))
-        self.camera = Camera(pos: cameraPos, dir: Vector3(x: 1, y: 0, z: 0))
+        self.camera = Camera(pos: cameraPos, dir: Vector3(x: 1, y: 0, z: 0), up: Vector3(x: 0, y: 0, z: -1))
         
         self.device = metalKitView.device!
         
         self.commandQueue = device.makeCommandQueue()!
         
-        guard let cBuffer = device.makeBuffer(bytes: [self.camera], length: MemoryLayout.size(ofValue: self.camera)) else { return nil }
+        let cTrafo = self.camera.getTrafo()
+        guard let cBuffer = device.makeBuffer(bytes: [cTrafo], length: MemoryLayout.size(ofValue: cTrafo)) else { return nil }
         self.cameraBuffer = cBuffer
         
         let desc = MTLRenderPipelineDescriptor()
@@ -103,9 +106,19 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         /// Update any game state before rendering
         
         let rotationAxis = Vector3(x: 0, y: 0.5, z: 1)
-        let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
-        objects[0].rotateBy(m)
+        //let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
+        //objects[0].rotateBy(m)
         
+        gameTime += 0.0166
+        if gameTime - lastUpdate > 0.3{
+            print("gameTime in RTSRenderer \(gameTime)")
+            lastUpdate = gameTime
+            let viewAngle = 0.01*gameTime
+            let lookAt = Vector3(x:Float(cos(viewAngle)), y:0.0, z:Float(sin(viewAngle)))
+            self.camera.setDir(lookAt)
+        }
+        let cTrafo = self.camera.getTrafo()
+        self.cameraBuffer = device.makeBuffer(bytes: [cTrafo], length: MemoryLayout.size(ofValue: cTrafo))!
     }
     
     func draw(in view: MTKView) {
@@ -125,7 +138,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             let renderPassDescriptor = view.currentRenderPassDescriptor
             
             for object in objects {
-                object.draw(view, cmdBuffer: commandBuffer, pipelineState: self.pipelineState, device: device)
+                object.draw(view, cmdBuffer: commandBuffer, pipelineState: self.pipelineState, device: device, cameraBuffer: self.cameraBuffer)
             }
                     
             if let drawable = view.currentDrawable {
