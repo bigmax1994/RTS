@@ -18,9 +18,9 @@ class RTSHeightMap{
     }
     func evaluate(v: Vector2) -> Float{
         var sum:Float = 0
-        let a = Float(self.n / 2)
-        let i = Int(a * (v.x + 1))
-        let j = Int(a * (v.y + 1))
+        let a = Float((self.n+1) / 2)
+        let i = Int(a * (v.x + 1)) - 1
+        let j = Int(a * (v.y + 1)) - 1
         
         print("i: \(i), j: \(j)")
         
