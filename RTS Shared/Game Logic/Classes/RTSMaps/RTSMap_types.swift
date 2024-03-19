@@ -37,6 +37,8 @@ class RTSMap_square:RTSMap{
     override func position_to_tileIndex(_ position: Vector2) -> Int{
         let j = Int((position.x + 1) * Float(self.width) / 2)
         let i = Int((position.y + 1) * Float(self.height)  / 2)
-        return i * width + j
+        let goodj = min(self.width-1, max(0, j))
+        let goodi = min(self.height-1, max(0, i))
+        return goodj + width*goodi
     }
 }

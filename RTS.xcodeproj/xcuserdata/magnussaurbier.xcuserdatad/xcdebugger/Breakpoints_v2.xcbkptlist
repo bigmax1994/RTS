@@ -30,8 +30,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSMap_types.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "position_to_tileIndex(_:)"
             landmarkType = "7">
          </BreakpointContent>
