@@ -58,7 +58,7 @@ class RTSMap {
                 if i/width>0{neighbors.append(i-width)}
                 if i/width<height-1{neighbors.append(i+width)}
                 for j in neighbors {
-                    if self.tiles[j] != .forbidden {
+                    if self.tiles[j] != .border && self.tiles[j] != .forbidden {
                         borderTiles.append(i)
                         self.tiles[i] = TileType.border
                         break
