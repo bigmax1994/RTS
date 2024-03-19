@@ -7,6 +7,7 @@
 
 import Foundation
 
+infix operator ** : MultiplicationPrecedence
 extension Vector2 {
     
     func length() -> Float {
@@ -40,7 +41,7 @@ extension Vector2 {
         return Vector2(x: lhs.x / rhs, y: lhs.y / rhs)
     }
     
-    static func * (lhs: Vector2, rhs: Vector2) -> Float {
+    static func ** (lhs: Vector2, rhs: Vector2) -> Float {
         return lhs.x * rhs.x + lhs.y * rhs.y
     }
     

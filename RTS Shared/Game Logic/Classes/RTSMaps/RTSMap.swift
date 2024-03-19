@@ -32,6 +32,7 @@ class RTSMap {
     var borderTiles: [Int]
     let width: Int
     let height: Int
+    let heightMap: RTSHeightMap
     
     var circles: [UUID : [Int]] = [:]
     
@@ -44,6 +45,7 @@ class RTSMap {
 
         self.tiles = []
         self.borderTiles = []
+        self.heightMap = RTSHeightMap(n:4)
         
     }
 
