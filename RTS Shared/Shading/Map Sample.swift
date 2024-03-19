@@ -11,10 +11,10 @@ import Metal
 extension RTSRenderer {
     
     ///samples the map and returns a buffer of verticies to be rendered
-    func sampleMap(with LOD: Int) -> MTLBuffer {
+    static func sampleMap(from map: RTSMap, with LOD: Int, device: MTLDevice) -> (MTLBuffer, Int) {
         
         if LOD < 1 {
-            return MTLBuffer()
+            fatalError("incorrect LOD")
         }
         
         var verticies:[Vertex] = []
@@ -24,7 +24,7 @@ extension RTSRenderer {
             let xStart = 2 * Float(x - 1) / Float(LOD) - 1
             let xEnd = 2 * Float(x) / Float(LOD) - 1
             
-            for y in ...LOD {
+            for y in 1...LOD {
                 
                 let yStart = 2 * Float(y - 1) / Float(LOD) - 1
                 let yEnd = 2 * Float(y) / Float(LOD) - 1
@@ -34,15 +34,15 @@ extension RTSRenderer {
                 let v3 = Vector2(x: xEnd, y: yStart)
                 let v4 = Vector2(x: xEnd, y: yEnd)
                 
-                let h1 = self.game?.map.heightMap.evaluate(x: xStart, y: yStart)
-                let h2 = self.game?.map.heightMap.evaluate(x: xStart, y: yEnd)
-                let h3 = self.game?.map.heightMap.evaluate(x: xEnd, y: yStart)
-                let h4 = self.game?.map.heightMap.evaluate(x: xEnd, y: yEnd)
+                let h1 = map.heightMap.evaluate(v: v1)
+                let h2 = map.heightMap.evaluate(v: v2)
+                let h3 = map.heightMap.evaluate(v: v3)
+                let h4 = map.heightMap.evaluate(v: v4)
                 
-                let c1 = self.sampleMapColor(at: v1)
-                let c2 = self.sampleMapColor(at: v1)
-                let c3 = self.sampleMapColor(at: v1)
-                let c4 = self.sampleMapColor(at: v1)
+                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1)
+                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2)
+                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3)
+                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4)
                 
                 
                 verticies.append(Vertex(pos: v1, z: h1, color: c1))
@@ -55,17 +55,17 @@ extension RTSRenderer {
         }
         
         let dataSize = verticies.count * MemoryLayout.size(ofValue: verticies[0])
-        guard let buffer = device.makeBuffer(bytes: verticies, length: dataSize, options: []) else { return MTLBuffer }
+        guard let buffer = device.makeBuffer(bytes: verticies, length: dataSize, options: []) else { fatalError("failed to create buffer") }
         
-        return buffer
+        return (buffer, verticies.count)
         
     }
     
-    func sampleMapColor(at pos: Vector2) -> [Float] {
+    static func sampleMapColor(from map: RTSMap, at pos: Vector2) -> [Float] {
         
-        let tileIndex = self.game?.map.position_to_tileIndex(pos)
+        let tileIndex = map.position_to_tileIndex(pos)
         
-        switch self.game?.map.tiles[tileIndex] {
+        switch map.tiles[tileIndex] {
         case .grass:
             return [0, 1, 0]
         case .water:

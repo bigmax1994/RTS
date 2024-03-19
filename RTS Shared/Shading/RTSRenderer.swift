@@ -58,7 +58,10 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     var device: MTLDevice
     var vertexBuffer: MTLBuffer!
+    
     var mapBuffer: MTLBuffer
+    var mapVertecies: Int
+    
     var commandQueue: MTLCommandQueue
     var pipelineState: MTLRenderPipelineState
     
@@ -79,11 +82,9 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        self.mapBuffer = self.sampleMap(with: 100)
+        let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
         
-        /*let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
-        
-        for (i, tile) in map.tiles.enumerated() {
+        /*for (i, tile) in map.tiles.enumerated() {
                     
             let pos = map.tileIndex_to_position(i)
             let x = pos.x
@@ -151,6 +152,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             fatalError("failed to compile pipeline")
         }
         
+        (self.mapBuffer, self.mapVertecies) = RTSRenderer.sampleMap(map, with: 100, device: device)
+        
         super.init()
         
         self.game?.delegate = self
@@ -162,6 +165,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     }
     
     func draw(in view: MTKView) {
+        
+        var clear = true
         
         _ = inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
 
@@ -177,22 +182,11 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             
             if let renderPassDescriptor = renderPassDescriptor {
                 
-                /// Final pass rendering code here
-                if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
-                    renderEncoder.label = "Primary Render Encoder"
-                    
-                    //set vertecies and state
-                    renderEncoder.setRenderPipelineState(pipelineState)
-                    renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-                    renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertecies.count)
-                    /// Render scene using render encoder
-                    
-                    renderEncoder.endEncoding()
-                    
-                    if let drawable = view.currentDrawable {
-                        commandBuffer.present(drawable)
-                    }
-                }
+                self.addBuffer(self.vertexBuffer, vertexCount: self.vertecies.count, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
+                clear = false
+                
+                self.addBuffer(self.mapBuffer, vertexCount: self.mapVertecies, in: view, descriptor: renderPassDescriptor, pipelineState: self.pipelineState, commandBuffer: commandBuffer, clearScreen: clear)
+                
             }
             
             commandBuffer.commit()
@@ -200,4 +194,37 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
     }
     
+    func addBuffer(_ buffer: MTLBuffer, vertexCount: Int, in view: MTKView, descriptor: MTLRenderPassDescriptor, pipelineState: MTLRenderPipelineState, commandBuffer: MTLCommandBuffer, clearScreen: Bool = false) {
+        
+        descriptor.colorAttachments[0].loadAction = MTLLoadAction.load
+        descriptor.colorAttachments[0].storeAction = MTLStoreAction.store
+        
+        descriptor.depthAttachment.loadAction = MTLLoadAction.clear
+        descriptor.depthAttachment.storeAction = MTLStoreAction.store
+        
+        /// Final pass rendering code here
+        if let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) {
+            renderEncoder.label = "Primary Render Encoder"
+            
+            //set vertecies and state
+            renderEncoder.setRenderPipelineState(pipelineState)
+            renderEncoder.setVertexBuffer(buffer, offset: 0, index: 0)
+            renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
+            /// Render scene using render encoder
+            
+            renderEncoder.endEncoding()
+            
+            if let drawable = view.currentDrawable {
+                commandBuffer.present(drawable)
+            }
+        }
+        
+    }
+    
+}
+
+enum RendererError: Error {
+    case badVertexDescriptor
+    case bufferCreationFailed
+    case invalidArgument
 }
