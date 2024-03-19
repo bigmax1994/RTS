@@ -17,10 +17,11 @@ class RTSHeightMap{
     func evalutate(x:Float, y:Float){
         return 0
     }
-    func calc_contribution(x:Float, y:Float, v:Vector2)->Float{
+    ///calcualtes contribution of
+    func calc_contribution(x:Float, y:Float, dir:Int v:Vector2)->Float{
         let i = x/self.n
         let j = y/self.n
-        return decay(
+        return self.decay(0)
     }
     ///polynomial starting at (0,1) decays to (1,0) derivative at both ends is 0
     static func decay(_ r:Float){
