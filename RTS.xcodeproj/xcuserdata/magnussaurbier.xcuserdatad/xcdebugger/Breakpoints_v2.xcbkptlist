@@ -62,8 +62,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "evaluate(v:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -71,16 +71,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D34F87BD-7487-4BBE-8501-5E13AE3D1499"
-            shouldBeEnabled = "Yes"
+            uuid = "F6E56A15-C565-4115-988C-7A4D237C148A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "init(n:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "calc_contribution(v:grad_pos:gradient:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9EB1EA83-EA38-4B0F-9ADC-87B7AB7D22F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "evaluate(v:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09CEEC41-952F-4AEA-84FD-375AB6BE43AE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "calc_contribution(v:grad_pos:gradient:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81305153-08B1-446B-B50E-9499117785A4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "evaluate(v:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

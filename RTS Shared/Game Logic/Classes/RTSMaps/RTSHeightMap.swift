@@ -14,8 +14,6 @@ class RTSHeightMap{
         // random 2d vectors
         self.n = n
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
-        print(self.makeMatrix())
-        print("Done")
 
     }
     func evaluate(v: Vector2) -> Float{
@@ -24,27 +22,25 @@ class RTSHeightMap{
         let i = Int(a * (v.x + 1)) - 1
         let j = Int(a * (v.y + 1)) - 1
         
-        print("i: \(i), j: \(j)")
+        let grad_pos = Float(2)/Float(n+1) * Vector2(x:Float(i+1), y:Float(j+1)) - Vector2.UP - Vector2.RIGHT
         
-        let scaledI = Float(i)/Float(self.n)
-        let scaledJ = Float(j)/Float(self.n)
-        
-        let grad_pos = Vector2(x: scaledI * 2 - 1, y: scaledJ * 2 - 1)
-        
-        if i>=0 && j>=0{
+        if i>=0 && i<n && j>=0 && j<n{
             sum += self.calc_contribution(v: v, grad_pos:grad_pos, gradient:self.gradients[i*n+j])
         }
-        if i<n-1 && j>=0{
-            sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.DOWN, gradient:self.gradients[(i+1)*n+j])
+        if i<n-1 && j>=0 && j<n{
+            sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.UP, gradient:self.gradients[(i+1)*n+j])
         }
-        if i>=0 && j<n-1{
+        if i>=0 && i<n && j<n-1{
             sum += self.calc_contribution(v: v, grad_pos:grad_pos+Vector2.RIGHT, gradient:self.gradients[i*n+j+1])
         }
         if i<n-1 && j<n-1{
-            sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.RIGHT+Vector2.DOWN, gradient:self.gradients[(i+1)*n+j+1])
+            sum += self.calc_contribution(v:v, grad_pos:grad_pos+Vector2.RIGHT+Vector2.UP, gradient:self.gradients[(i+1)*n+j+1])
         }
         
-        return sum
+        
+        print("evaluate at \(v) --> i: \(i), j: \(j), h: \(sum)")
+        
+        return 10*sum + 5
         
     }
     func evalutate(x:Float, y:Float) -> Float{
@@ -52,14 +48,19 @@ class RTSHeightMap{
     }
     ///calcualtes contribution of a given gradient to the evaluation at v
     func calc_contribution(v: Vector2, grad_pos:Vector2, gradient: Vector2)->Float{
-        let d:Vector2 = v - grad_pos
+        if grad_pos != Vector2(x:0, y:0){
+            return 0
+        }
+        let d:Vector2 = 2/Float(n) * (v - grad_pos)
         return (d ** gradient) * RTSHeightMap.decay(d: d)
     }
     ///polynomial starting at (0,1) decays to (1,0) derivative at both ends is 0
     static func decay(_ r:Float) -> Float {
         let f:Float = 0<=r && r<=1 ? 1 : 0
-        let square = r*r
-        return f * 2 * r * square - 3 * square + 1;
+        let square:Float = r*r
+        let lambda:Float = f * 2 * r * square - 3 * square + 1
+        print("decay: \(r) -> \(lambda)")
+        return lambda;
     }
     ///decy in 2d
     static func decay(d: Vector2) -> Float {
