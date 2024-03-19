@@ -11,7 +11,7 @@
 #include <simd/simd.h>
 
 // Including header shared between this Metal shader code and Swift/C code executing Metal API commands
-//#import "ShaderTypes.h"
+#import "ShaderTypes.h"
 
 using namespace metal;
 
@@ -27,12 +27,19 @@ typedef struct
     float3 color;
 } ColorInOut;
 
-vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant Vertex* vertices [[buffer(0)]])
+vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant Vertex* vertices [[buffer(0)]], constant Uniforms & uniforms [[ buffer(BufferIndexUniforms) ]])
 {
     ColorInOut out;
 
     float4 position = float4(vertices[vid].pos, 1);
-    out.position = position;
+    position.z = 1 - position.z;
+    
+    float4x4 m = float4x4(float4(1, 0, 0.0, 0.0),
+                          float4(0, 0.8, 0.6, 0.0),
+                          float4(0.0, -0.6, 0.8, 0.0),
+                          float4(0.0, 0.0, 0.0, 1.0));
+    
+    out.position = m * position;
     out.color = vertices[vid].color;
 
     return out;

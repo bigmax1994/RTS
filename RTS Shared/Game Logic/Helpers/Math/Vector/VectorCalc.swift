@@ -47,6 +47,7 @@ extension Vector2 {
     
 }
 
+infix operator *-* : MultiplicationPrecedence
 extension Vector3 {
     
     func length() -> Float {
@@ -83,6 +84,12 @@ extension Vector3 {
     
     static func * (lhs: Vector3, rhs: Vector3) -> Float {
         return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z
+    }
+    
+    static func *-* (lhs: Vector3, rhs: Vector3) -> Vector3 {
+        return Vector3(x: lhs.y * rhs.z - lhs.z * rhs.y,
+                       y: lhs.z * rhs.x - lhs.x * rhs.z,
+                       z: lhs.x * rhs.y - lhs.y * rhs.x)
     }
     
 }

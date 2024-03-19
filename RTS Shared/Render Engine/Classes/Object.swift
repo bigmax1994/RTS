@@ -77,11 +77,7 @@ class Object {
         self.rotation = Matrix.fastDotAdd(A: self.rotation, B: m)
     }
     
-    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState) {
-        
-        guard let currentDrawable = view.currentDrawable else {
-            return
-        }
+    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState, dynamicUniformBuffer: MTLBuffer, uniformBufferIndex: Int, uniformBufferOffset: Int) {
         
         guard let desc = view.currentRenderPassDescriptor else {
             return
@@ -91,6 +87,9 @@ class Object {
             return
         }
         encoder.label = "Encoder for \(self.label ?? "N/A")"
+        
+        encoder.setVertexBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+        encoder.setFragmentBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
         
         encoder.setRenderPipelineState(pipelineState)
         encoder.setVertexBuffer(self.verticies, offset: 0, index: 0)

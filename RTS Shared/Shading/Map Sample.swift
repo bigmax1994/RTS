@@ -17,6 +17,8 @@ extension RTSRenderer {
             fatalError("incorrect LOD")
         }
         
+        let light = Vector3(x: 1, y: 0, z: 1).normalized()
+        
         var verticies:[Vertex] = []
         
         for x in 1...LOD {
@@ -39,10 +41,21 @@ extension RTSRenderer {
                 let h3 = map.heightMap.evaluate(v: v3)
                 let h4 = map.heightMap.evaluate(v: v4)
                 
-                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1)
-                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2)
-                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3)
-                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4)
+                let v31 = Vector3(x: v1.x, y: v1.y, z: h1)
+                let v32 = Vector3(x: v2.x, y: v2.y, z: h2)
+                let v33 = Vector3(x: v3.x, y: v3.y, z: h3)
+                let v34 = Vector3(x: v4.x, y: v4.y, z: h4)
+                
+                let n1 = (v31 - v32) *-* (v31 - v33)
+                let n2 = (v32 - v34) *-* (v32 - v33)
+                
+                let l1 = abs(n1.normalized() * light)
+                let l2 = abs(n2.normalized() * light)
+                
+                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1, fac: l1)
+                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2, fac: l1)
+                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3, fac: l2)
+                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4, fac: l2)
                 
                 verticies.append(Vertex(pos: v1, z: h1, color: c1))
                 verticies.append(Vertex(pos: v2, z: h2, color: c2))
@@ -59,27 +72,27 @@ extension RTSRenderer {
         
     }
     
-    static func sampleMapColor(from map: RTSMap, at pos: Vector2) -> [Float] {
+    static func sampleMapColor(from map: RTSMap, at pos: Vector2, fac: Float) -> [Float] {
         
         let tileIndex = map.position_to_tileIndex(pos + (map.tileSize / 2) * (Vector2.RIGHT + Vector2.UP))
         
         switch map.tiles[tileIndex] {
         case .grass:
-            return [0, 1, 0]
+            return [0, fac, 0]
         case .water:
-            return [0, 0, 1]
+            return [0, 0, fac]
         case .mountain:
-            return [0.7631, 0.4432, 0.1306]
+            return [fac * 0.7631, fac * 0.4432, fac * 0.1306]
         case .post:
-            return [0.5, 0.5, 0.5]
+            return [fac * 0.5, fac * 0.5, fac * 0.5]
         case .activePost:
-            return [0.4176, 0.4153, 0.7561]
+            return [fac * 0.4176, fac * 0.4153, fac * 0.7561]
         case .closedPost:
-            return [0.6186, 0.4153, 0.7561]
+            return [fac * 0.6186, fac * 0.4153, fac * 0.7561]
         case .forbidden:
-            return [0,0,0]
+            return [fac * 1,0,0]
         case .border:
-            return [0.4, 0.4, 0.4]
+            return [fac * 0.4, fac * 0.4, fac * 0.4]
         default:
             return [0,0,0]
         }

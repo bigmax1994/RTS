@@ -28,7 +28,7 @@ class RTSHeightMap{
         for (layer, amplitude) in self.layers{
             sum += amplitude*layer.evaluate(v: v)
         }
-        return sum
+        return Swift.max(sum, 0.4)
     }
 }
 
