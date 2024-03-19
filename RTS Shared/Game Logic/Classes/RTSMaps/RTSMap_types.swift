@@ -14,11 +14,11 @@ class RTSMap_square:RTSMap{
         self.tileSize = 2/Float(max(width, height))
         self.shape = shape
         self.tiles = [TileType](repeating: .grass, count: width * height)
-        self.makeForbiddenArea()
+        self.setTiles()
         self.calculateBorderTiles()
         print(self.tiles)
     }
-    func makeForbiddenArea(){
+    func setTiles(){
         for n in 0..<self.width * self.height{
             let i = n/width
             let j = n%width

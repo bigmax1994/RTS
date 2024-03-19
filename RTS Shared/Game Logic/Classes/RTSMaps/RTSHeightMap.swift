@@ -14,6 +14,8 @@ class RTSHeightMap{
         // random 2d vectors
         self.n = n
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
+        print(self.makeMatrix())
+        print("Done")
 
     }
     func evaluate(v: Vector2) -> Float{
@@ -66,6 +68,19 @@ class RTSHeightMap{
     ///decay in 2d
     static func decay(_ dx:Float, _ dy:Float) -> Float {
         return RTSHeightMap.decay(abs(dx)) * RTSHeightMap.decay(abs(dy))
+    }
+    
+    func makeMatrix() -> Matrix{
+        let k = 10
+        var M:Matrix = Matrix(columns:10, rows:10)
+        for i in 0..<k{
+            for j in 0..<k{
+                let pos = Vector2(x:Float(2*i)/Float(k)-1, y:Float(2*j)/Float(k)-1)
+                print("(\(pos)): \(self.evaluate(v: pos))")
+                M.elements[i*k+j] = self.evaluate(v: pos)
+            }
+        }
+        return M
     }
 
 }
