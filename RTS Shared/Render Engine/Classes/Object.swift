@@ -91,7 +91,7 @@ class Object {
         
     }
     
-    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState, device: MTLDevice) {
+    func draw(_ view: MTKView, cmdBuffer: MTLCommandBuffer, pipelineState: MTLRenderPipelineState, device: MTLDevice, cameraBuffer: MTLBuffer) {
         
         guard let desc = view.currentRenderPassDescriptor else {
             return
@@ -102,11 +102,13 @@ class Object {
         }
         encoder.label = "Encoder for \(self.label ?? "N/A")"
         
+        encoder.setVertexBuffer(cameraBuffer, offset: 0, index: 0)
+        
         self.updateUniforms(device)
-        encoder.setVertexBuffer(self.uniforms, offset: 0, index: 0)
+        encoder.setVertexBuffer(self.uniforms, offset: 0, index: 1)
         
         encoder.setRenderPipelineState(pipelineState)
-        encoder.setVertexBuffer(self.verticies, offset: 0, index: 1)
+        encoder.setVertexBuffer(self.verticies, offset: 0, index: 2)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.vertexCount)
         
         encoder.endEncoding()

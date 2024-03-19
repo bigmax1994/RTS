@@ -20,17 +20,9 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     var objects:[Object] = []
     
     var device: MTLDevice
-    //var vertexBuffer: MTLBuffer!
-    
-    //var mapBuffer: MTLBuffer
-    //var mapVertecies: Int
 
-    var uniforms: UnsafeMutablePointer<Uniforms>
-    var projectionMatrix: matrix_float4x4 = matrix_float4x4()
-    var rotation: Float = 0
-    var dynamicUniformBuffer: MTLBuffer
-    var uniformBufferOffset = 0
-    var uniformBufferIndex = 0
+    var camera: Camera
+    var cameraBuffer: MTLBuffer
     
     var commandQueue: MTLCommandQueue
     var pipelineState: MTLRenderPipelineState
@@ -52,67 +44,15 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        let tileSize:(width: Float, height: Float) = (width: 2/Float(map.width), height: 2/Float(map.height))
-        
-        /*for (i, tile) in map.tiles.enumerated() {
-                    
-            let pos = map.tileIndex_to_position(i)
-            let x = pos.x
-            let endX = x + tileSize.width
-            let y = pos.y
-            let endY = y + tileSize.height
-            
-            var color:[Float]
-            switch tile {
-            case .grass:
-                color = [0, 1, 0]
-            case .water:
-                color = [0, 0, 1]
-            case .mountain:
-                color = [0.7631, 0.4432, 0.1306]
-            case .post:
-                color = [0.5, 0.5, 0.5]
-            case .activePost:
-                color = [0.4176, 0.4153, 0.7561]
-            case .closedPost:
-                color = [0.6186, 0.4153, 0.7561]
-            case .forbidden:
-                color = [0,0,0]
-            case .border:
-                color = [0.4, 0.4, 0.4]
-            }
-            
-            let quad = Quad(fromX: x, fromY: y, toX: endX, toY: endY, color: color)
-            
-            self.vertecies.append(contentsOf: quad.verticies)
-            
-        }*/
-        
-        let playerPos:Vector2 = game!.selfPlayer!.getPosition()
-        /*let playerX = playerPos.x - tileSize.width / 2
-        let playerEndX = playerPos.x + tileSize.height / 2
-        let playerY = playerPos.y - tileSize.width / 2
-        let playerEndY = playerPos.y + tileSize.height / 2
-        
-        let playerQuad = Quad(fromX: playerX, fromY: playerY, toX: playerEndX, toY: playerEndY, z: 1, color: [1,0,0])
-        
-        self.vertecies.append(contentsOf: playerQuad.verticies)
-        self.vertecies[vertecies.count - 1].pos.z = 0.1*/
-        
+        let cameraPos = Vector3(x: 0, y: 0, z: map.heightMap.evaluate(v: Vector2()))
+        self.camera = Camera(pos: cameraPos, dir: Vector3(x: 1, y: 0, z: 0))
         
         self.device = metalKitView.device!
         
         self.commandQueue = device.makeCommandQueue()!
         
-        let uniformBufferSize = alignedUniformsSize * RTSRenderer.renderedFrames
-        
-        guard let buffer = self.device.makeBuffer(length: uniformBufferSize, options:[MTLResourceOptions.storageModeShared]) else { return nil }
-        dynamicUniformBuffer = buffer
-        
-        self.dynamicUniformBuffer.label = "UniformBuffer"
-        uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to:Uniforms.self, capacity:1)
-        /*let dataSize = self.vertecies.count * MemoryLayout.size(ofValue: self.vertecies[0])
-        self.vertexBuffer = device.makeBuffer(bytes: vertecies, length: dataSize, options: [])!*/
+        guard let cBuffer = device.makeBuffer(bytes: [self.camera], length: MemoryLayout.size(ofValue: self.camera)) else { return nil }
+        self.cameraBuffer = cBuffer
         
         let desc = MTLRenderPipelineDescriptor()
         
