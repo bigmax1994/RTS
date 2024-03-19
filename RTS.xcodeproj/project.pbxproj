@@ -27,6 +27,9 @@
 		F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A792BA8950400505014 /* MatrixCalc.swift */; };
 		F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A792BA8950400505014 /* MatrixCalc.swift */; };
 		F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A792BA8950400505014 /* MatrixCalc.swift */; };
+		F4534A872BA9965600505014 /* Map Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A862BA9965600505014 /* Map Sample.swift */; };
+		F4534A882BA9965600505014 /* Map Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A862BA9965600505014 /* Map Sample.swift */; };
+		F4534A892BA9965600505014 /* Map Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A862BA9965600505014 /* Map Sample.swift */; };
 		F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1022B97415E00125D78 /* AppDelegate.swift */; };
 		F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1042B97415E00125D78 /* GameViewController.swift */; };
 		F47CC1082B97415E00125D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CC1062B97415E00125D78 /* Main.storyboard */; };
@@ -115,6 +118,7 @@
 		F4534A642BA8778800505014 /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
 		F4534A752BA893F900505014 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		F4534A792BA8950400505014 /* MatrixCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalc.swift; sourceTree = "<group>"; };
+		F4534A862BA9965600505014 /* Map Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map Sample.swift"; sourceTree = "<group>"; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* RTSRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSRenderer.swift; sourceTree = "<group>"; };
 		F47CC0F92B97415C00125D78 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -224,12 +228,15 @@
 			path = Math;
 			sourceTree = "<group>";
 		};
-		F4534A7F2BA898A600505014 /* Recovered References */ = {
+		F4534A8A2BA9967700505014 /* Shading */ = {
 			isa = PBXGroup;
 			children = (
-				27A2D8F72BA8791800F215AA /* RTSTests.swift */,
+				F47CC0F72B97415C00125D78 /* Shaders.metal */,
+				F47CC0F82B97415C00125D78 /* RTSRenderer.swift */,
+				F4534A862BA9965600505014 /* Map Sample.swift */,
+				F47CC0F92B97415C00125D78 /* ShaderTypes.h */,
 			);
-			name = "Recovered References";
+			path = Shading;
 			sourceTree = "<group>";
 		};
 		F462F7642BA85D6300AA21DE /* Vertex Helpers */ = {
@@ -259,10 +266,7 @@
 			children = (
 				F4EF7ADE2B9B950600A70A56 /* Delegates */,
 				F4EF7AE12B9B950600A70A56 /* Game Logic */,
-				F47CC0F72B97415C00125D78 /* Shaders.metal */,
-				F47CC0F82B97415C00125D78 /* RTSRenderer.swift */,
-				F462F7642BA85D6300AA21DE /* Vertex Helpers */,
-				F47CC0F92B97415C00125D78 /* ShaderTypes.h */,
+				F4534A8A2BA9967700505014 /* Shading */,
 				F47CC0FA2B97415E00125D78 /* Assets.xcassets */,
 			);
 			path = "RTS Shared";
@@ -326,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				F4EF7AE22B9B950600A70A56 /* Classes */,
-				F4EF7AEF2B9B950600A70A56 /* Protocols */,
 				F4EF7AF12B9B950600A70A56 /* Helpers */,
 			);
 			path = "Game Logic";
@@ -335,6 +338,7 @@
 		F4EF7AE22B9B950600A70A56 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4EF7AF02B9B950600A70A56 /* Player.swift */,
 				2715C2AA2BA898ED00AAC167 /* RTSMaps */,
 				F4EF7AE42B9B950600A70A56 /* RTSGameAction */,
 				F4EF7AE32B9B950600A70A56 /* RTSGame.swift */,
@@ -366,17 +370,10 @@
 			path = Vector;
 			sourceTree = "<group>";
 		};
-		F4EF7AEF2B9B950600A70A56 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F4EF7AF02B9B950600A70A56 /* Player.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		F4EF7AF12B9B950600A70A56 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F462F7642BA85D6300AA21DE /* Vertex Helpers */,
 				F4534A7E2BA8951500505014 /* Math */,
 				F4EF7AF22B9B950600A70A56 /* Byteable.swift */,
 			);
@@ -388,7 +385,7 @@
 /* Begin PBXNativeTarget section */
 		27A2D8F42BA8791800F215AA /* RTSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2715C2AB2BA898ED00AAC167 /* Build configuration list */;
+			buildConfigurationList = 2715C2AB2BA898ED00AAC167 /* Build configuration list for PBXNativeTarget "RTSTests" */;
 			buildPhases = (
 				27A2D8F12BA8791800F215AA /* Sources */,
 			);
@@ -587,6 +584,7 @@
 				F4EF7B082B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F47CC12D2B97415E00125D78 /* RTSRenderer.swift in Sources */,
 				F4EF7AF62B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
+				F4534A872BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12A2B97415E00125D78 /* Shaders.metal in Sources */,
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
@@ -618,6 +616,7 @@
 				F4EF7B092B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F47CC12E2B97415E00125D78 /* RTSRenderer.swift in Sources */,
 				F4EF7AF72B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
+				F4534A882BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12B2B97415E00125D78 /* Shaders.metal in Sources */,
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
@@ -649,6 +648,7 @@
 				F4EF7B0A2B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F47CC12F2B97415E00125D78 /* RTSRenderer.swift in Sources */,
 				F4EF7AF82B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
+				F4534A892BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12C2B97415E00125D78 /* Shaders.metal in Sources */,
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
@@ -787,25 +787,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RTS";
-			};
-			name = Release;
-		};
-		F4534A802BA898A700505014 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = RTSTests;
-			};
-			name = Debug;
-		};
-		F4534A812BA898A700505014 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				PRODUCT_NAME = RTSTests;
 			};
 			name = Release;
 		};
@@ -1106,7 +1087,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2715C2AB2BA898ED00AAC167 /* Build configuration list */ = {
+		2715C2AB2BA898ED00AAC167 /* Build configuration list for PBXNativeTarget "RTSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2715C2A82BA8986200AAC167 /* Debug */,
@@ -1120,15 +1101,6 @@
 			buildConfigurations = (
 				F4534A682BA8778800505014 /* Debug */,
 				F4534A692BA8778800505014 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F4534A822BA89B0200505014 /* Build configuration list */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F4534A802BA898A700505014 /* Debug */,
-				F4534A812BA898A700505014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
