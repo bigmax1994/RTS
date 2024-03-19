@@ -63,7 +63,7 @@ extension RTSRenderer {
     
     static func sampleMapColor(from map: RTSMap, at pos: Vector2) -> [Float] {
         
-        let tileIndex = map.position_to_tileIndex(pos)
+        let tileIndex = map.position_to_tileIndex(pos + (map.tileSize / 2) * (Vector2.RIGHT + Vector2.UP))
         
         switch map.tiles[tileIndex] {
         case .grass:
