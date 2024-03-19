@@ -18,7 +18,7 @@ class RTSHeightMap{
         return 0
     }
     ///calcualtes contribution of
-    func calc_contribution(x:Float, y:Float, dir:Int v:Vector2)->Float{
+    func calc_contribution(x:Float, y:Float, dir:Int, v:Vector2)->Float{
         let i = x/self.n
         let j = y/self.n
         return self.decay(0)
