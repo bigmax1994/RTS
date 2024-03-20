@@ -45,8 +45,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        let cameraPos = Vector3(x: 0, y: 0, z: map.heightMap.evaluate(v: Vector2()))
-        self.camera = Camera(pos: cameraPos, dir: Vector3(x: 1, y: 0, z: 0), up: Vector3(x: 0, y: 0, z: -1))
+        self.camera = Camera(pos: Vector3(x: 0, y: 0, z: -1),nearClip: 0.1, farClip: 100)
         
         self.device = metalKitView.device!
         
@@ -99,19 +98,22 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         
+        let aspectRatio = Float(size.width / size.height)
+        self.camera.aspectRatio = aspectRatio
+        
     }
     
     private func updateGameState() {
         /// Update any game state before rendering
         
-        let rotationAxis = Vector3(x: 0, y: 0.5, z: 1)
-        //let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
+        let rotationAxis = Vector3(x: 0, y: 0, z: 1)
+        let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
         //objects[0].rotateBy(m)
         
         gameTime += 0.1
         let viewAngle = 0.01*gameTime
-        let lookAt = Vector3(x:Float(sin(viewAngle)), y:0.0, z:Float(cos(viewAngle)))
-        self.camera.setDir(lookAt)
+        let lookAt = Vector3(x: Float(cos(viewAngle)), y: Float(sin(viewAngle)), z: 0)
+        self.camera.up = lookAt
         
         let cTrafo = self.camera.getTrafo()
         self.cameraBuffer = device.makeBuffer(bytes: [cTrafo], length: MemoryLayout.size(ofValue: cTrafo))!

@@ -48,7 +48,15 @@ vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransforma
     float4 moveBy = float4(uniforms.position, 0);
     position.z = 1 - position.z;
     
-    out.position = cameraTransformation.rotationMatrix * (uniforms.rotationMatrix * position + moveBy);
+    /*float4x4 m = float4x4(float4(1, 0, 0, 0),
+                          float4(0, 1, 0, 0),
+                          float4(0, 0, 1, 0),
+                          float4(0, 0, 1, 0));*/
+    
+    //out.position = (position * uniforms.rotationMatrix + moveBy) * m;
+    out.position = (position * uniforms.rotationMatrix + moveBy) * cameraTransformation.rotationMatrix;
+    //out.position.z -= 0.1;
+    //out.position.w = out.position.z;
     out.color = vertices[vid].color;
 
     return out;

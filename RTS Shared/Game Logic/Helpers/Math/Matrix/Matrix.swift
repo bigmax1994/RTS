@@ -111,6 +111,11 @@ struct Matrix {
     
     //MARK:  Generic matrix math utility functions
     static func matrix4x4_rotation(radians: Float, axis: Vector3) -> Matrix {
+        
+        if radians == 0 || axis.length() == 0 {
+            return Matrix.Identity(4)
+        }
+        
         let unitAxis = axis.normalized()
         let ct = cos(radians)
         let st = sin(radians)
@@ -130,13 +135,20 @@ struct Matrix {
     }
 
     static func matrix_perspective_right_hand(fovyRadians fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) -> Matrix {
-        let ys = 1 / tan(fovy * 0.5)
-        let xs = ys / aspectRatio
-        let zs = farZ / (nearZ - farZ)
-        return Matrix([[xs,  0, 0,   0],
+        //let ys = 1 / tan(fovy * 0.5)
+        //let xs = ys / aspectRatio
+        //let zs = 1 / farZ
+        /*return Matrix([[xs,  0, 0,   0],
                         [0, ys, 0,   0],
-                        [0,  0, zs, -1],
-                        [0,  0, zs * nearZ, 0]])
+                        [0,  0, zs, -zs * nearZ],
+                        [0,  0, 0, 1]])*/
+        let ys = 1 / tanf(fovy * 0.5)
+        let xs = ys / aspectRatio
+        let zs = 1 / (farZ - nearZ)
+        return Matrix([[xs, 0, 0, 0],
+                       [0, ys, 0, 0],
+                       [0, 0, zs, -zs * nearZ],
+                       [0, 0, 1, 0]])
     }
     
 }
