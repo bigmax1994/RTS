@@ -62,8 +62,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "evaluate(v:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -72,38 +72,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F6E56A15-C565-4115-988C-7A4D237C148A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "calc_contribution(v:grad_pos:gradient:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9EB1EA83-EA38-4B0F-9ADC-87B7AB7D22F9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "evaluate(v:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "09CEEC41-952F-4AEA-84FD-375AB6BE43AE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -119,7 +87,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "81305153-08B1-446B-B50E-9499117785A4"
+            uuid = "9EB1EA83-EA38-4B0F-9ADC-87B7AB7D22F9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -135,6 +103,38 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "09CEEC41-952F-4AEA-84FD-375AB6BE43AE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "calc_contribution(v:grad_pos:gradient:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81305153-08B1-446B-B50E-9499117785A4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "evaluate(v:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "E130D17A-5E0E-498C-84DA-489ABA3B2511"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -142,8 +142,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "evaluate(v:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "evaluate(v:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -257,6 +257,22 @@
             startingLineNumber = "39"
             endingLineNumber = "39"
             landmarkName = "polish(h:v:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9620E3C1-E459-4787-B1A4-C41D7CF92BF0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Game Logic/Classes/RTSMaps/RTSHeightMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "evaluate(v:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

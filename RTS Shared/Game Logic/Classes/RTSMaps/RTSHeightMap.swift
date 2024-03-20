@@ -44,20 +44,19 @@ class Heights{
 }
 class RTSHeightMap{
     let n: Int
-    var layers: [(RTSHeightMapLayer, Float)] //Layer, amplitude
-    var min:Float
-    var max:Float
+    var layers: [(RTSHeightMapLayer, Float)] = []//Layer, amplitude
+    var min:Float = 0
+    var max:Float = 0
     let upshift:Float = 0.0
-    init(n:Int, amplitudes:[Float]=[2.5, 1.3, 0.57, 0.08], nPosts:[Int]=[3, 7, 23, 91]){
+    let amplitudes:[Float]=[2.5, 1.3, 0.57, 0.08]
+    let nPosts:[Int]=[3, 7, 23, 91]
+    init(n:Int){
         self.n = n
-        self.layers = []
         for (nPost, amplitude) in nPosts.enumerated().map({ (i, nPost) in
             return (nPost, amplitudes[i])
         }) {
             self.layers.append((RTSHeightMapLayer(n:nPost), amplitude))
         }
-        self.min = 0
-        self.max = 0
     }
     func evaluate(v:Vector2) -> Float{
         var sum:Float = 0.0
@@ -86,7 +85,7 @@ class RTSHeightMapLayer{
     }
     func evaluate(v: Vector2) -> Float{
         var sum:Float = 0
-        let a = Float((self.n+1) / 2)
+        let a = Float(self.n+1) / Float(2)
         let i = Int(a * (v.x + 1)) - 1
         let j = Int(a * (v.y + 1)) - 1
         
