@@ -45,7 +45,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             //self.objects.append(sky)
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 100), pipelineState: .basic, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 1000), pipelineState: .basic, label: "Map") {
             self.objects.append(mapObj)
         }
         

@@ -119,9 +119,9 @@ class RTSHeightMapLayer{
     }
     ///polynomial starting at (0,1) decays to (1,0) derivative at both ends is 0
     static func decay(_ r:Float) -> Float {
-        let f:Float = 0<=r && r<=1 ? 1 : 0
+        //let f:Float = 0<=r && r<=1 ? 1 : 0
         let square:Float = r*r
-        let lambda:Float = f * 2 * r * square - 3 * square + 1
+        let lambda:Float = 1 * (2 * r * square - 3 * square + 1)
         return lambda;
     }
     ///decy in 2d
