@@ -7,12 +7,39 @@
 
 import Foundation
 
-class RTSCrater{
-    static let size:Float = 1.2
-    static func evaluate(v:Vector2) -> Float{
-        let x:Float = (v.x + RTSCrater.size)*(v.x - RTSCrater.size)
-        let y:Float = (v.y + RTSCrater.size)*(v.y - RTSCrater.size)
-        return -x*y + pow(size, 4)
+class Heights{
+    static let craterWidth:Float = 0.9
+    static let craterHeight:Float = 2
+    static let craterSharpness:Float = 6.5
+    static let heightLevels:[(height:Float, beginsAt:Float, sharpness:Float)] = [(0.37, -0.8, 7), (0.51, 0.45, 9), (1, 0.95, 4)]
+    static func crater(v:Vector2) -> Float{
+        return craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
+    }
+    static func sigmoid(_ t:Float)->Float{
+        return 1/(1+exp(-t))
+    }
+    static func craterWall(_ t:Float)->Float{
+        sigmoid(craterSharpness*(t*t - craterWidth*craterWidth))
+    }
+    static func normalize(h:Float) -> Float{
+        var value:Float = 0
+        var used:Float = 0
+        for (height, beginsAt, sharpness) in Heights.heightLevels{
+            let diff = height-used
+            value += diff*sigmoid(sharpness*(h-beginsAt))
+            used += diff
+        }
+        return value
+    }
+    static func sealevel(h:Float)-> Float{
+        return max(RTSMap.sealevel-0.01, h)
+    }
+    static func polish(h:Float, v:Vector2) -> Float{
+        var x = h
+        x = x + crater(v: v)
+        x = normalize(h: x)
+        x = sealevel(h: x)
+        return x
     }
 }
 class RTSHeightMap{
@@ -21,8 +48,7 @@ class RTSHeightMap{
     var min:Float
     var max:Float
     let upshift:Float = 0.0
-    let steepness:Float = 4.0
-    init(n:Int, amplitudes:[Float]=[1.2, 0.4, 0.02, 0.01], nPosts:[Int]=[3, 13, 57, 91]){
+    init(n:Int, amplitudes:[Float]=[2.5, 1.3, 0.57, 0.08], nPosts:[Int]=[3, 7, 23, 91]){
         self.n = n
         self.layers = []
         for (nPost, amplitude) in nPosts.enumerated().map({ (i, nPost) in
@@ -38,12 +64,9 @@ class RTSHeightMap{
         for (layer, amplitude) in self.layers{
             sum += amplitude*layer.evaluate(v: v)
         }
-        sum = sum*(1-upshift) + upshift/2
-        sum = sum + RTSCrater.evaluate(v: v)
-        sum = 1/(1+exp(-steepness*sum))
-        sum = Swift.max(sum, RTSMap.sealevel-0.05)
-        return sum
+        return Heights.polish(h:sum, v:v)
     }
+    
 }
 
 class RTSHeightMapLayer{

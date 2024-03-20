@@ -83,7 +83,7 @@ struct CameraTransformation {
         let angle2 = acos((newUp ** Camera.defaultUp))
         let rotation2 = Matrix.matrix4x4_rotation(radians: angle2, axis: upOrth)
         
-        let rotation = Matrix.fastDotAdd(A:translation, B:Matrix.fastDotAdd(A: rotation1, B: rotation2))
+        let rotation = Matrix.fastDotAdd(alpha:0.01, A:translation, B:Matrix.fastDotAdd(A: rotation1, B: rotation2))
         
         self.rotationMatrix = simd_float4x4(simd_float4(rotation[0,0], rotation[0,1], rotation[0,2], rotation[0,3]),
                                             simd_float4(rotation[1,0], rotation[1,1], rotation[1,2], rotation[1,3]),

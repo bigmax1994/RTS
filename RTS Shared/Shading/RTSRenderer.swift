@@ -110,7 +110,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         gameTime += 0.1
         let viewAngle = 0.01*gameTime
-        let lookAt = Vector3(x:Float(cos(viewAngle)), y:0.0, z:Float(sin(viewAngle)))
+        let lookAt = Vector3(x:Float(sin(viewAngle)), y:0.0, z:Float(cos(viewAngle)))
         self.camera.setDir(lookAt)
         
         let cTrafo = self.camera.getTrafo()
