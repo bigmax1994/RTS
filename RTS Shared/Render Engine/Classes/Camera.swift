@@ -7,63 +7,154 @@
 
 import Foundation
 import simd
+import Metal
 
 class Camera {
     
-    static let defaultPos: Vector3 = Vector3(x: 0, y: 0, z: 1)
-    static let defaultDir: Vector3 = Vector3(x: 0, y: 0, z: -1)
+    static let defaultPos: Vector3 = Vector3(x: 0, y: 0, z: 0)
+    static let defaultDir: Vector3 = Vector3(x: 0, y: 0, z: 1)
     static let defaultUp: Vector3 = Vector3(x: 0, y: 1, z: 0)
     
-    var position: Vector3
-    var direction: Vector3
-    var up: Vector3
+    static let defaultAspectRatio: Float = 1
+    static let defaultFieldOfView: Float = Float.pi / 2
+    static let defaultNearClip: Float = 0
+    static let defaultFarClip: Float = 1
     
-    var trafo:CameraTransformation?
+    private var _position: Vector3
+    private var _direction: Vector3
+    private var _up: Vector3
     
-    convenience init() {
-        self.init(pos: Camera.defaultPos, dir:Camera.defaultDir, up: Camera.defaultUp)
-    }
+    private var _aspectRatio: Float
+    private var _fieldOfView: Float
     
-    init(pos: Vector3, dir: Vector3, up: Vector3) {
+    private var _nearClip: Float
+    private var _farClip: Float
+    
+    var transformationBuffer: MTLBuffer? = nil
+    
+    init(pos: Vector3 = Camera.defaultPos, 
+         dir: Vector3 = Camera.defaultDir,
+         up: Vector3 = Camera.defaultUp,
+         aspectRatio: Float = Camera.defaultAspectRatio,
+         fov: Float = Camera.defaultFieldOfView,
+         nearClip: Float = Camera.defaultNearClip,
+         farClip: Float = Camera.defaultFarClip) {
         
-        self.position = pos.normalized()
-        self.direction = dir.normalized()
-        self.up = up.normalized()
+        self._position = pos
+        self._direction = dir.normalized()
+        self._up = up.normalized()
+        
+        self._aspectRatio = aspectRatio
+        self._fieldOfView = fov
+        
+        self._nearClip = nearClip
+        self._farClip = farClip
 
     }
     
-    func setPos(_ pos:Vector3){
-        if pos != self.position { self.trafo = nil}
-        self.position = pos
-    }
-    func setDir(_ dir:Vector3){
-        if dir != self.direction{ self.trafo=nil }
-        self.direction = dir
-    }
-    func setUp(_ up: Vector3){
-        if up != self.up{ self.trafo = nil }
-        self.up = up
-    }
-    func getTrafo() -> CameraTransformation{
-        if let trafo = self.trafo{
-            return trafo
-        } else {
-            self.trafo = CameraTransformation(camera:self)
-            return self.getTrafo()
+    var position: Vector3 {
+        
+        get {
+            return self._position
         }
+        set {
+            if newValue == self._position { return }
+            self._position = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
+    }
+    var direction: Vector3 {
+        
+        get {
+            return self._direction
+        }
+        set {
+            if newValue == self._direction { return }
+            self._direction = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
+    }
+    var up: Vector3 {
+        
+        get {
+            return self._up
+        }
+        set {
+            if newValue == self._up { return }
+            self._up = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
     }
     
+    var aspectRatio: Float {
+        
+        get {
+            return self._aspectRatio
+        }
+        set {
+            if newValue == self._aspectRatio { return }
+            self._aspectRatio = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
+    }
+    var fieldOfView: Float {
+        
+        get {
+            return self._fieldOfView
+        }
+        set {
+            if newValue == self._fieldOfView { return }
+            self._fieldOfView = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
+    }
+    
+    var nearClip: Float {
+        
+        get {
+            return self._nearClip
+        }
+        set {
+            if newValue == self._nearClip { return }
+            self._nearClip = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
+    }
+    var farClip: Float {
+        
+        get {
+            return self._farClip
+        }
+        set {
+            if newValue == self._farClip { return }
+            self._farClip = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
+        }
+        
+    }
+    
+    func createTrafoBuffer() -> MTLBuffer? {
+        
+        let trafo = CameraTransformation(camera:self)
+            
+        return Engine.Device.makeBuffer(bytes: [trafo], length: CameraTransformation.bufferSize(count: 1))
+        
+    }
     
 }
 
-struct CameraTransformation {
+struct CameraTransformation: GPUEncodable {
     
     let rotationMatrix: simd_float4x4
     
     init(camera: Camera) {
-        
         ///Creates a 4x4 Matrix, which rotates the entire scene. Specifying where the Camera is, where it looks At and where up is on the screen.
-        ///
         
         let diff = Camera.defaultPos - camera.position
         var translation = Matrix.Identity(4)
@@ -83,12 +174,16 @@ struct CameraTransformation {
         let angle2 = acos((newUp ** Camera.defaultUp))
         let rotation2 = Matrix.matrix4x4_rotation(radians: angle2, axis: upOrth)
         
-        let rotation = Matrix.fastDotAdd(alpha:0.01, A:translation, B:Matrix.fastDotAdd(A: rotation1, B: rotation2))
+        let rotation = Matrix.fastDotAdd(alpha:1, A:translation, B:Matrix.fastDotAdd(A: rotation1, B: rotation2))
         
-        self.rotationMatrix = simd_float4x4(simd_float4(rotation[0,0], rotation[0,1], rotation[0,2], rotation[0,3]),
-                                            simd_float4(rotation[1,0], rotation[1,1], rotation[1,2], rotation[1,3]),
-                                            simd_float4(rotation[2,0], rotation[2,1], rotation[2,2], rotation[2,3]),
-                                            simd_float4(rotation[3,0], rotation[3,1], rotation[3,2], rotation[3,3]))
+        let clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: camera.fieldOfView, aspectRatio: camera.aspectRatio, nearZ: camera.nearClip, farZ: camera.farClip)
+        
+        let m = Matrix.fastDotAdd(A: clipMatrix, B: rotation)
+        
+        self.rotationMatrix = simd_float4x4(simd_float4(m[0,0], m[0,1], m[0,2], m[0,3]),
+                                            simd_float4(m[1,0], m[1,1], m[1,2], m[1,3]),
+                                            simd_float4(m[2,0], m[2,1], m[2,2], m[2,3]),
+                                            simd_float4(m[3,0], m[3,1], m[3,2], m[3,3]))
         
     }
     

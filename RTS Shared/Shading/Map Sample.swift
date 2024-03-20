@@ -93,10 +93,7 @@ extension RTSRenderer {
             return [fac * 1,0,0]
         case .border:
             return [fac * 0.4, fac * 0.4, fac * 0.4]
-        default:
-            return [0,0,0]
         }
-        
     }
     
 }

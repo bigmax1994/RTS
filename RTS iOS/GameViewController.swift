@@ -21,14 +21,9 @@ class GameViewController: UIViewController {
             print("View of Gameview controller is not an MTKView")
             return
         }
-
-        // Select the device to render with.  We choose the default device
-        guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
-            print("Metal is not supported")
-            return
-        }
-
-        mtkView.device = defaultDevice
+        
+        Engine.Boot()
+        mtkView.device = Engine.Device
         mtkView.backgroundColor = UIColor.black
 
         guard let newRenderer = RTSRenderer(metalKitView: mtkView) else {

@@ -14,6 +14,30 @@
 		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8F82BA8791800F215AA /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8F72BA8791800F215AA /* RTSTests.swift */; };
+		F411480A2BAB126B007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148072BAB126B007F052D /* Drone.mtl */; };
+		F411480B2BAB126B007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148072BAB126B007F052D /* Drone.mtl */; };
+		F411480C2BAB126B007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148072BAB126B007F052D /* Drone.mtl */; };
+		F411480D2BAB126B007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148082BAB126B007F052D /* Drone.obj */; };
+		F411480E2BAB126B007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148082BAB126B007F052D /* Drone.obj */; };
+		F411480F2BAB126B007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148082BAB126B007F052D /* Drone.obj */; };
+		F41148122BAB1821007F052D /* FunctionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148112BAB1821007F052D /* FunctionLibrary.swift */; };
+		F41148132BAB1821007F052D /* FunctionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148112BAB1821007F052D /* FunctionLibrary.swift */; };
+		F41148142BAB1821007F052D /* FunctionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148112BAB1821007F052D /* FunctionLibrary.swift */; };
+		F41148162BAB18D4007F052D /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148152BAB18D4007F052D /* Engine.swift */; };
+		F41148172BAB18D4007F052D /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148152BAB18D4007F052D /* Engine.swift */; };
+		F41148182BAB18D4007F052D /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148152BAB18D4007F052D /* Engine.swift */; };
+		F411481A2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */; };
+		F411481B2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */; };
+		F411481C2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */; };
+		F411481E2BAB1CC9007F052D /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411481D2BAB1CC9007F052D /* EngineSettings.swift */; };
+		F411481F2BAB1CC9007F052D /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411481D2BAB1CC9007F052D /* EngineSettings.swift */; };
+		F41148202BAB1CC9007F052D /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411481D2BAB1CC9007F052D /* EngineSettings.swift */; };
+		F41148222BAB1F40007F052D /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148212BAB1F40007F052D /* Drawable.swift */; };
+		F41148232BAB1F40007F052D /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148212BAB1F40007F052D /* Drawable.swift */; };
+		F41148242BAB1F40007F052D /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148212BAB1F40007F052D /* Drawable.swift */; };
+		F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
+		F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
+		F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
 		F41F82E32B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E42B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E52B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
@@ -33,12 +57,9 @@
 		F4534A942BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F4534A952BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F4534A962BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
-		F4534AA92BA9FC2600505014 /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AA82BA9FC2600505014 /* SkyBox.swift */; };
-		F4534AAA2BA9FC2600505014 /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AA82BA9FC2600505014 /* SkyBox.swift */; };
-		F4534AAB2BA9FC2600505014 /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AA82BA9FC2600505014 /* SkyBox.swift */; };
-		F4534AAD2BA9FC5300505014 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Uniforms.swift */; };
-		F4534AAE2BA9FC5300505014 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Uniforms.swift */; };
-		F4534AAF2BA9FC5300505014 /* Uniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Uniforms.swift */; };
+		F4534AAD2BA9FC5300505014 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Transformation.swift */; };
+		F4534AAE2BA9FC5300505014 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Transformation.swift */; };
+		F4534AAF2BA9FC5300505014 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Transformation.swift */; };
 		F4534AB12BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
 		F4534AB22BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
 		F4534AB32BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
@@ -124,6 +145,14 @@
 		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
 		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
+		F41148072BAB126B007F052D /* Drone.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.mtl; sourceTree = "<group>"; };
+		F41148082BAB126B007F052D /* Drone.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.obj; sourceTree = "<group>"; };
+		F41148112BAB1821007F052D /* FunctionLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionLibrary.swift; sourceTree = "<group>"; };
+		F41148152BAB18D4007F052D /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineStateLibrary.swift; sourceTree = "<group>"; };
+		F411481D2BAB1CC9007F052D /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
+		F41148212BAB1F40007F052D /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
+		F41148252BAB22DD007F052D /* GPUEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUEncodable.swift; sourceTree = "<group>"; };
 		F41F82E22B9C627B006974CE /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		F45280742BA457D200BF6D92 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 		F4534A622BA8778800505014 /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,8 +161,7 @@
 		F4534A792BA8950400505014 /* MatrixCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalc.swift; sourceTree = "<group>"; };
 		F4534A862BA9965600505014 /* Map Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map Sample.swift"; sourceTree = "<group>"; };
 		F4534A912BA9C77B00505014 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		F4534AA82BA9FC2600505014 /* SkyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBox.swift; sourceTree = "<group>"; };
-		F4534AAC2BA9FC5300505014 /* Uniforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Uniforms.swift; path = "RTS Shared/Render Engine/Classes/Uniforms.swift"; sourceTree = SOURCE_ROOT; };
+		F4534AAC2BA9FC5300505014 /* Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformation.swift; path = "RTS Shared/Render Engine/Classes/Transformation.swift"; sourceTree = SOURCE_ROOT; };
 		F4534AB02BA9FF3900505014 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* RTSRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSRenderer.swift; sourceTree = "<group>"; };
@@ -220,6 +248,24 @@
 			path = RTSMaps;
 			sourceTree = "<group>";
 		};
+		F41148092BAB126B007F052D /* Drone */ = {
+			isa = PBXGroup;
+			children = (
+				F41148072BAB126B007F052D /* Drone.mtl */,
+				F41148082BAB126B007F052D /* Drone.obj */,
+			);
+			path = Drone;
+			sourceTree = "<group>";
+		};
+		F41148102BAB180D007F052D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				F41148112BAB1821007F052D /* FunctionLibrary.swift */,
+				F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		F4534A632BA8778800505014 /* RTSTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,9 +304,9 @@
 		F4534A922BA9C77B00505014 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F41148212BAB1F40007F052D /* Drawable.swift */,
 				F4534A912BA9C77B00505014 /* Object.swift */,
 				F4534AB02BA9FF3900505014 /* Camera.swift */,
-				F4534AA82BA9FC2600505014 /* SkyBox.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -268,8 +314,11 @@
 		F4534A932BA9C77B00505014 /* Render Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F41148102BAB180D007F052D /* Library */,
 				F462F7642BA85D6300AA21DE /* Vertex Helpers */,
 				F4534A922BA9C77B00505014 /* Classes */,
+				F41148152BAB18D4007F052D /* Engine.swift */,
+				F411481D2BAB1CC9007F052D /* EngineSettings.swift */,
 			);
 			path = "Render Engine";
 			sourceTree = "<group>";
@@ -278,8 +327,9 @@
 			isa = PBXGroup;
 			children = (
 				F41F82E22B9C627B006974CE /* Vertex.swift */,
+				F41148252BAB22DD007F052D /* GPUEncodable.swift */,
 				F45280742BA457D200BF6D92 /* Quad.swift */,
-				F4534AAC2BA9FC5300505014 /* Uniforms.swift */,
+				F4534AAC2BA9FC5300505014 /* Transformation.swift */,
 			);
 			path = "Vertex Helpers";
 			sourceTree = "<group>";
@@ -307,6 +357,7 @@
 				F47CC0F92B97415C00125D78 /* ShaderTypes.h */,
 				F47CC0F72B97415C00125D78 /* Shaders.metal */,
 				F47CC0FA2B97415E00125D78 /* Assets.xcassets */,
+				F41148092BAB126B007F052D /* Drone */,
 			);
 			path = "RTS Shared";
 			sourceTree = "<group>";
@@ -568,6 +619,8 @@
 			files = (
 				F47CC1302B97415E00125D78 /* ShaderTypes.h in Resources */,
 				F47CC1082B97415E00125D78 /* Main.storyboard in Resources */,
+				F411480D2BAB126B007F052D /* Drone.obj in Resources */,
+				F411480A2BAB126B007F052D /* Drone.mtl in Resources */,
 				F47CC1332B97415E00125D78 /* Assets.xcassets in Resources */,
 				F47CC10B2B97415E00125D78 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -579,6 +632,8 @@
 			files = (
 				F47CC1312B97415E00125D78 /* ShaderTypes.h in Resources */,
 				F47CC1182B97415E00125D78 /* Main.storyboard in Resources */,
+				F411480E2BAB126B007F052D /* Drone.obj in Resources */,
+				F411480B2BAB126B007F052D /* Drone.mtl in Resources */,
 				F47CC1342B97415E00125D78 /* Assets.xcassets in Resources */,
 				F47CC11B2B97415E00125D78 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -588,7 +643,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F411480C2BAB126B007F052D /* Drone.mtl in Resources */,
 				F47CC1282B97415E00125D78 /* Main.storyboard in Resources */,
+				F411480F2BAB126B007F052D /* Drone.obj in Resources */,
 				F47CC1352B97415E00125D78 /* Assets.xcassets in Resources */,
 				F47CC1322B97415E00125D78 /* ShaderTypes.h in Resources */,
 			);
@@ -618,6 +675,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EF7B082B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
+				F411481A2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
 				F47CC12D2B97415E00125D78 /* RTSRenderer.swift in Sources */,
 				F4EF7AF62B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F4534A872BA9965600505014 /* Map Sample.swift in Sources */,
@@ -625,18 +683,22 @@
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
-				F4534AAD2BA9FC5300505014 /* Uniforms.swift in Sources */,
+				F411481E2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
+				F4534AAD2BA9FC5300505014 /* Transformation.swift in Sources */,
 				F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F41148222BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A942BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
+				F41148122BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F41148162BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F45280752BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A762BA893F900505014 /* Matrix.swift in Sources */,
-				F4534AA92BA9FC2600505014 /* SkyBox.swift in Sources */,
 				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB12BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
@@ -654,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EF7B092B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
+				F411481B2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
 				F47CC12E2B97415E00125D78 /* RTSRenderer.swift in Sources */,
 				F4EF7AF72B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F4534A882BA9965600505014 /* Map Sample.swift in Sources */,
@@ -661,18 +724,22 @@
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
-				F4534AAE2BA9FC5300505014 /* Uniforms.swift in Sources */,
+				F411481F2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
+				F4534AAE2BA9FC5300505014 /* Transformation.swift in Sources */,
 				F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F41148232BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A952BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
+				F41148132BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F41148172BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F45280762BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A772BA893F900505014 /* Matrix.swift in Sources */,
-				F4534AAA2BA9FC2600505014 /* SkyBox.swift in Sources */,
 				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB22BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
@@ -690,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EF7B0A2B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
+				F411481C2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
 				F47CC12F2B97415E00125D78 /* RTSRenderer.swift in Sources */,
 				F4EF7AF82B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F4534A892BA9965600505014 /* Map Sample.swift in Sources */,
@@ -697,18 +765,22 @@
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
-				F4534AAF2BA9FC5300505014 /* Uniforms.swift in Sources */,
+				F41148202BAB1CC9007F052D /* EngineSettings.swift in Sources */,
+				F4534AAF2BA9FC5300505014 /* Transformation.swift in Sources */,
 				F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F41148242BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A962BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,
+				F41148142BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F41148182BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
 				F45280772BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A782BA893F900505014 /* Matrix.swift in Sources */,
-				F4534AAB2BA9FC2600505014 /* SkyBox.swift in Sources */,
 				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB32BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
@@ -1088,7 +1160,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1119,7 +1191,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
