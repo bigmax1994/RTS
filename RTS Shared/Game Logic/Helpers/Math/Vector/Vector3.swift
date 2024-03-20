@@ -57,4 +57,10 @@ struct Vector3: Byteable, Equatable {
         return [x,y,z]
     }
     
+    func toSIMD() -> simd_float3 {
+        
+        return simd_float3(self.x, self.y, self.z)
+        
+    }
+    
 }

@@ -64,4 +64,10 @@ struct Vector4: Byteable, Equatable {
         return [x,y,z,t]
     }
     
+    func toSIMD() -> simd_float4 {
+        
+        return simd_float4(self.x, self.y, self.z, self.t)
+        
+    }
+    
 }

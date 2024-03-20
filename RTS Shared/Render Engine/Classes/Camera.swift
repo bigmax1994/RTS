@@ -7,6 +7,7 @@
 
 import Foundation
 import simd
+import Metal
 
 class Camera {
     
@@ -29,7 +30,7 @@ class Camera {
     private var _nearClip: Float
     private var _farClip: Float
     
-    var trafo:CameraTransformation?
+    var transformationBuffer: MTLBuffer? = nil
     
     init(pos: Vector3 = Camera.defaultPos, 
          dir: Vector3 = Camera.defaultDir,
@@ -57,8 +58,9 @@ class Camera {
             return self._position
         }
         set {
-            if newValue != self._position { self.trafo = nil}
+            if newValue == self._position { return }
             self._position = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
@@ -68,8 +70,9 @@ class Camera {
             return self._direction
         }
         set {
-            if newValue != self._direction { self.trafo = nil}
+            if newValue == self._direction { return }
             self._direction = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
@@ -79,8 +82,9 @@ class Camera {
             return self._up
         }
         set {
-            if newValue != self._up { self.trafo = nil}
+            if newValue == self._up { return }
             self._up = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
@@ -91,8 +95,9 @@ class Camera {
             return self._aspectRatio
         }
         set {
-            if newValue != self._aspectRatio { self.trafo = nil}
+            if newValue == self._aspectRatio { return }
             self._aspectRatio = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
@@ -102,8 +107,9 @@ class Camera {
             return self._fieldOfView
         }
         set {
-            if newValue != self._fieldOfView { self.trafo = nil}
+            if newValue == self._fieldOfView { return }
             self._fieldOfView = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
@@ -114,8 +120,9 @@ class Camera {
             return self._nearClip
         }
         set {
-            if newValue != self._nearClip { self.trafo = nil}
+            if newValue == self._nearClip { return }
             self._nearClip = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
@@ -125,32 +132,29 @@ class Camera {
             return self._farClip
         }
         set {
-            if newValue != self._farClip { self.trafo = nil}
+            if newValue == self._farClip { return }
             self._farClip = newValue
+            self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
     
-    func getTrafo() -> CameraTransformation{
-        if let trafo = self.trafo{
-            return trafo
-        } else {
-            self.trafo = CameraTransformation(camera:self)
-            return self.getTrafo()
-        }
+    func createTrafoBuffer() -> MTLBuffer? {
+        
+        let trafo = CameraTransformation(camera:self)
+            
+        return Engine.Device.makeBuffer(bytes: [trafo], length: CameraTransformation.bufferSize(count: 1))
+        
     }
-    
     
 }
 
-struct CameraTransformation {
+struct CameraTransformation: GPUEncodable {
     
     let rotationMatrix: simd_float4x4
     
     init(camera: Camera) {
-        
         ///Creates a 4x4 Matrix, which rotates the entire scene. Specifying where the Camera is, where it looks At and where up is on the screen.
-        ///
         
         let diff = Camera.defaultPos - camera.position
         var translation = Matrix.Identity(4)

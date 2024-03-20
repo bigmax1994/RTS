@@ -30,9 +30,11 @@ typedef struct
 
 typedef struct
 {
-    matrix_float4x4 rotationMatrix;
-    float3 position;
-} Uniforms;
+    matrix_float4x4 m;
+    float3 p;
+    float3 s;
+    
+} Transformation;
 
 typedef struct
 {
@@ -40,23 +42,22 @@ typedef struct
     
 } CameraTransformation;
 
-vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransformation & cameraTransformation [[ buffer(0) ]], constant Uniforms & uniforms [[ buffer(1) ]], constant Vertex* vertices [[buffer(2)]])
+vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransformation & cameraTransformation [[ buffer(0) ]], constant Transformation & transformation [[ buffer(1) ]], constant Vertex* vertices [[buffer(2)]])
 {
     ColorInOut out;
     
-    float4 position = float4(vertices[vid].pos, 1);
-    float4 moveBy = float4(uniforms.position, 0);
+    float3x3 scaleMatrix = float3x3(float3(transformation.s.x, 0, 0),
+                                    float3(0, transformation.s.y, 0),
+                                    float3(0, 0, transformation.s.z));
+    
+    float3 scaledPos = vertices[vid].pos * scaleMatrix;
+    
+    float4 position = float4(scaledPos, 1);
+    float4 moveBy = float4(transformation.p, 0);
     position.z = 1 - position.z;
     
-    /*float4x4 m = float4x4(float4(1, 0, 0, 0),
-                          float4(0, 1, 0, 0),
-                          float4(0, 0, 1, 0),
-                          float4(0, 0, 1, 0));*/
+    out.position = (position * transformation.m + moveBy) * cameraTransformation.rotationMatrix;
     
-    //out.position = (position * uniforms.rotationMatrix + moveBy) * m;
-    out.position = (position * uniforms.rotationMatrix + moveBy) * cameraTransformation.rotationMatrix;
-    //out.position.z -= 0.1;
-    //out.position.w = out.position.z;
     out.color = vertices[vid].color;
 
     return out;

@@ -8,7 +8,7 @@
 import Foundation
 import simd
 
-struct Vertex {
+struct Vertex: GPUEncodable {
     
     var pos: simd_float3
     var color: simd_float3
@@ -116,7 +116,7 @@ struct Vertex {
                 guard let i2 = Int(i[1]) else { continue }
                 guard let i3 = Int(i[2]) else { continue }
                 
-                let fac:Float = 1
+                let fac:Float = 0.01
                 
                 let v1 = fac * Vertex.getVertexFromFace(v[i1 - 1])
                 let v2 = fac * Vertex.getVertexFromFace(v[i2 - 1])

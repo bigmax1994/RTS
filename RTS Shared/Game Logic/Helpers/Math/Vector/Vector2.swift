@@ -60,4 +60,10 @@ struct Vector2: Byteable, Equatable {
         
     }
     
+    func toSIMD() -> simd_float2 {
+        
+        return simd_float2(self.x, self.y)
+        
+    }
+    
 }

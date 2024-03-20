@@ -151,4 +151,43 @@ struct Matrix {
                        [0, 0, 1, 0]])
     }
     
+    func matrix4x4ToSIMD() -> simd_float4x4 {
+        
+        if !self.isSquare || self.rows != 4 {
+            let f4 = simd_float4(repeating: 0)
+            return simd_float4x4(f4, f4, f4, f4)
+        }
+        
+        return simd_float4x4(simd_float4(self[0,0], self[0,1], self[0,2], self[0,3]),
+                             simd_float4(self[1,0], self[1,1], self[1,2], self[1,3]),
+                             simd_float4(self[2,0], self[2,1], self[2,2], self[2,3]),
+                             simd_float4(self[3,0], self[3,1], self[3,2], self[3,3]))
+        
+    }
+    
+    func matrix3x3ToSIMD() -> simd_float3x3 {
+        
+        if !self.isSquare || self.rows != 4 {
+            let f3 = simd_float3(repeating: 0)
+            return simd_float3x3(f3, f3, f3)
+        }
+        
+        return simd_float3x3(simd_float3(self[0,0], self[0,1], self[0,2]),
+                             simd_float3(self[1,0], self[1,1], self[1,2]),
+                             simd_float3(self[2,0], self[2,1], self[2,2]))
+        
+    }
+    
+    func matrix2x2ToSIMD() -> simd_float2x2 {
+        
+        if !self.isSquare || self.rows != 4 {
+            let f2 = simd_float2(repeating: 0)
+            return simd_float2x2(f2, f2)
+        }
+        
+        return simd_float2x2(simd_float2(self[0,0], self[0,1]),
+                             simd_float2(self[1,0], self[1,1]))
+        
+    }
+    
 }
