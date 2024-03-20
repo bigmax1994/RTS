@@ -11,7 +11,7 @@ class Heights{
     static let craterWidth:Float = 0.9
     static let craterHeight:Float = 2
     static let craterSharpness:Float = 6.5
-    static let heightLevels:[(height:Float, beginsAt:Float, sharpness:Float)] = [(0.37, -0.8, 7), (0.51, 0.45, 9), (1, 0.95, 4)]
+    static let heightLevels:[(height:Float, beginsAt:Float, sharpness:Float)] = [(0.37, -0.8, 7), (0.51, 0.45, 9), (1, 0.95, 4)] //Heightlevels, which will be more present in the Heightmap
     static func crater(v:Vector2) -> Float{
         return craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
     }
@@ -21,7 +21,7 @@ class Heights{
     static func craterWall(_ t:Float)->Float{
         sigmoid(craterSharpness*(t*t - craterWidth*craterWidth))
     }
-    static func normalize(h:Float) -> Float{
+    static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (0,1)
         var value:Float = 0
         var used:Float = 0
         for (height, beginsAt, sharpness) in Heights.heightLevels{
