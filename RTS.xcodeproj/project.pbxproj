@@ -14,12 +14,6 @@
 		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8F82BA8791800F215AA /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8F72BA8791800F215AA /* RTSTests.swift */; };
-		F411480A2BAB126B007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148072BAB126B007F052D /* Drone.mtl */; };
-		F411480B2BAB126B007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148072BAB126B007F052D /* Drone.mtl */; };
-		F411480C2BAB126B007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148072BAB126B007F052D /* Drone.mtl */; };
-		F411480D2BAB126B007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148082BAB126B007F052D /* Drone.obj */; };
-		F411480E2BAB126B007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148082BAB126B007F052D /* Drone.obj */; };
-		F411480F2BAB126B007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148082BAB126B007F052D /* Drone.obj */; };
 		F41148122BAB1821007F052D /* FunctionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148112BAB1821007F052D /* FunctionLibrary.swift */; };
 		F41148132BAB1821007F052D /* FunctionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148112BAB1821007F052D /* FunctionLibrary.swift */; };
 		F41148142BAB1821007F052D /* FunctionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148112BAB1821007F052D /* FunctionLibrary.swift */; };
@@ -38,6 +32,15 @@
 		F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
 		F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
 		F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
+		F411482A2BABAA20007F052D /* StencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148292BABAA20007F052D /* StencilStateLibrary.swift */; };
+		F411482B2BABAA20007F052D /* StencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148292BABAA20007F052D /* StencilStateLibrary.swift */; };
+		F411482C2BABAA20007F052D /* StencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148292BABAA20007F052D /* StencilStateLibrary.swift */; };
+		F41148372BABB44C007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148352BABB44C007F052D /* Drone.obj */; };
+		F41148382BABB44C007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148352BABB44C007F052D /* Drone.obj */; };
+		F41148392BABB44C007F052D /* Drone.obj in Resources */ = {isa = PBXBuildFile; fileRef = F41148352BABB44C007F052D /* Drone.obj */; };
+		F411483A2BABB44C007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148362BABB44C007F052D /* Drone.mtl */; };
+		F411483B2BABB44C007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148362BABB44C007F052D /* Drone.mtl */; };
+		F411483C2BABB44C007F052D /* Drone.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F41148362BABB44C007F052D /* Drone.mtl */; };
 		F41F82E32B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E42B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E52B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
@@ -145,14 +148,15 @@
 		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
 		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
-		F41148072BAB126B007F052D /* Drone.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.mtl; sourceTree = "<group>"; };
-		F41148082BAB126B007F052D /* Drone.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.obj; sourceTree = "<group>"; };
 		F41148112BAB1821007F052D /* FunctionLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionLibrary.swift; sourceTree = "<group>"; };
 		F41148152BAB18D4007F052D /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineStateLibrary.swift; sourceTree = "<group>"; };
 		F411481D2BAB1CC9007F052D /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
 		F41148212BAB1F40007F052D /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
 		F41148252BAB22DD007F052D /* GPUEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUEncodable.swift; sourceTree = "<group>"; };
+		F41148292BABAA20007F052D /* StencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StencilStateLibrary.swift; sourceTree = "<group>"; };
+		F41148352BABB44C007F052D /* Drone.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.obj; sourceTree = "<group>"; };
+		F41148362BABB44C007F052D /* Drone.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.mtl; sourceTree = "<group>"; };
 		F41F82E22B9C627B006974CE /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		F45280742BA457D200BF6D92 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 		F4534A622BA8778800505014 /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,8 +255,8 @@
 		F41148092BAB126B007F052D /* Drone */ = {
 			isa = PBXGroup;
 			children = (
-				F41148072BAB126B007F052D /* Drone.mtl */,
-				F41148082BAB126B007F052D /* Drone.obj */,
+				F41148362BABB44C007F052D /* Drone.mtl */,
+				F41148352BABB44C007F052D /* Drone.obj */,
 			);
 			path = Drone;
 			sourceTree = "<group>";
@@ -262,6 +266,7 @@
 			children = (
 				F41148112BAB1821007F052D /* FunctionLibrary.swift */,
 				F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */,
+				F41148292BABAA20007F052D /* StencilStateLibrary.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -619,8 +624,8 @@
 			files = (
 				F47CC1302B97415E00125D78 /* ShaderTypes.h in Resources */,
 				F47CC1082B97415E00125D78 /* Main.storyboard in Resources */,
-				F411480D2BAB126B007F052D /* Drone.obj in Resources */,
-				F411480A2BAB126B007F052D /* Drone.mtl in Resources */,
+				F411483A2BABB44C007F052D /* Drone.mtl in Resources */,
+				F41148372BABB44C007F052D /* Drone.obj in Resources */,
 				F47CC1332B97415E00125D78 /* Assets.xcassets in Resources */,
 				F47CC10B2B97415E00125D78 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -632,8 +637,8 @@
 			files = (
 				F47CC1312B97415E00125D78 /* ShaderTypes.h in Resources */,
 				F47CC1182B97415E00125D78 /* Main.storyboard in Resources */,
-				F411480E2BAB126B007F052D /* Drone.obj in Resources */,
-				F411480B2BAB126B007F052D /* Drone.mtl in Resources */,
+				F411483B2BABB44C007F052D /* Drone.mtl in Resources */,
+				F41148382BABB44C007F052D /* Drone.obj in Resources */,
 				F47CC1342B97415E00125D78 /* Assets.xcassets in Resources */,
 				F47CC11B2B97415E00125D78 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -643,10 +648,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F411480C2BAB126B007F052D /* Drone.mtl in Resources */,
 				F47CC1282B97415E00125D78 /* Main.storyboard in Resources */,
-				F411480F2BAB126B007F052D /* Drone.obj in Resources */,
 				F47CC1352B97415E00125D78 /* Assets.xcassets in Resources */,
+				F411483C2BABB44C007F052D /* Drone.mtl in Resources */,
+				F41148392BABB44C007F052D /* Drone.obj in Resources */,
 				F47CC1322B97415E00125D78 /* ShaderTypes.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,6 +711,7 @@
 				F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B142B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
+				F411482A2BABAA20007F052D /* StencilStateLibrary.swift in Sources */,
 				F4EF7B172B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B022B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
@@ -747,6 +753,7 @@
 				F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B152B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
+				F411482B2BABAA20007F052D /* StencilStateLibrary.swift in Sources */,
 				F4EF7B182B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B032B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
@@ -788,6 +795,7 @@
 				F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B162B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
+				F411482C2BABAA20007F052D /* StencilStateLibrary.swift in Sources */,
 				F4EF7B192B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B042B9B950600A70A56 /* RTSData.swift in Sources */,
 			);
@@ -1160,7 +1168,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1191,7 +1199,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

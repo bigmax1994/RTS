@@ -10,6 +10,10 @@ import Metal
 
 enum PipelineState: String, CaseIterable {
     
+    static func getDefault() -> PipelineState {
+        return .basic
+    }
+    
     case basic = "basic"
     
     func getVertexFunction() -> MetalVertexFunction {
@@ -39,7 +43,7 @@ enum PipelineState: String, CaseIterable {
 
 class PipelineStateLibrary {
     
-    public static var states: [PipelineState: MTLRenderPipelineState] = [:]
+    fileprivate static var states: [PipelineState: MTLRenderPipelineState] = [:]
     
     public static func Boot() {
         

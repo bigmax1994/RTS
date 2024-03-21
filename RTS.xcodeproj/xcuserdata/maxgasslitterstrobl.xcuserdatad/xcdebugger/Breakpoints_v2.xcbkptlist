@@ -94,8 +94,8 @@
             filePath = "RTS macOS/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "mouseDown(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "RTS Shared/Render Engine/Classes/Camera.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "init(camera:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,24 +318,8 @@
             filePath = "RTS Shared/Render Engine/Classes/Camera.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "init(camera:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "31878BEF-202F-4EBE-B716-2C4215697299"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RTS Shared/Render Engine/Classes/Camera.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "init(camera:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,8 +334,8 @@
             filePath = "RTS Shared/Render Engine/Classes/Camera.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "init(camera:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,8 +366,8 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "init?(metalKitView:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +382,8 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "init?(metalKitView:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +398,8 @@
             filePath = "RTS Shared/Render Engine/Classes/Object.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "rotateTo(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +414,8 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,9 +446,9 @@
             filePath = "RTS Shared/Render Engine/Engine.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "Boot()"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "Boot(to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -478,8 +462,8 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,9 +478,25 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "playerDidMove(_:player:to:)"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "playerDidMove(_:player:to:from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF2BBAB6-1636-4374-9EC4-4046C88DD5ED"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RTS Shared/Shading/RTSRenderer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "playerDidMove(_:player:to:from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

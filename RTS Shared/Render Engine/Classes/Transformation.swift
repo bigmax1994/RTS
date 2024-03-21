@@ -40,13 +40,19 @@ struct Transformation: GPUEncodable {
     
     mutating func rotateBy(_ m: Matrix) {
         
-        self.m = simd_mul(self.m, m.matrix4x4ToSIMD())
+        self.m = simd_mul(m.matrix4x4ToSIMD(), self.m)
         
     }
     
     mutating func scaleTo(_ s: Vector3) {
         
         self.s = s.toSIMD()
+        
+    }
+    
+    mutating func scaleTo(_ s: Float) {
+        
+        self.s = simd_float3(repeating: s)
         
     }
     

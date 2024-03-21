@@ -13,7 +13,7 @@ protocol RTSGameDelegate {
     
     func gameDidStart(_ game: RTSGame)
     
-    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2)
+    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2, from oldPosition: Vector2)
     
     func gameDidEnd(_ game: RTSGame)
     

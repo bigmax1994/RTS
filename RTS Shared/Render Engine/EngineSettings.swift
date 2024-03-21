@@ -11,7 +11,7 @@ import Metal
 class EngineSettings {
     
     public static var pixelFormat: MTLPixelFormat = .bgra8Unorm
-    public static var depthFormat: MTLPixelFormat = .invalid
+    public static var depthFormat: MTLPixelFormat = .depth32Float
     public static var stencilFormat: MTLPixelFormat = .invalid
     
     internal static let CameraBufferIndex: Int = 0

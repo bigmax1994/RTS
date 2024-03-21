@@ -16,6 +16,8 @@ class Player {
     
     private var position: Vector2 = Vector2()
     
+    var playerChar: Object? = nil
+    
     init(name: String) {
         self.name = name
         self.uuid = UUID()

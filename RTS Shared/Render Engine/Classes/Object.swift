@@ -11,7 +11,8 @@ import MetalKit
 
 class Object: Drawable {
     
-    var pipelineState: PipelineState?
+    var pipelineState: PipelineState
+    var stencilState: StencilState
     
     let label:String?
     
@@ -22,12 +23,13 @@ class Object: Drawable {
     private var transformationBuffer: MTLBuffer? = nil
     private var vertexBuffer: MTLBuffer? = nil
     
-    init?(verticies: [Vertex], at pos: Vector3 = Vector3(), rotated: Matrix = Matrix.Identity(4), scale: Vector3 = Vector3(x: 1, y: 1, z: 1), pipelineState: PipelineState? = nil, label: String? = nil) {
+    init?(verticies: [Vertex], at pos: Vector3 = Vector3(), rotated: Matrix = Matrix.Identity(4), scale: Vector3 = Vector3(x: 1, y: 1, z: 1), pipelineState: PipelineState = PipelineState.getDefault(), stencilState: StencilState = StencilState.getDefault(), label: String? = nil) {
         
         assert(verticies.count > 0, "empty Object")
         assert(rotated.isOrthogonal && rotated.rows == 4, "matrix not Orthogonal")
         
         self.pipelineState = pipelineState
+        self.stencilState = stencilState
         
         self.verticies = verticies
         
@@ -64,6 +66,11 @@ class Object: Drawable {
         self.createBuffers()
     }
     
+    func scaleTo(_ s: Float) {
+        self.transformation.scaleTo(s)
+        self.createBuffers()
+    }
+    
     func scaleBy(_ s: Vector3) {
         self.transformation.scaleBy(s)
         self.createBuffers()
@@ -85,13 +92,17 @@ class Object: Drawable {
         
         encoder.pushDebugGroup("Encoder for \(self.getName())")
         
-        if self.pipelineState == nil {
-            NSLog("Did not set Pipeline State")
-        }
-        guard let pipelineState = (self.pipelineState ?? .basic).getMTLState() else {
+        guard let pipelineState = self.pipelineState.getMTLState() else {
+            NSLog("Failed to get pipeline State")
             return
         }
         encoder.setRenderPipelineState(pipelineState)
+        
+        guard let stencilState = self.stencilState.getMTLState() else {
+            NSLog("Failed to get stencil State")
+            return
+        }
+        encoder.setDepthStencilState(stencilState)
         
         if self.transformationBuffer == nil {
             self.createBuffers()

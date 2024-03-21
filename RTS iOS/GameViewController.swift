@@ -22,8 +22,7 @@ class GameViewController: UIViewController {
             return
         }
         
-        Engine.Boot()
-        mtkView.device = Engine.Device
+        Engine.Boot(to: mtkView)
         mtkView.backgroundColor = UIColor.black
 
         guard let newRenderer = RTSRenderer(metalKitView: mtkView) else {

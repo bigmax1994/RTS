@@ -109,29 +109,24 @@ struct Vertex: GPUEncodable {
         
         return f.reduce(into: []) { partialResult, s in
             let p = s.components(separatedBy: " ")
-            for t in p {
-                let i = t.components(separatedBy: "/")
+            
+            guard let i1 = Int(p[1].components(separatedBy: "/")[0]) else { return }
+            guard let i2 = Int(p[2].components(separatedBy: "/")[0]) else { return }
+            guard let i3 = Int(p[3].components(separatedBy: "/")[0]) else { return }
                 
-                guard let i1 = Int(i[0]) else { continue }
-                guard let i2 = Int(i[1]) else { continue }
-                guard let i3 = Int(i[2]) else { continue }
-                
-                let fac:Float = 0.01
-                
-                let v1 = fac * Vertex.getVertexFromFace(v[i1 - 1])
-                let v2 = fac * Vertex.getVertexFromFace(v[i2 - 1])
-                let v3 = fac * Vertex.getVertexFromFace(v[i3 - 1])
-                
-                partialResult.append(v1)
-                partialResult.append(v2)
-                partialResult.append(v3)
-                
-            }
+            let v1 = Vertex.getVertexFrom(v[i1 - 1])
+            let v2 = Vertex.getVertexFrom(v[i2 - 1])
+            let v3 = Vertex.getVertexFrom(v[i3 - 1])
+            
+            partialResult.append(v1)
+            partialResult.append(v2)
+            partialResult.append(v3)
+            
         }
         
     }
     
-    static func getVertexFromFace(_ string: String) -> Vertex {
+    static func getVertexFrom(_ string: String) -> Vertex {
         
         let p = string.components(separatedBy: " ")
         let x = Float(p[1]) ?? 0

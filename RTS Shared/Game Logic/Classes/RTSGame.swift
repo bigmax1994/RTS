@@ -53,11 +53,14 @@ class RTSGame {
             //get movement vector from movement speed
             let vec = RTSGame.movementSpeed * relativeDirection.normalized()
             
+            //save old position
+            let oldPos = p.getPosition()
+            
             //move the player
             p.moveBy(vec)
             
             //send info to delegates
-            self.delegate?.playerDidMove(self, player: p, to: p.getPosition())
+            self.delegate?.playerDidMove(self, player: p, to: p.getPosition(), from: oldPos)
             self.commDelegate?.playerDidMove(p, to: p.getPosition())
             
         }

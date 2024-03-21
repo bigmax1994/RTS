@@ -7,13 +7,14 @@
 
 import Foundation
 import Metal
+import MetalKit
 
 class Engine {
     
     static var Device: MTLDevice!
     static var CommandQueue: MTLCommandQueue!
     
-    public static func Boot() {
+    public static func Boot(to view: MTKView) {
         
         //Boot Metal
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -21,6 +22,9 @@ class Engine {
             return
         }
         Engine.Device = device
+        
+        view.device = Engine.Device
+        view.depthStencilPixelFormat = EngineSettings.depthFormat
         
         //Create Command Queue
         guard let queue = Engine.Device.makeCommandQueue() else {
@@ -32,6 +36,7 @@ class Engine {
         //Boot Libraries
         FunctionLibrary.Boot()
         PipelineStateLibrary.Boot()
+        StencilStateLibrary.Boot()
         
     }
     

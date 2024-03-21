@@ -190,4 +190,12 @@ struct Matrix {
         
     }
     
+    static func solveForRotation(from v1: Vector3, to v2: Vector3) -> Matrix {
+        
+        let directionOrth:Vector3 = v1 *-* v2
+        let angle1 = acos((v1.normalized() ** v2.normalized()))
+        return Matrix.matrix4x4_rotation(radians: angle1, axis: directionOrth)
+        
+    }
+    
 }

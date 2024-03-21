@@ -9,6 +9,11 @@ import Foundation
 import Metal
 
 enum MetalVertexFunction: String, CaseIterable {
+    
+    static func getDefault() -> MetalVertexFunction {
+        return .vertex
+    }
+    
     case vertex = "vertexShader"
     
     func getMTLFunction() -> MTLFunction? {
@@ -25,6 +30,11 @@ enum MetalVertexFunction: String, CaseIterable {
 }
 
 enum MetalFragmentFunction: String, CaseIterable {
+    
+    static func getDefault() -> MetalFragmentFunction {
+        return .fragment
+    }
+    
     case fragment = "fragmentShader"
     
     func getMTLFunction() -> MTLFunction? {
@@ -44,8 +54,8 @@ class FunctionLibrary {
     
     public static var library: MTLLibrary!
     
-    public static var vertexFunctions: [MetalVertexFunction: MTLFunction] = [:]
-    public static var fragmentFunctions: [MetalFragmentFunction: MTLFunction] = [:]
+    fileprivate static var vertexFunctions: [MetalVertexFunction: MTLFunction] = [:]
+    fileprivate static var fragmentFunctions: [MetalFragmentFunction: MTLFunction] = [:]
     
     public static func Boot() {
         

@@ -28,6 +28,9 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     var updated = true
     var gameTime = 0.0
     
+    let cameraHeight:Float = 0
+    let droneHeight:Float = -0.5
+    
     init?(metalKitView: MTKView) {
         
         commDelegate = RTSCommunicationDelegate()
@@ -37,22 +40,26 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        self.camera = Camera(pos: Vector3(x: 0, y: 0, z: -1), nearClip: 0.1, farClip: 100)
+        self.camera = Camera(pos: Vector3(x: 0, y: 0, z: cameraHeight), nearClip: 0.1, farClip: 100)
         let dir = Vector3(phi: -Float.pi / 2, theta: Float.pi / 2 - 0.1)
         self.camera.direction = dir
         
         if let sky = Object.MakeCube(color: Vector3(x: 38.0 / 255.0, y: 194.0 / 255.0, z: 220.0 / 255.0), label: "Skybox") {
-            //self.objects.append(sky)
+            sky.scaleTo(10)
+            self.objects.append(sky)
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 1000), pipelineState: .basic, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 200), pipelineState: .basic, label: "Map") {
             self.objects.append(mapObj)
         }
         
         do {
             let p = try Vertex.readFile("Drone")
             if let obj = Object(verticies: p, pipelineState: .basic, label: "Drone") {
+                obj.moveTo(Vector3(x: 0, y: 0, z: -0.5))
+                obj.scaleTo(0.1)
                 self.objects.append(obj)
+                players[0].playerChar = obj
             }
         }catch{
             print("error reading file")
@@ -97,6 +104,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             
             self.updateGameState()
             
+            view.clearDepth = 1
+            
             /// Delay getting the currentRenderPassDescriptor until we absolutely need it to avoid
             ///   holding onto the drawable and blocking the display pipeline any longer than necessary
             let renderPassDescriptor = view.currentRenderPassDescriptor
@@ -135,11 +144,18 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
     }
     
-    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2) {
+    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2, from oldPosition: Vector2) {
         
-        self.camera.position = Vector3(x: position.x, y: position.y, z: 0)
-        //let newPos = Vector3(x: position.x, y: position.y, z: 1)
-        //self.objects[1].moveTo(newPos)
+        self.camera.position = Vector3(x: position.x, y: position.y, z: cameraHeight)
+        
+        let newPos = Vector3(x: position.x, y: position.y, z: droneHeight)
+        player.playerChar?.moveTo(newPos)
+        
+        let v1 = Vector3(x: position.x, y: position.y, z: droneHeight)
+        let v2 = Vector3(x: oldPosition.x, y: oldPosition.y, z: droneHeight)
+        
+        let m = Matrix.solveForRotation(from: v1, to: v2)
+        //player.playerChar?.rotateBy(m)
         
     }
     

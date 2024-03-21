@@ -22,8 +22,7 @@ class GameViewController: NSViewController {
             return
         }
 
-        Engine.Boot()
-        mtkView.device = Engine.Device
+        Engine.Boot(to: mtkView)
 
         guard let newRenderer = RTSRenderer(metalKitView: mtkView) else {
             print("Renderer cannot be initialized")

@@ -162,19 +162,16 @@ struct CameraTransformation: GPUEncodable {
         translation[1,3] = diff.y
         translation[2,3] = diff.z
         
-        let directionOrth:Vector3 = camera.direction *-* Camera.defaultDir
-        let angle1 = acos((camera.direction ** Camera.defaultDir))
-        let rotation1 = Matrix.matrix4x4_rotation(radians: angle1, axis: directionOrth)
+        let rotation1 = Matrix.solveForRotation(from: camera.direction, to: Camera.defaultDir)
         
         var upMatrix = Matrix(elements: camera.up.toArray(), columns: 1, rows: 4)
         upMatrix.elements.append(1)
         let newUpMatrix = Matrix.fastDotAdd(A: rotation1, B: upMatrix)
         let newUp = Vector3(x: newUpMatrix[0,0], y:newUpMatrix[1,0], z:newUpMatrix[2,0])
-        let upOrth:Vector3 = newUp *-* Camera.defaultUp
-        let angle2 = acos((newUp ** Camera.defaultUp))
-        let rotation2 = Matrix.matrix4x4_rotation(radians: angle2, axis: upOrth)
         
-        let rotation = Matrix.fastDotAdd(alpha:1, A:translation, B:Matrix.fastDotAdd(A: rotation1, B: rotation2))
+        let rotation2 = Matrix.solveForRotation(from: newUp, to: Camera.defaultUp)
+        
+        let rotation = Matrix.fastDotAdd(A:translation, B: Matrix.fastDotAdd(A: rotation1, B: rotation2))
         
         let clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: camera.fieldOfView, aspectRatio: camera.aspectRatio, nearZ: camera.nearClip, farZ: camera.farClip)
         
