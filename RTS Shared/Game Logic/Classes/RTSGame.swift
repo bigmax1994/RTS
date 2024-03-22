@@ -48,10 +48,10 @@ class RTSGame {
         if let p = self.selfPlayer {
             
             //get relative direction to player position
-            let relativeDirection = direction - p.getPosition()
+            //let relativeDirection = direction - p.getPosition()
             
             //get movement vector from movement speed
-            let vec = RTSGame.movementSpeed * relativeDirection.normalized()
+            let vec = RTSGame.movementSpeed * direction.normalized()
             
             //save old position
             let oldPos = p.getPosition()

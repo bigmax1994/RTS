@@ -14,6 +14,14 @@ extension Vector2 {
         return sqrtf(x * x + y * y)
     }
     
+    func lengthSquared() -> Float {
+        return x * x + y * y
+    }
+    
+    func isZero() -> Bool {
+        return self.lengthSquared() < 2 * Float.ulpOfOne
+    }
+    
     mutating func normalize() {
         let scale = 1 / self.length()
         x *= scale
@@ -45,6 +53,12 @@ extension Vector2 {
         return lhs.x * rhs.x + lhs.y * rhs.y
     }
     
+    static func * (lhs: Matrix, rhs: Vector2) -> Vector2 {
+        let m = Matrix(elements: rhs.toArray(), columns: 1, rows: 2)
+        let r = Matrix.fastDotAdd(A: lhs, B: m)
+        return Vector2(x: r[0,0], y: r[1,0])
+    }
+    
 }
 
 infix operator *-* : MultiplicationPrecedence
@@ -52,6 +66,14 @@ extension Vector3 {
     
     func length() -> Float {
         return sqrtf(x * x + y * y + z * z)
+    }
+    
+    func lengthSquared() -> Float {
+        return x * x + y * y + z * z
+    }
+    
+    func isZero() -> Bool {
+        return self.lengthSquared() < 3 * Float.ulpOfOne
     }
     
     mutating func normalize() {
@@ -92,6 +114,12 @@ extension Vector3 {
                        z: lhs.x * rhs.y - lhs.y * rhs.x)
     }
     
+    static func * (lhs: Matrix, rhs: Vector3) -> Vector3 {
+        let m = Matrix(elements: rhs.toArray(), columns: 1, rows: 3)
+        let r = Matrix.fastDotAdd(A: lhs, B: m, transposeB: false)
+        return Vector3(x: r[0,0], y: r[1,0], z: r[2,0])
+    }
+    
 }
 
 infix operator -*- : MultiplicationPrecedence
@@ -108,8 +136,25 @@ extension Vector4 {
         return sqrtf(x * x + y * y + z * z)
     }
     
+    func length3Squared() -> Float {
+        return x * x + y * y + z * z
+    }
+    
+    func isZero3() -> Bool {
+        return self.length3Squared() < 3 * Float.ulpOfOne
+    }
+    
+    func lengthSquared() -> Float {
+        return x * x + y * y + z * z + t * t
+    }
+    
+    func isZero() -> Bool {
+        return self.lengthSquared() < 4 * Float.ulpOfOne
+    }
+    
     mutating func normalize() {
-        let scale = 1 / self.length()
+        let length = self.length()
+        let scale = 1 / length
         x *= scale
         y *= scale
         z *= scale
@@ -171,6 +216,12 @@ extension Vector4 {
     
     static func * (lhs: Vector4, rhs: Vector4) -> Float {
         return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z + lhs.t * rhs.t
+    }
+    
+    static func * (lhs: Matrix, rhs: Vector4) -> Vector4 {
+        let m = Matrix(elements: rhs.toArray(), columns: 1, rows: 4)
+        let r = Matrix.fastDotAdd(A: lhs, B: m, transposeB: false)
+        return Vector4(x: r[0,0], y: r[1,0], z: r[2,0], t: r[3,0])
     }
     
 }

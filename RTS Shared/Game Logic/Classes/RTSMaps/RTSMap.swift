@@ -9,9 +9,9 @@ import Foundation
 
 class RTSMap {
     
-    static let sealevel:Float = 0.3
-    static let grasstop:Float = 0.6
-    static let mountaintop:Float = 0.9
+    static let sealevel:Float = -0.3
+    static let grasstop:Float = 0.3
+    static let mountaintop:Float = 0.8
     
     enum TileType {
         case grass

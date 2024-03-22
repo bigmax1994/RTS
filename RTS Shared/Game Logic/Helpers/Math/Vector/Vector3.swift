@@ -40,6 +40,12 @@ struct Vector3: Byteable, Equatable {
         y = 0
         z = 0
     }
+
+    init(_ simd: simd_float3) {
+        x = simd.x
+        y = simd.y
+        z = simd.z
+    }
     
     init(x: Float, y: Float, z: Float) {
         self.x = x
@@ -60,6 +66,17 @@ struct Vector3: Byteable, Equatable {
     func toSIMD() -> simd_float3 {
         
         return simd_float3(self.x, self.y, self.z)
+        
+    }
+    
+    func getAnyLinearlyIndipendent() -> Vector3 {
+        
+        var v = Vector3(x: 1, y: 0, z: 0)
+        if abs(v ** self) > 3 * Float.ulpOfOne {
+            v = Vector3(x: 0, y: 1, z: 0)
+        }
+        
+        return v *-* self
         
     }
     

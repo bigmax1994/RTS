@@ -109,6 +109,27 @@ struct Matrix {
         
     }
     
+    mutating func addIdentityBlock(_ count: Int) {
+        
+        if count < 1 { return }
+        
+        let zeroes:[Float] = [Float](repeating: 0, count: count)
+        
+        for i in 0..<self.rows {
+            self.elements.insert(contentsOf: zeroes, at: (self.rows - i)*self.columns)
+        }
+        
+        for i in 0..<count {
+            var newRow = [Float](repeating: 0, count: self.columns + count)
+            newRow[i + self.columns] = 1
+            self.elements.append(contentsOf: newRow)
+        }
+        
+        self.rows += count
+        self.columns += count
+        
+    }
+    
     //MARK:  Generic matrix math utility functions
     static func matrix4x4_rotation(radians: Float, axis: Vector3) -> Matrix {
         
@@ -121,10 +142,26 @@ struct Matrix {
         let st = sin(radians)
         let ci = 1 - ct
         let x = unitAxis.x, y = unitAxis.y, z = unitAxis.z
-        return Matrix([[ct + x * x * ci, y * x * ci + z * st, z * x * ci - y * st, 0],
-                       [x * y * ci - z * st,     ct + y * y * ci, z * y * ci + x * st, 0],
-                       [x * z * ci + y * st, y * z * ci - x * st,     ct + z * z * ci, 0],
-                       [0, 0, 0, 1]])
+        return Matrix([[ct + x * x * ci,            y * x * ci - z * st,            z * x * ci + y * st,    0],
+                       [x * y * ci + z * st,        ct + y * y * ci,                z * y * ci - x * st,    0],
+                       [x * z * ci - y * st,        y * z * ci + x * st,            ct + z * z * ci,        0],
+                       [0,                          0,                              0,                      1]])
+    }
+    
+    static func matrix3x3_rotation(radians: Float, axis: Vector3) -> Matrix {
+        
+        if radians == 0 || axis.length() == 0 {
+            return Matrix.Identity(3)
+        }
+        
+        let unitAxis = axis.normalized()
+        let ct = cos(radians)
+        let st = sin(radians)
+        let ci = 1 - ct
+        let x = unitAxis.x, y = unitAxis.y, z = unitAxis.z
+        return Matrix([[ct + x * x * ci,            y * x * ci - z * st,            z * x * ci + y * st],
+                       [x * y * ci + z * st,        ct + y * y * ci,                z * y * ci - x * st],
+                       [x * z * ci - y * st,        y * z * ci + x * st,            ct + z * z * ci]])
     }
 
     static func matrix4x4_translation(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix {
@@ -154,6 +191,7 @@ struct Matrix {
     func matrix4x4ToSIMD() -> simd_float4x4 {
         
         if !self.isSquare || self.rows != 4 {
+            NSLog("Matrix has incorrect Format")
             let f4 = simd_float4(repeating: 0)
             return simd_float4x4(f4, f4, f4, f4)
         }
@@ -167,7 +205,8 @@ struct Matrix {
     
     func matrix3x3ToSIMD() -> simd_float3x3 {
         
-        if !self.isSquare || self.rows != 4 {
+        if !self.isSquare || self.rows != 3 {
+            NSLog("Matrix has incorrect Format")
             let f3 = simd_float3(repeating: 0)
             return simd_float3x3(f3, f3, f3)
         }
@@ -180,7 +219,8 @@ struct Matrix {
     
     func matrix2x2ToSIMD() -> simd_float2x2 {
         
-        if !self.isSquare || self.rows != 4 {
+        if !self.isSquare || self.rows != 2 {
+            NSLog("Matrix has incorrect Format")
             let f2 = simd_float2(repeating: 0)
             return simd_float2x2(f2, f2)
         }
@@ -190,11 +230,45 @@ struct Matrix {
         
     }
     
-    static func solveForRotation(from v1: Vector3, to v2: Vector3) -> Matrix {
+    static func solveForRotation4x4(from v1: Vector3, to v2: Vector3) -> Matrix {
+        
+        let v1 = v1.normalized()
+        let v2 = v2.normalized()
+        
+        if (v1 - v2).isZero() {
+            return Matrix.Identity(4)
+        }
+        
+        let isInverse = (v1 + v2).isZero()
         
         let directionOrth:Vector3 = v1 *-* v2
+        if directionOrth.isZero() {
+            let orth = v1.getAnyLinearlyIndipendent()
+            return Matrix.matrix4x4_rotation(radians: Float.pi, axis: orth)
+        }
         let angle1 = acos((v1.normalized() ** v2.normalized()))
         return Matrix.matrix4x4_rotation(radians: angle1, axis: directionOrth)
+        
+    }
+    
+    static func solveForRotation3x3(from v1: Vector3, to v2: Vector3) -> Matrix {
+        
+        let v1 = v1.normalized()
+        let v2 = v2.normalized()
+        
+        if (v1 - v2).isZero() {
+            return Matrix.Identity(3)
+        }
+        
+        let isInverse = (v1 + v2).isZero()
+        
+        let directionOrth:Vector3 = v1 *-* v2
+        if directionOrth.isZero() {
+            let orth = v1.getAnyLinearlyIndipendent()
+            return Matrix.matrix3x3_rotation(radians: Float.pi, axis: orth)
+        }
+        let angle1 = acos((v1.normalized() ** v2.normalized()))
+        return Matrix.matrix3x3_rotation(radians: angle1, axis: directionOrth)
         
     }
     

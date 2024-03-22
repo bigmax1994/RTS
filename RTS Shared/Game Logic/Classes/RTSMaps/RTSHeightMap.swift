@@ -21,7 +21,7 @@ class Heights{
     static func craterWall(_ t:Float)->Float{
         sigmoid(craterSharpness*(t*t - craterWidth*craterWidth))
     }
-    static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (0,1)
+    static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (-1,1)
         var value:Float = 0
         var used:Float = 0
         for (height, beginsAt, sharpness) in Heights.heightLevels{
@@ -29,7 +29,7 @@ class Heights{
             value += diff*sigmoid(sharpness*(h-beginsAt))
             used += diff
         }
-        return value
+        return value * 2 - 1
     }
     static func sealevel(h:Float)-> Float{
         return max(RTSMap.sealevel-0.01, h)

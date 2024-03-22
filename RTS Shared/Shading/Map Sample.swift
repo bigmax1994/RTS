@@ -57,12 +57,12 @@ extension RTSRenderer {
                 let c3 = RTSRenderer.sampleMapColor(from: map, at: v3, fac: l2)
                 let c4 = RTSRenderer.sampleMapColor(from: map, at: v4, fac: l2)
                 
-                verticies.append(Vertex(pos: v1, z: h1, color: c1))
-                verticies.append(Vertex(pos: v2, z: h2, color: c2))
-                verticies.append(Vertex(pos: v3, z: h3, color: c3))
-                verticies.append(Vertex(pos: v2, z: h2, color: c2))
-                verticies.append(Vertex(pos: v3, z: h3, color: c3))
-                verticies.append(Vertex(pos: v4, z: h4, color: c4))
+                verticies.append(Vertex(pos: v31, color: c1))
+                verticies.append(Vertex(pos: v32, color: c2))
+                verticies.append(Vertex(pos: v33, color: c3))
+                verticies.append(Vertex(pos: v32, color: c2))
+                verticies.append(Vertex(pos: v33, color: c3))
+                verticies.append(Vertex(pos: v34, color: c4))
                 
             }
             

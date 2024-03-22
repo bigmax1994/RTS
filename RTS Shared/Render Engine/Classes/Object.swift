@@ -23,10 +23,10 @@ class Object: Drawable {
     private var transformationBuffer: MTLBuffer? = nil
     private var vertexBuffer: MTLBuffer? = nil
     
-    init?(verticies: [Vertex], at pos: Vector3 = Vector3(), rotated: Matrix = Matrix.Identity(4), scale: Vector3 = Vector3(x: 1, y: 1, z: 1), pipelineState: PipelineState = PipelineState.getDefault(), stencilState: StencilState = StencilState.getDefault(), label: String? = nil) {
+    init?(verticies: [Vertex], at pos: Vector3 = Vector3(), rotated: Matrix = Matrix.Identity(3), scale: Vector3 = Vector3(x: 1, y: 1, z: 1), pipelineState: PipelineState = PipelineState.getDefault(), stencilState: StencilState = StencilState.getDefault(), label: String? = nil) {
         
         assert(verticies.count > 0, "empty Object")
-        assert(rotated.isOrthogonal && rotated.rows == 4, "matrix not Orthogonal")
+        assert(rotated.isOrthogonal && rotated.rows == 3, "matrix not Orthogonal")
         
         self.pipelineState = pipelineState
         self.stencilState = stencilState
@@ -43,49 +43,59 @@ class Object: Drawable {
     
     func moveTo(_ pos: Vector3) {
         self.transformation.moveTo(pos)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func moveBy(_ v: Vector3) {
         self.transformation.moveBy(v)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func rotateTo(_ m: Matrix) {
         self.transformation.rotateTo(m)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func rotateBy(_ m: Matrix) {
         self.transformation.rotateBy(m)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func scaleTo(_ s: Vector3) {
         self.transformation.scaleTo(s)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func scaleTo(_ s: Float) {
         self.transformation.scaleTo(s)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func scaleBy(_ s: Vector3) {
         self.transformation.scaleBy(s)
-        self.createBuffers()
+        self.createTrafoBuffer()
     }
     
     func scaleBy(_ s: Float) {
         self.transformation.scaleBy(s)
-        self.createBuffers()
+        self.createTrafoBuffer()
+    }
+    
+    var position: Vector3 {
+        get {
+            return Vector3(self.transformation.p)
+        }
     }
     
     func createBuffers() {
         
         self.vertexBuffer = Engine.Device.makeBuffer(bytes: self.verticies, length: Vertex.bufferSize(count: self.verticies.count))
-        self.transformationBuffer = Engine.Device.makeBuffer(bytes: [self.transformation], length: Transformation.bufferSize(count: 1))
+        self.createTrafoBuffer()
         
+    }
+    
+    func createTrafoBuffer() {
+        self.transformationBuffer = Engine.Device.makeBuffer(bytes: [self.transformation], length: Transformation.bufferSize(count: 1))
     }
     
     func draw(to encoder: MTLRenderCommandEncoder) {
@@ -112,8 +122,8 @@ class Object: Drawable {
             return
         }
         
-        encoder.setVertexBuffer(self.transformationBuffer, offset: 0, index: EngineSettings.DataBufferIndex)
-        encoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: EngineSettings.DataBufferIndex + 1)
+        encoder.setVertexBuffer(self.transformationBuffer, offset: 0, index: EngineSettings.TransformationBufferIndex)
+        encoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: EngineSettings.DataBufferIndex)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.verticies.count)
         
         encoder.popDebugGroup()

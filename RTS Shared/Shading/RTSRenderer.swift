@@ -28,8 +28,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     var updated = true
     var gameTime = 0.0
     
-    let cameraHeight:Float = 0
-    let droneHeight:Float = -0.5
+    let cameraHeight:Float = 2
+    let droneHeight:Float = 0.5
     
     init?(metalKitView: MTKView) {
         
@@ -40,24 +40,27 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
-        self.camera = Camera(pos: Vector3(x: 0, y: 0, z: cameraHeight), nearClip: 0.1, farClip: 100)
-        let dir = Vector3(phi: -Float.pi / 2, theta: Float.pi / 2 - 0.1)
-        self.camera.direction = dir
+        self.camera = Camera(pos: Vector3(x: 0, y: 0, z: cameraHeight), dir: Vector3(x: 0, y: 0, z: 1), nearClip: 0.1, farClip: 100)
         
         if let sky = Object.MakeCube(color: Vector3(x: 38.0 / 255.0, y: 194.0 / 255.0, z: 220.0 / 255.0), label: "Skybox") {
             sky.scaleTo(10)
-            self.objects.append(sky)
+            //self.objects.append(sky)
         }
         
         if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 200), pipelineState: .basic, label: "Map") {
+            
+            //mapObj.scaleTo(Vector3(x: 1, y: 1, z: -1))
+            //var m = Matrix.matrix3x3_rotation(radians: Float.pi, axis: Vector3(x: 0, y: 1, z: 0))
+            //mapObj.rotateTo(m)
+            
             self.objects.append(mapObj)
         }
         
         do {
             let p = try Vertex.readFile("Drone")
             if let obj = Object(verticies: p, pipelineState: .basic, label: "Drone") {
-                obj.moveTo(Vector3(x: 0, y: 0, z: -0.5))
-                obj.scaleTo(0.1)
+                obj.moveTo(Vector3(x: 0, y: 0, z: droneHeight))
+                obj.scaleTo(0.05)
                 self.objects.append(obj)
                 players[0].playerChar = obj
             }
@@ -85,10 +88,10 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         //let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
         //objects[0].rotateBy(m)
         
-        /*gameTime += 0.1
+        gameTime += 0.1
         let viewAngle = 0.01*gameTime
-        let pos = Vector3(x: Float(cos(viewAngle)), y: Float(sin(viewAngle)), z: -1)
-        self.camera.position = pos*/
+        let up = Vector3(x: Float(cos(viewAngle)), y: Float(sin(viewAngle)), z: 0)
+        //self.camera.up = up
     }
     
     func draw(in view: MTKView) {
@@ -148,14 +151,19 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         self.camera.position = Vector3(x: position.x, y: position.y, z: cameraHeight)
         
-        let newPos = Vector3(x: position.x, y: position.y, z: droneHeight)
+        let newPos = Vector3(x: position.x, y: position.y, z: droneHeight) / 2
         player.playerChar?.moveTo(newPos)
         
-        let v1 = Vector3(x: position.x, y: position.y, z: droneHeight)
-        let v2 = Vector3(x: oldPosition.x, y: oldPosition.y, z: droneHeight)
+        let movement = (position - oldPosition).normalized()
         
-        let m = Matrix.solveForRotation(from: v1, to: v2)
-        //player.playerChar?.rotateBy(m)
+        let v1 = Vector3(x: 0, y: -1, z: 0)
+        let v2 = Vector3(x: movement.x, y: movement.y, z: 0)
+        
+        let m = Matrix.solveForRotation3x3(from: v1, to: v2)
+        player.playerChar?.rotateTo(m)
+        
+        print(player.playerChar?.position)
+        print(camera.position)
         
     }
     

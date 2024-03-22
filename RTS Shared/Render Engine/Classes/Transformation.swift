@@ -10,12 +10,12 @@ import simd
 
 struct Transformation: GPUEncodable {
     
-    var m: simd_float4x4
+    var m: simd_float3x3
     var p: simd_float3
     var s: simd_float3
     
     init(matrix: Matrix, position: Vector3, size: Vector3) {
-        self.m = matrix.matrix4x4ToSIMD()
+        self.m = matrix.matrix3x3ToSIMD()
         self.p = position.toSIMD()
         self.s = size.toSIMD()
     }
@@ -34,13 +34,13 @@ struct Transformation: GPUEncodable {
     
     mutating func rotateTo(_ m: Matrix) {
         
-        self.m = m.matrix4x4ToSIMD()
+        self.m = m.matrix3x3ToSIMD()
         
     }
     
     mutating func rotateBy(_ m: Matrix) {
         
-        self.m = simd_mul(m.matrix4x4ToSIMD(), self.m)
+        self.m = simd_mul(m.matrix3x3ToSIMD(), self.m)
         
     }
     

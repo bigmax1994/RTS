@@ -22,6 +22,11 @@ struct Vector2: Byteable, Equatable {
         y = 0
     }
     
+    init(_ simd: simd_float2) {
+        x = simd.x
+        y = simd.y
+    }
+    
     init(x: Float, y: Float) {
         self.x = x
         self.y = y
