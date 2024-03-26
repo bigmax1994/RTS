@@ -81,10 +81,12 @@ final class RTSTests: XCTestCase {
         
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
+    func testPerformanceOfMapSample() throws {
+        
+        let map = RTSMap_square(width: 200, height: 200)
+        
         measure {
-            // Put the code you want to measure the time of here.
+            let _ = RTSRenderer.sampleMap(from: map, with: 300)
         }
     }
 

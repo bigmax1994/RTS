@@ -7,6 +7,7 @@
 
 import Foundation
 import simd
+import Metal
 
 struct Transformation: GPUEncodable {
     

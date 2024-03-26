@@ -18,4 +18,6 @@ class EngineSettings {
     internal static let TransformationBufferIndex: Int = 1
     internal static let DataBufferIndex: Int = 2
     
+    internal static let WorldSettingsBufferIndex: Int = 0
+    
 }

@@ -15,6 +15,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     static let renderedFrames = 3
     let inFlightSemaphore: DispatchSemaphore = DispatchSemaphore(value: renderedFrames)
     
+    var world: World
+    
     var objects:[Object] = []
     
     var camera: Camera
@@ -28,10 +30,12 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     var updated = true
     var gameTime = 0.0
     
-    let cameraHeight:Float = 1
-    let droneHeight:Float = 0.5
+    let cameraHeight:Float = 0.3
+    let droneHeight:Float = 0.2
     
     init?(metalKitView: MTKView) {
+        
+        self.world = World(sunPos: Vector3(x: 0.5, y: 0, z: 1), sunColor: Vector3(x: 1, y: 1, z: 1))
         
         commDelegate = RTSCommunicationDelegate()
         
@@ -40,22 +44,24 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             
         game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
         
+        let cameraTiltMatrix = Matrix.matrix3x3_rotation(radians: 0.2, axis: Vector3(x: 1, y: 0, z: 0))
+        let cDir = cameraTiltMatrix * Vector3(x: 0, y: 0, z: -1)
+        let cUp = cameraTiltMatrix * Vector3(x: 0, y: 1, z: 0)
+        
         self.camera = Camera(pos: Vector3(x: 0, y: 0, z: cameraHeight),
-                             dir: Vector3(x: 0, y: 0, z: -1),
-                             up: Vector3(x: 0, y: 1, z: 0),
-                             nearClip: 0.1, farClip: 100)
+                             dir: cDir,
+                             up: cUp,
+                             nearClip: 0.001, farClip: 100)
         
         if let sky = Object.MakeCube(color: Vector3(x: 38.0 / 255.0, y: 194.0 / 255.0, z: 220.0 / 255.0), label: "Skybox") {
             sky.scaleTo(10)
             //self.objects.append(sky)
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 200), pipelineState: .basic, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 500), pipelineState: .basic, label: "Map") {
             
-            mapObj.moveTo(Vector3(x: 0, y: 0, z: 0))
-            //let mapRot = Matrix.matrix3x3_rotation(radians: 0.8, axis: Vector3(x: 0, y: -1, z: 0))
-            //print(mapRot)
-            //mapObj.rotateTo(mapRot)
+            let scaleVec = Vector3(x: 1, y: 1, z: 0.2)
+            mapObj.scaleTo(scaleVec)
             
             self.objects.append(mapObj)
         }
@@ -88,13 +94,13 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     private func updateGameState() {
         /// Update any game state before rendering
         
-        //let rotationAxis = Vector3(x: 0, y: 0, z: 1)
-        //let m = Matrix.matrix4x4_rotation(radians: 0.01, axis: rotationAxis)
-        //objects[0].rotateBy(m)
+        /*let rotationAxis = Vector3(x: 0, y: 0, z: 1)
+        let m = Matrix.matrix3x3_rotation(radians: 0.005, axis: rotationAxis)
+        objects[0].rotateBy(m)
         
         gameTime += 0.1
         let viewAngle = 0.01*gameTime
-        let up = Vector3(x: Float(sin(viewAngle)), y: Float(cos(viewAngle)), z: 0)
+        let up = Vector3(x: Float(sin(viewAngle)), y: Float(cos(viewAngle)), z: 0)*/
         //self.camera.up = up
     }
     
@@ -121,18 +127,23 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
                 
                 if let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: passDesc) {
                     
-                    if let cameraBuffer = self.camera.transformationBuffer {
+                    if let cameraBuffer = self.camera.cameraBuffer {
                         
-                        encoder.setVertexBuffer(cameraBuffer, offset: 0, index: EngineSettings.CameraBufferIndex)
-                        
-                        for object in objects {
-                            object.draw(to: encoder)
-                        }
-                        
-                        encoder.endEncoding()
-                        
-                        if let drawable = view.currentDrawable {
-                            commandBuffer.present(drawable)
+                        if let worldSettingsBuffer = self.world.settingsBuffer {
+                            
+                            encoder.setFragmentBuffer(worldSettingsBuffer, offset: 0, index: EngineSettings.WorldSettingsBufferIndex)
+                            encoder.setVertexBuffer(cameraBuffer, offset: 0, index: EngineSettings.CameraBufferIndex)
+                            
+                            for object in objects {
+                                object.draw(to: encoder)
+                            }
+                            
+                            encoder.endEncoding()
+                            
+                            if let drawable = view.currentDrawable {
+                                commandBuffer.present(drawable)
+                            }
+                            
                         }
                         
                     }
@@ -179,7 +190,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     func userDidClick(on pos: Vector2) {
         //adjust user click based on camera position
-        let v3 = Vector4(x: pos.x, y: pos.y, z: 0, t: 1)
+        let v3 = Vector4(x: pos.x, y: pos.y, z: 0, t: 0)
         let transformedV3 = self.camera.transformationMatrix * v3
         let transformedV2 = Vector2(x: transformedV3.x, y: transformedV3.y)
         

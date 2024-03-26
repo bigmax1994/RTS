@@ -19,13 +19,17 @@ using namespace metal;
 typedef struct
 {
     float3 pos;
+    float3 normal;
     float3 color;
+    
 } Vertex;
 
 typedef struct
 {
     float4 position [[position]];
     float3 color;
+    float3 normal;
+    
 } ColorInOut;
 
 typedef struct
@@ -42,6 +46,11 @@ typedef struct
     
 } CameraTransformation;
 
+typedef struct {
+    float3 sunPosition;
+    float3 sunColor;
+} WorldSettings;
+
 vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransformation & cameraTransformation [[ buffer(0) ]], constant Transformation & transformation [[ buffer(1) ]], constant Vertex* vertices [[buffer(2)]])
 {
     ColorInOut out;
@@ -49,17 +58,22 @@ vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransforma
     float3 scaledPos = float3(vertices[vid].pos.x * transformation.s.x, vertices[vid].pos.y * transformation.s.y, vertices[vid].pos.z * transformation.s.z);
     
     float3 worldPos = scaledPos * transformation.m + transformation.p;
+    float3 transformedNormal =  vertices[vid].normal * transformation.m + transformation.p;
     
     float4 position = float4(worldPos, 1);  
     position.z = position.z / 2;
     
     out.position = position * cameraTransformation.rotationMatrix;
     out.color = vertices[vid].color;
+    out.normal = transformedNormal;
 
     return out;
 }
 
-fragment float4 fragmentShader(ColorInOut in [[stage_in]])
+fragment float4 fragmentShader(constant WorldSettings & worldState, ColorInOut in [[stage_in]])
 {
-    return float4(in.color, 1);
+    
+    float3 directedColor = dot(in.normal, worldState.sunPosition) * worldState.sunColor * in.color;
+    return float4(directedColor, 1);
+    
 }

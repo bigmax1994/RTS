@@ -45,8 +45,6 @@ class Heights{
 class RTSHeightMap{
     let n: Int
     var layers: [(RTSHeightMapLayer, Float)] = []//Layer, amplitude
-    var min:Float = 0
-    var max:Float = 0
     let upshift:Float = 0.0
     let amplitudes:[Float]=[2.5, 1.3, 0.57, 0.08]
     let nPosts:[Int]=[3, 7, 23, 91]
@@ -72,15 +70,11 @@ class RTSHeightMapLayer{
     let gradients: [Vector2]
     let n: Int
     let tileSize:Float
-    var min:Float
-    var max:Float
     init(n: Int){
         // random 2d vectors
         self.n = n
         self.tileSize = 2/Float(n+1)
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
-        self.min = 0
-        self.max = 0
 
     }
     func evaluate(v: Vector2) -> Float{
@@ -103,8 +97,6 @@ class RTSHeightMapLayer{
         if i<n-1 && j<n-1{
             sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*(Vector2.RIGHT+Vector2.UP), gradient:self.gradients[(i+1)*n+j+1])
         }
-        if sum < min{min = sum}
-        if sum > max{max = sum}
         return sum
         
     }

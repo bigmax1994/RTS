@@ -30,12 +30,9 @@ class Camera {
     private var _nearClip: Float
     private var _farClip: Float
     
-    var _transformationMatrix: Matrix? = nil
-    var _clipMatrix: Matrix? = nil
+    var cameraTransformation: CameraTransformation!
     
-    var transformationBuffer: MTLBuffer? = nil
-    
-    init(pos: Vector3 = Camera.defaultPos, 
+    init(pos: Vector3 = Camera.defaultPos,
          dir: Vector3 = Camera.defaultDir,
          up: Vector3 = Camera.defaultUp,
          aspectRatio: Float = Camera.defaultAspectRatio,
@@ -52,8 +49,6 @@ class Camera {
         
         self._nearClip = nearClip
         self._farClip = farClip
-        
-        self.transformationBuffer = self.createTrafoBuffer()
 
     }
     
@@ -68,8 +63,7 @@ class Camera {
             
             self._transformationMatrix = nil
             
-            
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
@@ -84,8 +78,7 @@ class Camera {
             
             self._transformationMatrix = nil
             
-            
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
@@ -100,7 +93,7 @@ class Camera {
             
             self._transformationMatrix = nil
             
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
@@ -116,7 +109,7 @@ class Camera {
             
             self._clipMatrix = nil
             
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
@@ -131,7 +124,7 @@ class Camera {
             
             self._clipMatrix = nil
             
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
@@ -147,7 +140,7 @@ class Camera {
             
             self._clipMatrix = nil
             
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
@@ -162,17 +155,19 @@ class Camera {
             
             self._clipMatrix = nil
             
-            self.transformationBuffer = self.createTrafoBuffer()
+            self._buffer = nil
         }
         
     }
+    
+    private var _transformationMatrix: Matrix? = nil
+    private var _clipMatrix: Matrix? = nil
     
     var transformationMatrix: Matrix {
         get {
             if let m = self._transformationMatrix {
                 return m
             }
-            
             let rotation1 = Matrix.solveForRotation3x3(from: self.direction, to: Matrix.clipDefaults.dir)
             
             let newUp = rotation1 * self.up
@@ -195,35 +190,32 @@ class Camera {
     
     var clipMatrix: Matrix {
         get {
-            if let m = self._transformationMatrix {
+            if let m = self._clipMatrix {
                 return m
             }
-            
             let clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: self.fieldOfView, aspectRatio: self.aspectRatio, nearZ: self.nearClip, farZ: self.farClip)
             return clipMatrix
-            
         }
     }
     
-    func createTrafoBuffer() -> MTLBuffer? {
-        
-        let trafo = CameraTransformation(camera: self)
+    var _buffer: MTLBuffer? = nil
+    
+    var cameraBuffer: MTLBuffer? {
+        get {
+            if let b = self._buffer {
+                return b
+            }
+                
+            self.cameraTransformation = CameraTransformation(rotationMatrix: (self.clipMatrix * self.transformationMatrix).matrix4x4ToSIMD())
             
-        return Engine.Device.makeBuffer(bytes: [trafo], length: CameraTransformation.bufferSize(count: 1))
-        
+            return Engine.Device.makeBuffer(bytes: [self.cameraTransformation], length: CameraTransformation.bufferSize(count: 1))
+        }
     }
     
 }
 
 struct CameraTransformation: GPUEncodable {
     
-    let rotationMatrix: simd_float4x4
-    
-    init(camera: Camera) {
-        ///Creates a 4x4 Matrix, which rotates the entire scene. Specifying where the Camera is, where it looks At and where up is on the screen.
-        
-        self.rotationMatrix = (camera.clipMatrix * camera.transformationMatrix).matrix4x4ToSIMD()
-        
-    }
+    var rotationMatrix: simd_float4x4
     
 }
