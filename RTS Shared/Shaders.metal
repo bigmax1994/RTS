@@ -48,9 +48,10 @@ vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransforma
     
     float3 scaledPos = float3(vertices[vid].pos.x * transformation.s.x, vertices[vid].pos.y * transformation.s.y, vertices[vid].pos.z * transformation.s.z);
     
-    float3 worldPos = transformation.m * scaledPos + transformation.p;
+    float3 worldPos = scaledPos * transformation.m + transformation.p;
     
     float4 position = float4(worldPos, 1);  
+    position.z = position.z / 2;
     
     out.position = position * cameraTransformation.rotationMatrix;
     out.color = vertices[vid].color;

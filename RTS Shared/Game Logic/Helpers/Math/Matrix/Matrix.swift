@@ -132,7 +132,7 @@ struct Matrix {
     
     //MARK:  Generic matrix math utility functions
     static func matrix4x4_rotation(radians: Float, axis: Vector3) -> Matrix {
-        
+        ///look at orgin from axis vector and turn everything by radians in counter clockwise fashion
         if radians == 0 || axis.length() == 0 {
             return Matrix.Identity(4)
         }
@@ -149,7 +149,7 @@ struct Matrix {
     }
     
     static func matrix3x3_rotation(radians: Float, axis: Vector3) -> Matrix {
-        
+        ///look at orgin from vector and turn everything by radians in counter clockwise fashion
         if radians == 0 || axis.length() == 0 {
             return Matrix.Identity(3)
         }
@@ -171,7 +171,13 @@ struct Matrix {
                        [translationX, translationY, translationZ, 1]])
     }
 
+    static let clipDefaults: (pos: Vector3, dir: Vector3, up: Vector3) = (
+        Vector3(x: 0, y: 0, z: 0), //position
+        Vector3(x: 0, y: 0, z: 1), //direction
+        Vector3(x: 0, y: 1, z: 0)) //up
+    
     static func matrix_perspective_right_hand(fovyRadians fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) -> Matrix {
+        ///Calculates the Clip Matrix Assuming the Camera is in Matrix.clipDefaults using the given parameters
         //let ys = 1 / tan(fovy * 0.5)
         //let xs = ys / aspectRatio
         //let zs = 1 / farZ
@@ -181,7 +187,7 @@ struct Matrix {
                         [0,  0, 0, 1]])*/
         let ys = 1 / tanf(fovy * 0.5)
         let xs = ys / aspectRatio
-        let zs = 1 / (farZ - nearZ)
+        let zs = 1 / (farZ - nearZ) // ... > 0
         return Matrix([[xs, 0, 0, 0],
                        [0, ys, 0, 0],
                        [0, 0, zs, -zs * nearZ],

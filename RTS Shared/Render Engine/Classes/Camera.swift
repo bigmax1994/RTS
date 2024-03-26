@@ -11,10 +11,6 @@ import Metal
 
 class Camera {
     
-    static let renderPos: Vector3 = Vector3(x: 0, y: 0, z: 0)
-    static let renderDir: Vector3 = Vector3(x: 0, y: 0, z: -1)
-    static let renderUp: Vector3 = Vector3(x: 0, y: 1, z: 0)
-    
     private static let defaultPos: Vector3 = Vector3(x: 0, y: 0, z: 0)
     private static let defaultDir: Vector3 = Vector3(x: 0, y: 0, z: 1)
     private static let defaultUp: Vector3 = Vector3(x: 0, y: 1, z: 0)
@@ -33,6 +29,9 @@ class Camera {
     
     private var _nearClip: Float
     private var _farClip: Float
+    
+    var _transformationMatrix: Matrix? = nil
+    var _clipMatrix: Matrix? = nil
     
     var transformationBuffer: MTLBuffer? = nil
     
@@ -65,7 +64,11 @@ class Camera {
         }
         set {
             if newValue == self._position { return }
-            self._position = newValue.normalized()
+            self._position = newValue
+            
+            self._transformationMatrix = nil
+            
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
@@ -78,6 +81,10 @@ class Camera {
         set {
             if newValue == self._direction { return }
             self._direction = newValue.normalized()
+            
+            self._transformationMatrix = nil
+            
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
@@ -90,6 +97,9 @@ class Camera {
         set {
             if newValue == self._up { return }
             self._up = newValue.normalized()
+            
+            self._transformationMatrix = nil
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
@@ -103,6 +113,9 @@ class Camera {
         set {
             if newValue == self._aspectRatio { return }
             self._aspectRatio = newValue
+            
+            self._clipMatrix = nil
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
@@ -115,6 +128,9 @@ class Camera {
         set {
             if newValue == self._fieldOfView { return }
             self._fieldOfView = newValue
+            
+            self._clipMatrix = nil
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
@@ -128,6 +144,9 @@ class Camera {
         set {
             if newValue == self._nearClip { return }
             self._nearClip = newValue
+            
+            self._clipMatrix = nil
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
@@ -140,14 +159,55 @@ class Camera {
         set {
             if newValue == self._farClip { return }
             self._farClip = newValue
+            
+            self._clipMatrix = nil
+            
             self.transformationBuffer = self.createTrafoBuffer()
         }
         
     }
     
+    var transformationMatrix: Matrix {
+        get {
+            if let m = self._transformationMatrix {
+                return m
+            }
+            
+            let rotation1 = Matrix.solveForRotation3x3(from: self.direction, to: Matrix.clipDefaults.dir)
+            
+            let newUp = rotation1 * self.up
+            
+            let rotation2 = Matrix.solveForRotation3x3(from: newUp, to: Matrix.clipDefaults.up)
+            
+            var rotation = rotation2 * rotation1
+            
+            let diff = rotation * (Matrix.clipDefaults.pos - self.position)
+            
+            rotation.addIdentityBlock(1)
+            
+            rotation[0,3] = diff.x
+            rotation[1,3] = diff.y
+            rotation[2,3] = diff.z
+            
+            return rotation
+        }
+    }
+    
+    var clipMatrix: Matrix {
+        get {
+            if let m = self._transformationMatrix {
+                return m
+            }
+            
+            let clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: self.fieldOfView, aspectRatio: self.aspectRatio, nearZ: self.nearClip, farZ: self.farClip)
+            return clipMatrix
+            
+        }
+    }
+    
     func createTrafoBuffer() -> MTLBuffer? {
         
-        let trafo = CameraTransformation(camera:self)
+        let trafo = CameraTransformation(camera: self)
             
         return Engine.Device.makeBuffer(bytes: [trafo], length: CameraTransformation.bufferSize(count: 1))
         
@@ -162,30 +222,7 @@ struct CameraTransformation: GPUEncodable {
     init(camera: Camera) {
         ///Creates a 4x4 Matrix, which rotates the entire scene. Specifying where the Camera is, where it looks At and where up is on the screen.
         
-        ///MARK: LOOKING AT SCENE FROM SIDE WITH DIR DOWN
-        
-        //let rotation1 = Matrix.solveForRotation4x4(from: camera.direction, to: Camera.renderDir)
-        let rotation1 = Matrix.solveForRotation3x3(from: camera.direction, to: Camera.renderDir)
-        
-        let newUp = rotation1 * camera.up
-        
-        let rotation2 = Matrix.solveForRotation3x3(from: newUp, to: Camera.renderUp)
-        
-        var rotation = rotation2 * rotation1
-        
-        rotation.addIdentityBlock(1)
-        
-        let diff = Camera.renderPos - camera.position
-        
-        rotation[0,3] = diff.x
-        rotation[1,3] = diff.y
-        rotation[2,3] = -diff.z
-        
-        let clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: camera.fieldOfView, aspectRatio: camera.aspectRatio, nearZ: camera.nearClip, farZ: camera.farClip)
-        
-        let m = clipMatrix * rotation
-        
-        self.rotationMatrix = m.matrix4x4ToSIMD()
+        self.rotationMatrix = (camera.clipMatrix * camera.transformationMatrix).matrix4x4ToSIMD()
         
     }
     
