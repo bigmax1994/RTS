@@ -19,18 +19,22 @@ using namespace metal;
 typedef struct
 {
     float3 pos;
+    float3 normal;
     float3 color;
+    
 } Vertex;
 
 typedef struct
 {
     float4 position [[position]];
     float3 color;
+    float3 normal;
+    
 } ColorInOut;
 
 typedef struct
 {
-    matrix_float4x4 m;
+    matrix_float3x3 m;
     float3 p;
     float3 s;
     
@@ -42,28 +46,34 @@ typedef struct
     
 } CameraTransformation;
 
+typedef struct {
+    float3 sunPosition;
+    float3 sunColor;
+} WorldSettings;
+
 vertex ColorInOut vertexShader(uint vid [[vertex_id]], constant CameraTransformation & cameraTransformation [[ buffer(0) ]], constant Transformation & transformation [[ buffer(1) ]], constant Vertex* vertices [[buffer(2)]])
 {
     ColorInOut out;
     
-    float3x3 scaleMatrix = float3x3(float3(transformation.s.x, 0, 0),
-                                    float3(0, transformation.s.y, 0),
-                                    float3(0, 0, transformation.s.z));
+    float3 scaledPos = float3(vertices[vid].pos.x * transformation.s.x, vertices[vid].pos.y * transformation.s.y, vertices[vid].pos.z * transformation.s.z);
     
-    float3 scaledPos = vertices[vid].pos * scaleMatrix;
+    float3 worldPos = scaledPos * transformation.m + transformation.p;
+    float3 transformedNormal =  vertices[vid].normal * transformation.m + transformation.p;
     
-    float4 position = float4(scaledPos, 1);
-    float4 moveBy = float4(transformation.p, 0);
-    position.z = 1 - position.z;
+    float4 position = float4(worldPos, 1);  
+    position.z = position.z / 2;
     
-    out.position = (position * transformation.m + moveBy) * cameraTransformation.rotationMatrix;
-    
+    out.position = position * cameraTransformation.rotationMatrix;
     out.color = vertices[vid].color;
+    out.normal = transformedNormal;
 
     return out;
 }
 
-fragment float4 fragmentShader(ColorInOut in [[stage_in]])
+fragment float4 fragmentShader(constant WorldSettings & worldState, ColorInOut in [[stage_in]])
 {
-    return float4(in.color, 1);
+    
+    float3 directedColor = dot(in.normal, worldState.sunPosition) * worldState.sunColor * in.color;
+    return float4(directedColor, 1);
+    
 }

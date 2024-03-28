@@ -89,6 +89,12 @@
 		F47CC1332B97415E00125D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CC0FA2B97415E00125D78 /* Assets.xcassets */; };
 		F47CC1342B97415E00125D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CC0FA2B97415E00125D78 /* Assets.xcassets */; };
 		F47CC1352B97415E00125D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CC0FA2B97415E00125D78 /* Assets.xcassets */; };
+		F47E93D52BB2E8E30080C2FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D42BB2E8E30080C2FC /* World.swift */; };
+		F47E93D62BB2E8E30080C2FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D42BB2E8E30080C2FC /* World.swift */; };
+		F47E93D72BB2E8E30080C2FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D42BB2E8E30080C2FC /* World.swift */; };
+		F47E93D92BB2E9000080C2FC /* WorldSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D82BB2E9000080C2FC /* WorldSettings.swift */; };
+		F47E93DA2BB2E9000080C2FC /* WorldSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D82BB2E9000080C2FC /* WorldSettings.swift */; };
+		F47E93DB2BB2E9000080C2FC /* WorldSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D82BB2E9000080C2FC /* WorldSettings.swift */; };
 		F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
@@ -186,6 +192,8 @@
 		F47CC1242B97415E00125D78 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F47CC1272B97415E00125D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTS_macOS.entitlements; sourceTree = "<group>"; };
+		F47E93D42BB2E8E30080C2FC /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		F47E93D82BB2E9000080C2FC /* WorldSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldSettings.swift; sourceTree = "<group>"; };
 		F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSCommunicationDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE32B9B950600A70A56 /* RTSGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGame.swift; sourceTree = "<group>"; };
@@ -312,6 +320,8 @@
 				F41148212BAB1F40007F052D /* Drawable.swift */,
 				F4534A912BA9C77B00505014 /* Object.swift */,
 				F4534AB02BA9FF3900505014 /* Camera.swift */,
+				F47E93D42BB2E8E30080C2FC /* World.swift */,
+				F47E93D82BB2E9000080C2FC /* WorldSettings.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -687,6 +697,7 @@
 				F47CC12A2B97415E00125D78 /* Shaders.metal in Sources */,
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
+				F47E93D92BB2E9000080C2FC /* WorldSettings.swift in Sources */,
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
 				F411481E2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
 				F4534AAD2BA9FC5300505014 /* Transformation.swift in Sources */,
@@ -697,6 +708,7 @@
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F47E93D52BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148122BAB1821007F052D /* FunctionLibrary.swift in Sources */,
 				F41148162BAB18D4007F052D /* Engine.swift in Sources */,
@@ -729,6 +741,7 @@
 				F47CC12B2B97415E00125D78 /* Shaders.metal in Sources */,
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
+				F47E93DA2BB2E9000080C2FC /* WorldSettings.swift in Sources */,
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
 				F411481F2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
 				F4534AAE2BA9FC5300505014 /* Transformation.swift in Sources */,
@@ -739,6 +752,7 @@
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F47E93D62BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148132BAB1821007F052D /* FunctionLibrary.swift in Sources */,
 				F41148172BAB18D4007F052D /* Engine.swift in Sources */,
@@ -771,6 +785,7 @@
 				F47CC12C2B97415E00125D78 /* Shaders.metal in Sources */,
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
+				F47E93DB2BB2E9000080C2FC /* WorldSettings.swift in Sources */,
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
 				F41148202BAB1CC9007F052D /* EngineSettings.swift in Sources */,
 				F4534AAF2BA9FC5300505014 /* Transformation.swift in Sources */,
@@ -781,6 +796,7 @@
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
+				F47E93D72BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148142BAB1821007F052D /* FunctionLibrary.swift in Sources */,
 				F41148182BAB18D4007F052D /* Engine.swift in Sources */,

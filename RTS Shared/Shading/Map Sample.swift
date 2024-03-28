@@ -46,28 +46,28 @@ extension RTSRenderer {
                 let v33 = Vector3(x: v3.x, y: v3.y, z: h3)
                 let v34 = Vector3(x: v4.x, y: v4.y, z: h4)
                 
-                let n1 = (v31 - v32) *-* (v31 - v33)
-                let n2 = (v32 - v34) *-* (v32 - v33)
+                let n1 = -1 * ((v31 - v32) *-* (v31 - v33)).normalized()
+                let n2 = -1 * ((v32 - v34) *-* (v32 - v33)).normalized()
                 
                 let l1 = abs(n1.normalized() ** light)
                 let l2 = abs(n2.normalized() ** light)
                 
-                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1, fac: l1)
-                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2, fac: l1)
-                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3, fac: l2)
-                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4, fac: l2)
+                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1, fac: 1)
+                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2, fac: 1)
+                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3, fac: 1)
+                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4, fac: 1)
                 
-                verticies.append(Vertex(pos: v1, z: h1, color: c1))
-                verticies.append(Vertex(pos: v2, z: h2, color: c2))
-                verticies.append(Vertex(pos: v3, z: h3, color: c3))
-                verticies.append(Vertex(pos: v2, z: h2, color: c2))
-                verticies.append(Vertex(pos: v3, z: h3, color: c3))
-                verticies.append(Vertex(pos: v4, z: h4, color: c4))
+                verticies.append(Vertex(pos: v31, normal: n1, color: c1))
+                verticies.append(Vertex(pos: v32, normal: n1,  color: c2))
+                verticies.append(Vertex(pos: v33, normal: n1,  color: c3))
+                verticies.append(Vertex(pos: v32, normal: n2,  color: c2))
+                verticies.append(Vertex(pos: v33, normal: n2,  color: c3))
+                verticies.append(Vertex(pos: v34, normal: n2,  color: c4))
                 
             }
             
         }
-        print("min: \(map.heightMap.min), max: \(map.heightMap.max)")
+        
         return verticies
         
     }

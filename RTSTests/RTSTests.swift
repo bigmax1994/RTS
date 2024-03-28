@@ -29,20 +29,64 @@ final class RTSTests: XCTestCase {
     
     func testMatrixMult() throws {
         
-        let A = Matrix(elements: [1, 0, 1, 0], columns: 2, rows: 2)
-        let B = Matrix(elements: [2, 3], columns: 1, rows: 2)
+        let A = Matrix(elements: [1, 0, 0, 1], columns: 2, rows: 2)
+        let B = Vector2(x: 2, y: 3)
         
-        let C = Matrix.fastDotAdd(A: A, B: B)
+        let C = A * B
         
         print(C)
-        XCTAssert(C.elements == [2, 2], "incorrect output: \(C.elements))")
+        XCTAssert(C.toArray() == [2, 3], "incorrect output: \(C))")
+        
+    }
+    
+    func testRotationMastrix() throws {
+        
+        let v1 = Vector3(x: 1, y: 0, z: 0)
+        let v2 = Vector3(x: 0, y: 1, z: 0)
+        
+        let m = Matrix.solveForRotation3x3(from: v1, to: v2)
+        
+        assert((m * v1 - v2).isZero(), "did not rotate correctly to \(m * v1) instead of \(v2)")
+        
+        let v3 = Vector3(x: -1, y: 0, z: 0)
+        
+        let m2 = Matrix.solveForRotation3x3(from: v3, to: v2)
+        
+        assert((m2 * v3 - v2).isZero(), "did not rotate correctly to \(m * v3) instead of \(v2)")
+        
+        assert(m.elements.enumerated().map({ $0.element - m2.elements[$0.offset] }).max() ?? 0 > 2 * Float.ulpOfOne, "same Matrix")
+        
+    }
+    
+    func test3x3VS4x4SolveForRotation() throws {
+        
+        let v1 = Vector3(x: 1, y: 0, z: 0)
+        let v2 = Vector3(x: 0, y: 1, z: 0)
+        let v3 = Vector3(x: 0, y: 1, z: 0)
+        let v4 = Vector3(x: 0, y: 0, z: 1)
+        
+        let m11 = Matrix.solveForRotation4x4(from: v1, to: v2)
+        let m12 = Matrix.solveForRotation4x4(from: v3, to: v4) * m11
+        let m21 = Matrix.solveForRotation3x3(from: v1, to: v2)
+        let m22 = Matrix.solveForRotation3x3(from: v3, to: v4) * m21
+        
+        let o11 = (m11 * Vector4(vec3: v1)).vec3
+        let o12 = (m12 * Vector4(vec3: v1)).vec3
+        
+        let o21 = m21 * v1
+        let o22 = m22 * v1
+        
+        assert((o11 - o21).isZero(), "not same result in first")
+        assert((o12 - o22).isZero(), "not same result in second")
         
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
+    func testPerformanceOfMapSample() throws {
+        
+        let map = RTSMap_square(width: 200, height: 200)
+        
         measure {
-            // Put the code you want to measure the time of here.
+            let _ = RTSRenderer.sampleMap(from: map, with: 300)
         }
     }
 

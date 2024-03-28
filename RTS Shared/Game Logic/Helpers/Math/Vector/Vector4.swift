@@ -46,6 +46,13 @@ struct Vector4: Byteable, Equatable {
         t = 0
     }
     
+    init(_ simd: simd_float4) {
+        x = simd.x
+        y = simd.y
+        z = simd.z
+        t = simd.w
+    }
+    
     init(x: Float, y: Float, z: Float, t: Float) {
         self.x = x
         self.y = y
@@ -58,6 +65,19 @@ struct Vector4: Byteable, Equatable {
         self.y = length * sin(alpha) * cos(beta) * cos(gamma)
         self.z = length * sin(beta) * cos(gamma)
         self.t = length * sin(gamma)
+    }
+    
+    init(vec3: Vector3) {
+        self.x = vec3.x
+        self.y = vec3.y
+        self.z = vec3.z
+        self.t = 1
+    }
+    
+    var vec3: Vector3 {
+        get {
+            return Vector3(x: self.x, y: self.y, z: self.z)
+        }
     }
     
     func toArray() -> [Float] {

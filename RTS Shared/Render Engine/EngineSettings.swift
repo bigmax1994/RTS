@@ -15,6 +15,9 @@ class EngineSettings {
     public static var stencilFormat: MTLPixelFormat = .invalid
     
     internal static let CameraBufferIndex: Int = 0
-    internal static let DataBufferIndex: Int = 1
+    internal static let TransformationBufferIndex: Int = 1
+    internal static let DataBufferIndex: Int = 2
+    
+    internal static let WorldSettingsBufferIndex: Int = 0
     
 }

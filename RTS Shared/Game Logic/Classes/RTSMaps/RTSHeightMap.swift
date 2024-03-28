@@ -17,7 +17,7 @@ class Heights{
     static func craterWall(_ t:Float)->Float{
         sigmoid(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth))
     }
-    static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (0,1)
+    static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (-1,1)
         var value:Float = 0
         var used:Float = 0
         for (height, beginsAt, sharpness) in RTSGame.heightLevels{
@@ -25,7 +25,7 @@ class Heights{
             value += diff*sigmoid(sharpness*(h-beginsAt))
             used += diff
         }
-        return value
+        return value * 2 - 1
     }
     static func sealevel(h:Float)-> Float{
         return max(RTSGame.sealevel-0.01, h)
@@ -65,15 +65,11 @@ class RTSHeightMapLayer{
     let gradients: [Vector2]
     let n: Int
     let tileSize:Float
-    var min:Float
-    var max:Float
     init(n: Int){
         // random 2d vectors
         self.n = n
         self.tileSize = 2/Float(n+1)
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
-        self.min = 0
-        self.max = 0
 
     }
     func evaluate(v: Vector2) -> Float{
@@ -96,8 +92,6 @@ class RTSHeightMapLayer{
         if i<n-1 && j<n-1{
             sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*(Vector2.RIGHT+Vector2.UP), gradient:self.gradients[(i+1)*n+j+1])
         }
-        if sum < min{min = sum}
-        if sum > max{max = sum}
         return sum
         
     }
