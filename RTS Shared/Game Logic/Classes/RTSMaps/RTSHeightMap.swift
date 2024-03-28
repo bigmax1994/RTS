@@ -8,23 +8,19 @@
 import Foundation
 
 class Heights{
-    static let craterWidth:Float = 0.9
-    static let craterHeight:Float = 2
-    static let craterSharpness:Float = 6.5
-    static let heightLevels:[(height:Float, beginsAt:Float, sharpness:Float)] = [(0.37, -0.8, 7), (0.51, 0.45, 9), (1, 0.95, 4)] //Heightlevels, which will be more present in the Heightmap
     static func crater(v:Vector2) -> Float{
-        return craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
+        return RTSGame.craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
     }
     static func sigmoid(_ t:Float)->Float{
         return 1/(1+exp(-t))
     }
     static func craterWall(_ t:Float)->Float{
-        sigmoid(craterSharpness*(t*t - craterWidth*craterWidth))
+        sigmoid(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth))
     }
     static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (0,1)
         var value:Float = 0
         var used:Float = 0
-        for (height, beginsAt, sharpness) in Heights.heightLevels{
+        for (height, beginsAt, sharpness) in RTSGame.heightLevels{
             let diff = height-used
             value += diff*sigmoid(sharpness*(h-beginsAt))
             used += diff
@@ -32,7 +28,7 @@ class Heights{
         return value
     }
     static func sealevel(h:Float)-> Float{
-        return max(RTSMap.sealevel-0.01, h)
+        return max(RTSGame.sealevel-0.01, h)
     }
     static func polish(h:Float, v:Vector2) -> Float{
         var x = h
@@ -47,13 +43,10 @@ class RTSHeightMap{
     var layers: [(RTSHeightMapLayer, Float)] = []//Layer, amplitude
     var min:Float = 0
     var max:Float = 0
-    let upshift:Float = 0.0
-    let amplitudes:[Float]=[2.5, 1.3, 0.57, 0.08]
-    let nPosts:[Int]=[3, 7, 23, 91]
     init(n:Int){
         self.n = n
-        for (nPost, amplitude) in nPosts.enumerated().map({ (i, nPost) in
-            return (nPost, amplitudes[i])
+        for (nPost, amplitude) in RTSGame.nPosts.enumerated().map({ (i, nPost) in
+            return (nPost, RTSGame.amplitudes[i])
         }) {
             self.layers.append((RTSHeightMapLayer(n:nPost), amplitude))
         }
