@@ -14,6 +14,8 @@ class RTSGame {
     var players: [UUID : Player]
     var selfPlayer: Player?
     var map: RTSMap
+    var animationQueue:AnimationQueue
+    var lastUpdate:TimeInterval
     
     //function to initialize the game
     init(players: [Player], map: RTSMap, selfPlayer: Player? = nil, delegate: RTSGameDelegate? = nil, commDelegate: RTSCommunicationDelegate? = nil) {
@@ -24,6 +26,10 @@ class RTSGame {
         })
         self.selfPlayer = selfPlayer
         self.map = map
+        self.lastUpdate = Date().timeIntervalSince1970
+        self.animationQueue = AnimationQueue(game:nil)
+        self.animationQueue = AnimationQueue(game:self)
+        
         
         commDelegate?.setGame(self)
         delegate?.setGame(self)
@@ -39,6 +45,11 @@ class RTSGame {
             player.moveTo(map.distributePlayer(target: Vector2()))
         }
         
+    }
+    func onTick(){
+        let now = Date().timeIntervalSince1970
+        self.animationQueue.update(timeSinceLastUpate: Float(now - lastUpdate))
+        self.lastUpdate = now
     }
     
     //function to move player
@@ -57,14 +68,18 @@ class RTSGame {
             let oldPos = p.getPosition()
             
             //move the player
+            self.animationQueue.addMovement(to: oldPos+vec, p: p)
             p.moveBy(vec)
             
+            
             //send info to delegates
-            self.delegate?.playerDidMove(self, player: p, to: p.getPosition(), from: oldPos)
             self.commDelegate?.playerDidMove(p, to: p.getPosition())
             
         }
         
+    }
+    func movementTick(from:Vector2, to:Vector2, p:Player){
+        self.delegate?.playerDidMove(self, player: p, to: to, from: from)
     }
     
 }

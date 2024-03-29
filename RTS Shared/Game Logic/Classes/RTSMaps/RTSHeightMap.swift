@@ -34,7 +34,7 @@ class Heights{
         var x = h
         x = x + crater(v: v)
         x = normalize(h: x)
-        x = sealevel(h: x)
+        //x = sealevel(h: x)
         return x
     }
 }
@@ -56,7 +56,10 @@ class RTSHeightMap{
         for (layer, amplitude) in self.layers{
             sum += amplitude*layer.evaluate(v: v)
         }
-        return Heights.polish(h:sum, v:v)
+        let h = Heights.polish(h:sum, v:v)
+        if h<min{min=h}
+        if h>max{max=h}
+        return h
     }
     
 }

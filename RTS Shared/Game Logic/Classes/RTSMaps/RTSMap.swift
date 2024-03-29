@@ -58,6 +58,7 @@ class RTSMap {
             else if height < RTSGame.mountaintop{ tiles[i] = TileType.mountain}
             else {tiles[i] = TileType.forbidden}
         }
+        print("min: \(heightMap.min), max:\(heightMap.max)")
     }
 
     /// calculates Indices of all Tiles, that are forbidden but have a free neighbor

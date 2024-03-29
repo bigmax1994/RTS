@@ -10,6 +10,9 @@
 		2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
 		2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
 		2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
+		2728F56E2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */; };
+		2728F56F2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */; };
+		2728F5702BB75C1F00F1F03B /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */; };
 		27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
@@ -151,6 +154,7 @@
 
 /* Begin PBXFileReference section */
 		2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSHeightMap.swift; sourceTree = "<group>"; };
+		2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationQueue.swift; sourceTree = "<group>"; };
 		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
 		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
@@ -458,6 +462,7 @@
 				F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */,
 				F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */,
 				F4EF7AE72B9B950600A70A56 /* RTSData.swift */,
+				2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */,
 			);
 			path = RTSGameAction;
 			sourceTree = "<group>";
@@ -695,6 +700,7 @@
 				F4EF7AF62B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F4534A872BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12A2B97415E00125D78 /* Shaders.metal in Sources */,
+				2728F56E2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47E93D92BB2E9000080C2FC /* WorldSettings.swift in Sources */,
@@ -739,6 +745,7 @@
 				F4EF7AF72B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F4534A882BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12B2B97415E00125D78 /* Shaders.metal in Sources */,
+				2728F56F2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47E93DA2BB2E9000080C2FC /* WorldSettings.swift in Sources */,
@@ -783,6 +790,7 @@
 				F4EF7AF82B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
 				F4534A892BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12C2B97415E00125D78 /* Shaders.metal in Sources */,
+				2728F5702BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
 				F47E93DB2BB2E9000080C2FC /* WorldSettings.swift in Sources */,
@@ -1184,7 +1192,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
+				DEVELOPMENT_TEAM = X43FG24ML2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1215,7 +1223,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
+				DEVELOPMENT_TEAM = X43FG24ML2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

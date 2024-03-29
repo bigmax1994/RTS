@@ -94,14 +94,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     private func updateGameState() {
         /// Update any game state before rendering
         
-        /*let rotationAxis = Vector3(x: 0, y: 0, z: 1)
-        let m = Matrix.matrix3x3_rotation(radians: 0.005, axis: rotationAxis)
-        objects[0].rotateBy(m)
-        
-        gameTime += 0.1
-        let viewAngle = 0.01*gameTime
-        let up = Vector3(x: Float(sin(viewAngle)), y: Float(cos(viewAngle)), z: 0)*/
-        //self.camera.up = up
+        game?.onTick()
     }
     
     func draw(in view: MTKView) {
