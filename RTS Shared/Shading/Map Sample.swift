@@ -49,20 +49,17 @@ extension RTSRenderer {
                 let n1 = -1 * ((v31 - v32) *-* (v31 - v33)).normalized()
                 let n2 = -1 * ((v32 - v34) *-* (v32 - v33)).normalized()
                 
-                let l1 = abs(n1.normalized() ** light)
-                let l2 = abs(n2.normalized() ** light)
+                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1)
+                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2)
+                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3)
+                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4)
                 
-                let c1 = RTSRenderer.sampleMapColor(from: map, at: v1, fac: 1)
-                let c2 = RTSRenderer.sampleMapColor(from: map, at: v2, fac: 1)
-                let c3 = RTSRenderer.sampleMapColor(from: map, at: v3, fac: 1)
-                let c4 = RTSRenderer.sampleMapColor(from: map, at: v4, fac: 1)
-                
-                verticies.append(Vertex(pos: v31, normal: n1, color: c1))
-                verticies.append(Vertex(pos: v32, normal: n1,  color: c2))
-                verticies.append(Vertex(pos: v33, normal: n1,  color: c3))
-                verticies.append(Vertex(pos: v32, normal: n2,  color: c2))
-                verticies.append(Vertex(pos: v33, normal: n2,  color: c3))
-                verticies.append(Vertex(pos: v34, normal: n2,  color: c4))
+                verticies.append(Vertex(pos: v31, normal: n1, material: c1))
+                verticies.append(Vertex(pos: v32, normal: n1, material: c2))
+                verticies.append(Vertex(pos: v33, normal: n1, material: c3))
+                verticies.append(Vertex(pos: v32, normal: n2, material: c2))
+                verticies.append(Vertex(pos: v33, normal: n2, material: c3))
+                verticies.append(Vertex(pos: v34, normal: n2, material: c4))
                 
             }
             
@@ -72,27 +69,27 @@ extension RTSRenderer {
         
     }
     
-    static func sampleMapColor(from map: RTSMap, at pos: Vector2, fac: Float) -> [Float] {
+    static func sampleMapColor(from map: RTSMap, at pos: Vector2) -> Material {
         
         let tileIndex = map.position_to_tileIndex(pos + (map.tileSize / 2) * (Vector2.RIGHT + Vector2.UP))
         
         switch map.tiles[tileIndex] {
         case .grass:
-            return [0, fac, 0]
+            return Material(color: Color.green, shininess: 4)
         case .water:
-            return [0, 0, fac]
+            return Material(color: Color.blue, shininess: 64)
         case .mountain:
-            return [fac * 0.7631, fac * 0.4432, fac * 0.1306]
+            return Material(color: Color.brown, shininess: 8)
         case .post:
-            return [fac * 0.5, fac * 0.5, fac * 0.5]
+            return Material(color: Color.grey)
         case .activePost:
-            return [fac * 0.4176, fac * 0.4153, fac * 0.7561]
+            return Material(color: Color.grey)
         case .closedPost:
-            return [fac * 0.6186, fac * 0.4153, fac * 0.7561]
+            return Material(color: Color.grey)
         case .forbidden:
-            return [fac * 1,0,0]
+            return Material(color: Color.red)
         case .border:
-            return [fac * 0.4, fac * 0.4, fac * 0.4]
+            return Material(color: Color.grey)
         }
     }
     

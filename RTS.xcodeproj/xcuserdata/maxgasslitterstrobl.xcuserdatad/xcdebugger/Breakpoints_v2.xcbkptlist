@@ -80,7 +80,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "move(_:)"
+            landmarkName = "startGame()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -144,7 +144,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
             endingLineNumber = "82"
-            landmarkName = "sampleMapColor(from:at:fac:)"
+            landmarkName = "sampleMapColor(from:at:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -382,9 +382,9 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "playerDidMove(_:player:to:from:)"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "renderPlayerMovement(_:player:to:from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -398,9 +398,9 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "playerDidMove(_:player:to:from:)"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "gameDidEnd(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -414,9 +414,9 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "playerDidMove(_:player:to:from:)"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "setCameraPosition(_:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -542,9 +542,9 @@
             filePath = "RTS Shared/Shading/RTSRenderer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "playerDidMove(_:player:to:from:)"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "renderPlayerMovement(_:player:to:from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -576,7 +576,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "updateGameState()"
+            landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

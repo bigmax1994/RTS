@@ -122,7 +122,7 @@ class Object: Drawable {
             return
         }
         
-        encoder.setVertexBuffer(self.transformationBuffer, offset: 0, index: EngineSettings.TransformationBufferIndex)
+        encoder.setVertexBuffer(transformBuffer, offset: 0, index: EngineSettings.TransformationBufferIndex)
         encoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: EngineSettings.DataBufferIndex)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.verticies.count)
         
@@ -139,16 +139,16 @@ class Object: Drawable {
         
     }
     
-    public static func MakeCube(color: Vector3, label: String? = nil) -> Object? {
+    public static func MakeCube(color: simd_float3, label: String? = nil) -> Object? {
         
-        let v1 = Vertex(x: -1, y: -1, z: -1, color: color)
-        let v2 = Vertex(x: -1, y: -1, z: 1, color: color)
-        let v3 = Vertex(x: -1, y: 1, z: -1, color: color)
-        let v4 = Vertex(x: -1, y: 1, z: 1, color: color)
-        let v5 = Vertex(x: 1, y: -1, z: -1, color: color)
-        let v6 = Vertex(x: 1, y: -1, z: 1, color: color)
-        let v7 = Vertex(x: 1, y: 1, z: -1, color: color)
-        let v8 = Vertex(x: 1, y: 1, z: 1, color: color)
+        let v1 = Vertex(pos: Vector3(x: -1, y: -1, z: -1), color: color)
+        let v2 = Vertex(pos: Vector3(x: -1, y: -1, z: 1), color: color)
+        let v3 = Vertex(pos: Vector3(x: -1, y: 1, z: -1), color: color)
+        let v4 = Vertex(pos: Vector3(x: -1, y: 1, z: 1), color: color)
+        let v5 = Vertex(pos: Vector3(x: 1, y: -1, z: -1), color: color)
+        let v6 = Vertex(pos: Vector3(x: 1, y: -1, z: 1), color: color)
+        let v7 = Vertex(pos: Vector3(x: 1, y: 1, z: -1), color: color)
+        let v8 = Vertex(pos: Vector3(x: 1, y: 1, z: 1), color: color)
         
         let v = [v1, v2, v4,
                  v1, v3, v4,

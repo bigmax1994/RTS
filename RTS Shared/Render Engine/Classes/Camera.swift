@@ -174,17 +174,9 @@ class Camera {
             
             let rotation2 = Matrix.solveForRotation3x3(from: newUp, to: Matrix.clipDefaults.up)
             
-            var rotation = rotation2 * rotation1
+            self._transformationMatrix = rotation2 * rotation1
+            return self._transformationMatrix!
             
-            let diff = rotation * (Matrix.clipDefaults.pos - self.position)
-            
-            rotation.addIdentityBlock(1)
-            
-            rotation[0,3] = diff.x
-            rotation[1,3] = diff.y
-            rotation[2,3] = diff.z
-            
-            return rotation
         }
     }
     
@@ -193,8 +185,8 @@ class Camera {
             if let m = self._clipMatrix {
                 return m
             }
-            let clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: self.fieldOfView, aspectRatio: self.aspectRatio, nearZ: self.nearClip, farZ: self.farClip)
-            return clipMatrix
+            self._clipMatrix = Matrix.matrix_perspective_right_hand(fovyRadians: self.fieldOfView, aspectRatio: self.aspectRatio, nearZ: self.nearClip, farZ: self.farClip)
+            return self._clipMatrix!
         }
     }
     
@@ -205,8 +197,10 @@ class Camera {
             if let b = self._buffer {
                 return b
             }
-                
-            self.cameraTransformation = CameraTransformation(rotationMatrix: (self.clipMatrix * self.transformationMatrix).matrix4x4ToSIMD())
+            
+            self.cameraTransformation = CameraTransformation(position: self.position.toSIMD(),
+                                                             rotationMatrix: self.transformationMatrix.matrix3x3ToSIMD(),
+                                                             clipMatrix: self.clipMatrix.matrix4x4ToSIMD())
             
             return Engine.Device.makeBuffer(bytes: [self.cameraTransformation], length: CameraTransformation.bufferSize(count: 1))
         }
@@ -216,6 +210,8 @@ class Camera {
 
 struct CameraTransformation: GPUEncodable {
     
-    var rotationMatrix: simd_float4x4
+    var position: simd_float3
+    var rotationMatrix: simd_float3x3
+    var clipMatrix: simd_float4x4
     
 }

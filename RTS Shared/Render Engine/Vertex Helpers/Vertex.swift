@@ -8,63 +8,32 @@
 import Foundation
 import simd
 
-struct Vertex: GPUEncodable {
+extension Vertex: GPUEncodable {
     
-    var pos: simd_float3
-    var normal: simd_float3
-    var color: simd_float3
-    
-    init(pos: simd_float3, normal: simd_float3 = simd_float3(0, 0, 1), color: simd_float3 = simd_float3(0, 0, 0)) {
+    init(pos: simd_float3, normal: simd_float3 = simd_float3(0, 0, 1), material: Material = Material(color: Color.black)) {
+        self.init()
         self.pos = pos
         self.normal = normal
-        self.color = color
+        self.material = material
     }
     
-    init(pos: Vector3, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), color: [Float] = [0,0,0]) {
-        
-        assert(color.count == 3, "incorrect color length")
-        
+    init(pos: simd_float3, normal: simd_float3 = simd_float3(0, 0, 1), color: simd_float3 = Color.black) {
+        let m = Material(color: color)
+        self.init(pos: pos, normal: normal, material: m)
+    }
+    
+    init(pos: Vector3, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), material: Material = Material(color: Color.black)) {
+        self.init()
         self.pos = pos.toSIMD()
         self.normal = normal.toSIMD()
-        self.color = simd_float3(color)
-        
+        self.material = material
     }
     
-    init(pos: Vector2, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), color: [Float] = [0,0,0]) {
+    init(pos: Vector3, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), color: simd_float3 = Color.black) {
+        self.init()
         
-        self.pos = simd_float3(pos.x, pos.y, 0)
-        self.normal = simd_float3(0, 0, 1)
-        self.color = simd_float3(repeating: 0)
-        
-    }
-    
-    init(x: Float, y: Float, z: Float = 0, color: [Float] = [0,0,0]) {
-        
-        self.init(pos: simd_float3(x, y, z), color: simd_float3(color))
-        
-    }
-    
-    init(x: Float, y: Float, z: Float = 0, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), color: Vector3 = Vector3(x: 0, y: 0, z: 0)) {
-        
-        self.init(pos: simd_float3(x, y, z), normal: normal.toSIMD(), color: color.toSIMD())
-        
-    }
-    
-    init(x: Float, y: Float, z: Float = 0, normal: simd_float3 = simd_float3(0,0,1), color: simd_float3 = simd_float3(0,0,0)) {
-        
-        self.init(pos: simd_float3(x, y, z), color: simd_float3(color))
-        
-    }
-    
-    init(pos: Vector3, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), color: Vector3 = Vector3(x: 0, y: 0, z: 0)) {
-        
-        self.init(pos: pos.toSIMD(), normal: normal.toSIMD(), color: color.toSIMD())
-        
-    }
-    
-    init(pos: Vector2, z: Float, normal: Vector3 = Vector3(x: 0, y: 0, z: 1), color: [Float] = [0,0,0]) {
-        
-        self.init(pos: simd_float3(pos.x, pos.y, z), normal: normal.toSIMD(), color: simd_float3(color))
+        let m = Material(color: color)
+        self.init(pos: pos, normal: normal, material: m)
         
     }
     
@@ -108,29 +77,25 @@ struct Vertex: GPUEncodable {
     
     static func getVertexFrom(_ vertexString: String, normal normalString: String) -> Vertex {
         
-        let p = vertexString.components(separatedBy: " ")
-        let x = Float(p[1]) ?? 0
-        let y = Float(p[2]) ?? 0
-        let z = Float(p[3]) ?? 0
+        let points = vertexString.components(separatedBy: " ")
+        let x = Float(points[1]) ?? 0
+        let y = Float(points[2]) ?? 0
+        let z = Float(points[3]) ?? 0
         let point = simd_float3(x, y, z)
         
-        let coords = normalString.components(separatedBy: " ")
-        let xN = Float(p[1]) ?? 0
-        let yN = Float(p[2]) ?? 0
-        let zN = Float(p[3]) ?? 0
+        let normals = normalString.components(separatedBy: " ")
+        let xN = Float(normals[1]) ?? 0
+        let yN = Float(normals[2]) ?? 0
+        let zN = Float(normals[3]) ?? 0
         let normal = simd_float3(xN, yN, zN)
         
-        return Vertex(pos: point, normal: normal, color: simd_float3(1, 0, 0))
+        return Vertex(pos: point, normal: normal, color: Color.red)
         
     }
     
     enum VertexError: Error {
         case failedToReadFile
         case invalidFile
-    }
-    
-    static func * (lhs: Float, rhs: Vertex) -> Vertex {
-        return Vertex(x: lhs * rhs.pos.x, y: lhs * rhs.pos.y, z: lhs * rhs.pos.z, normal: rhs.normal, color: rhs.color)
     }
     
 }
