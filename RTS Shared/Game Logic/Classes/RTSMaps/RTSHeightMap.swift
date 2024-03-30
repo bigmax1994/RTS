@@ -34,7 +34,7 @@ class Heights{
         var x = h
         x = x + crater(v: v)
         x = normalize(h: x)
-        //x = sealevel(h: x)
+        x = sealevel(h: x)
         return x
     }
 }

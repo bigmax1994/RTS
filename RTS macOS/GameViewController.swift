@@ -45,7 +45,31 @@ class GameViewController: NSViewController {
             self.renderer.userDidClick(on: pos)
                           
         }
-                              
+    }
+    override func mouseMoved(with event: NSEvent) {
+        print("Moved!")
+        if let window = event.window {
+            let x = 2 * Float(event.locationInWindow.x / window.frame.width) - 1
+            let y = 2 * Float(event.locationInWindow.y / window.frame.height) - 1
+            
+            let pos = Vector2(x: x, y: y)
+            renderer.mouseDidMove(to: pos)
+                          
+        }
+    }
+    override func mouseDragged(with event: NSEvent) {
+        //print("Dragged!")
+        if let window = event.window {
+            let x = 2 * Float(event.locationInWindow.x / window.frame.width) - 1
+            let y = 2 * Float(event.locationInWindow.y / window.frame.height) - 1
+            
+            let pos = Vector2(x: x, y: y)
+            renderer.mouseDidMove(to: pos)
+                          
+        }
+    }
+    override func mouseUp(with event: NSEvent){
+        renderer.mouseReleased()
     }
     
 }

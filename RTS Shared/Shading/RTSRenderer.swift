@@ -29,6 +29,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     var updated = true
     var gameTime = 0.0
+    var mousePosition:Vector2 = Vector2()
+    var mouseIsDown:Bool = false
     
     let cameraHeight:Float = 0.3
     let droneHeight:Float = 0.2
@@ -38,12 +40,6 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         self.world = World(sunPos: Vector3(x: 0.5, y: 0, z: 1), sunColor: Vector3(x: 1, y: 1, z: 1))
         
         commDelegate = RTSCommunicationDelegate()
-        
-        let map = RTSMap_square(width: 200, height: 200)
-        let players = [Player(name: "Max")]
-            
-        game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
-        
         let cameraTiltMatrix = Matrix.matrix3x3_rotation(radians: 0.2, axis: Vector3(x: 1, y: 0, z: 0))
         let cDir = cameraTiltMatrix * Vector3(x: 0, y: 0, z: -1)
         let cUp = cameraTiltMatrix * Vector3(x: 0, y: 1, z: 0)
@@ -53,12 +49,17 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
                              up: cUp,
                              nearClip: 0.001, farClip: 100)
         
+        let map = RTSMap_square(width: 200, height: 200)
+        let players = [Player(name: "Max"), Player(name: "Magnus"), Player(name:"Thomas"), Player(name:"Tabea")]
+            
+        game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
+        
         if let sky = Object.MakeCube(color: Vector3(x: 38.0 / 255.0, y: 194.0 / 255.0, z: 220.0 / 255.0), label: "Skybox") {
             sky.scaleTo(10)
             //self.objects.append(sky)
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 500), pipelineState: .basic, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 1000), pipelineState: .basic, label: "Map") {
             
             let scaleVec = Vector3(x: 1, y: 1, z: 0.2)
             mapObj.scaleTo(scaleVec)
@@ -77,11 +78,8 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         }catch{
             print("error reading file")
         }
-        
         super.init()
-        
-        self.game?.delegate = self
-        
+        game?.delegate = self
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
@@ -155,14 +153,10 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
     }
     
-    func playerDidMove(_ game: RTSGame, player: Player, to position: Vector2, from oldPosition: Vector2) {
+    func renderPlayerMovement(_ game: RTSGame, player: Player, to position: Vector2, from oldPosition: Vector2) {
         
-        let camPos = Vector3(x: position.x, y: position.y, z: cameraHeight)
         let playerPos = Vector3(x: position.x, y: position.y, z: droneHeight)
-        
-        self.camera.position = camPos
         player.playerChar?.moveTo(playerPos)
-        
         let movement = (position - oldPosition).normalized()
         
         let v1 = Vector3(x: 0, y: -1, z: 0)
@@ -170,7 +164,10 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         let m = Matrix.solveForRotation3x3(from: v1, to: v2)
         player.playerChar?.rotateTo(m)
-        
+    }
+    func setCameraPosition(_ game:RTSGame, to:Vector2){
+        let camPos = Vector3(x: to.x, y: to.y, z: cameraHeight)
+        self.camera.position = camPos
     }
     
     func gameDidEnd(_ game: RTSGame) {
@@ -188,7 +185,15 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         let transformedV2 = Vector2(x: transformedV3.x, y: transformedV3.y)
         
         //send new position to game
+        self.mouseIsDown = true
         self.game?.move(transformedV2)
+    }
+    func mouseDidMove(to pos: Vector2) {
+        mousePosition = pos
+        
+    }
+    func mouseReleased() {
+        self.mouseIsDown = false
     }
     
 }

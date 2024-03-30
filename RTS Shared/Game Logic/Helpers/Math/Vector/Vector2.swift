@@ -13,6 +13,7 @@ struct Vector2: Byteable, Equatable {
     static let RIGHT = Vector2(x:1, y:0)
     static let DOWN = Vector2(x:0, y:-1)
     static let LEFT = Vector2(x:-1, y:0)
+    static let NULL = Vector2(x:0, y:0)
     
     var x: Float
     var y: Float

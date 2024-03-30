@@ -89,25 +89,6 @@ class RTSMap {
         fatalError("not implemented")
     }
     
-    /// chooses random starting position for a player
-    func distributePlayer(target: Vector2, deviation: Float = 0.1) -> Vector2 {
-        // angle a in [0, 2pi]
-        let a = Float.random(in: 0..<2 * Float.pi)
-        // distance d in [0, 1]
-        let d = Float.random(in: 0..<1)
-        // (x,y) in [-1, 1]^2
-        var v = Vector2(x: cos(a) * d, y: sin(a) * d)
-        while !checkIfPositionIsAllowed(target + deviation * v) {
-            v = 0.5*v
-        }
-        return target + deviation * v
-    }
-    ///spread out the players on the map
-    func distributePlayersStep() {
-        
-    }
-    
-    
     func reset() {
         
         self.circles = [:]

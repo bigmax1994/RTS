@@ -55,7 +55,7 @@ class RTSCommunicationDelegate {
     
     func playerDidMove(_ player: Player, to position: Vector2) {
         
-        let action = RTSPlayerMoveAction(uuid: player.uuid, position: player.getPosition())
+        let action = RTSPlayerMoveAction(uuid: player.uuid, position: player.getFuturePosition())
         send(action)
         
     }

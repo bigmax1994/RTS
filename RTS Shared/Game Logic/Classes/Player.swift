@@ -14,7 +14,8 @@ class Player {
     
     var isFree: Bool = true
     
-    private var position: Vector2 = Vector2()
+    private var currentPosition: Vector2 = Vector2()
+    private var futurePosition: Vector2 = Vector2()
     
     var playerChar: Object? = nil
     
@@ -22,17 +23,20 @@ class Player {
         self.name = name
         self.uuid = UUID()
     }
-    
+    func displayAt(_ pos: Vector2){
+        currentPosition = pos
+    }
     func moveBy(_ vec: Vector2) {
-        position = position + vec
+        futurePosition = futurePosition + vec
     }
-    
     func moveTo(_ pos: Vector2) {
-        position = pos
+        futurePosition = pos
     }
-    
-    func getPosition() -> Vector2 {
-        return self.position
+    func getCurrentPosition() -> Vector2 {
+        return self.currentPosition
+    }
+    func getFuturePosition() -> Vector2 {
+        return self.futurePosition
     }
     
 }
