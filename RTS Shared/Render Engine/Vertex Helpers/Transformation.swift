@@ -9,13 +9,12 @@ import Foundation
 import simd
 import Metal
 
-struct Transformation: GPUEncodable {
-    
-    var m: simd_float3x3
-    var p: simd_float3
-    var s: simd_float3
+extension Transformation: GPUEncodable {
     
     init(matrix: Matrix, position: Vector3, size: Vector3) {
+        
+        self.init()
+        
         self.m = matrix.matrix3x3ToSIMD()
         self.p = position.toSIMD()
         self.s = size.toSIMD()

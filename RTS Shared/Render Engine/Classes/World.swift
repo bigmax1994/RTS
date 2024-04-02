@@ -10,36 +10,30 @@ import Metal
 
 class World {
     
-    var settings: WorldSettings
+    var light: Light
     
-    var _settingsBuffer: MTLBuffer? = nil
+    var _lightBuffer: MTLBuffer? = nil
     
-    var settingsBuffer: MTLBuffer? {
+    var lightBuffer: MTLBuffer? {
         get {
-            if let b = self._settingsBuffer {
-                return b
-            }
-            self._settingsBuffer = self.createBuffer()
-            return self._settingsBuffer
+            self._lightBuffer = self.createBuffer()
+            return self._lightBuffer
         }
     }
     
-    init(settings: WorldSettings) {
-        self.settings = settings
-    }
-    
-    convenience init(sunPos: Vector3 = Vector3(x: 0, y: 0, z: 1), sunColor: Vector3 = Vector3(x: 1, y: 1, z: 1)) {
-        let settings = WorldSettings(sunPos: sunPos, sunColor: sunColor)
-        self.init(settings: settings)
+    init(sunPos: Vector3 = Vector3(x: 0, y: 0, z: 1), sunColor: simd_float3 = Color.white, ambientColor: simd_float3 = Color.black) {
+        let light = Light(mainPosition: sunPos.toSIMD(), mainColor: sunColor, ambientColor: ambientColor)
+        
+        self.light = light
     }
     
     func createBuffer() -> MTLBuffer? {
         
-        if let b = self._settingsBuffer {
+        if let b = self._lightBuffer {
             return b
         }
         
-        return Engine.Device.makeBuffer(bytes: [self.settings], length: WorldSettings.bufferSize(count: 1))
+        return Engine.Device.makeBuffer(bytes: [self.light], length: Light.bufferSize(count: 1))
         
     }
     

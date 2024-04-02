@@ -47,9 +47,6 @@
 		F41F82E32B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E42B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E52B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
-		F45280752BA457D200BF6D92 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45280742BA457D200BF6D92 /* Quad.swift */; };
-		F45280762BA457D200BF6D92 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45280742BA457D200BF6D92 /* Quad.swift */; };
-		F45280772BA457D200BF6D92 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45280742BA457D200BF6D92 /* Quad.swift */; };
 		F4534A652BA8778800505014 /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A642BA8778800505014 /* RTSTests.swift */; };
 		F4534A762BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
 		F4534A772BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
@@ -63,9 +60,6 @@
 		F4534A942BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F4534A952BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
 		F4534A962BA9C77B00505014 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A912BA9C77B00505014 /* Object.swift */; };
-		F4534AAD2BA9FC5300505014 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Transformation.swift */; };
-		F4534AAE2BA9FC5300505014 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Transformation.swift */; };
-		F4534AAF2BA9FC5300505014 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AAC2BA9FC5300505014 /* Transformation.swift */; };
 		F4534AB12BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
 		F4534AB22BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
 		F4534AB32BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
@@ -95,9 +89,18 @@
 		F47E93D52BB2E8E30080C2FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D42BB2E8E30080C2FC /* World.swift */; };
 		F47E93D62BB2E8E30080C2FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D42BB2E8E30080C2FC /* World.swift */; };
 		F47E93D72BB2E8E30080C2FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D42BB2E8E30080C2FC /* World.swift */; };
-		F47E93D92BB2E9000080C2FC /* WorldSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D82BB2E9000080C2FC /* WorldSettings.swift */; };
-		F47E93DA2BB2E9000080C2FC /* WorldSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D82BB2E9000080C2FC /* WorldSettings.swift */; };
-		F47E93DB2BB2E9000080C2FC /* WorldSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47E93D82BB2E9000080C2FC /* WorldSettings.swift */; };
+		F48E93262BB8A45B001D3BFC /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93252BB8A45B001D3BFC /* Light.swift */; };
+		F48E93272BB8A45B001D3BFC /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93252BB8A45B001D3BFC /* Light.swift */; };
+		F48E93282BB8A45B001D3BFC /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93252BB8A45B001D3BFC /* Light.swift */; };
+		F48E932E2BB8A4A6001D3BFC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E932D2BB8A4A6001D3BFC /* Color.swift */; };
+		F48E932F2BB8A4A6001D3BFC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E932D2BB8A4A6001D3BFC /* Color.swift */; };
+		F48E93302BB8A4A6001D3BFC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E932D2BB8A4A6001D3BFC /* Color.swift */; };
+		F48E93322BB8A4F1001D3BFC /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93312BB8A4F1001D3BFC /* Material.swift */; };
+		F48E93332BB8A4F1001D3BFC /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93312BB8A4F1001D3BFC /* Material.swift */; };
+		F48E93342BB8A4F1001D3BFC /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93312BB8A4F1001D3BFC /* Material.swift */; };
+		F48E93362BB8A50F001D3BFC /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93352BB8A50F001D3BFC /* Transformation.swift */; };
+		F48E93372BB8A50F001D3BFC /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93352BB8A50F001D3BFC /* Transformation.swift */; };
+		F48E93382BB8A50F001D3BFC /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93352BB8A50F001D3BFC /* Transformation.swift */; };
 		F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
@@ -168,14 +171,12 @@
 		F41148352BABB44C007F052D /* Drone.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.obj; sourceTree = "<group>"; };
 		F41148362BABB44C007F052D /* Drone.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.mtl; sourceTree = "<group>"; };
 		F41F82E22B9C627B006974CE /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
-		F45280742BA457D200BF6D92 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 		F4534A622BA8778800505014 /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4534A642BA8778800505014 /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
 		F4534A752BA893F900505014 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		F4534A792BA8950400505014 /* MatrixCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCalc.swift; sourceTree = "<group>"; };
 		F4534A862BA9965600505014 /* Map Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map Sample.swift"; sourceTree = "<group>"; };
 		F4534A912BA9C77B00505014 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		F4534AAC2BA9FC5300505014 /* Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transformation.swift; path = "RTS Shared/Render Engine/Classes/Transformation.swift"; sourceTree = SOURCE_ROOT; };
 		F4534AB02BA9FF3900505014 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* RTSRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSRenderer.swift; sourceTree = "<group>"; };
@@ -197,7 +198,10 @@
 		F47CC1272B97415E00125D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTS_macOS.entitlements; sourceTree = "<group>"; };
 		F47E93D42BB2E8E30080C2FC /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
-		F47E93D82BB2E9000080C2FC /* WorldSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldSettings.swift; sourceTree = "<group>"; };
+		F48E93252BB8A45B001D3BFC /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		F48E932D2BB8A4A6001D3BFC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F48E93312BB8A4F1001D3BFC /* Material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
+		F48E93352BB8A50F001D3BFC /* Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSCommunicationDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE32B9B950600A70A56 /* RTSGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGame.swift; sourceTree = "<group>"; };
@@ -321,11 +325,11 @@
 		F4534A922BA9C77B00505014 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F48E93252BB8A45B001D3BFC /* Light.swift */,
 				F41148212BAB1F40007F052D /* Drawable.swift */,
 				F4534A912BA9C77B00505014 /* Object.swift */,
 				F4534AB02BA9FF3900505014 /* Camera.swift */,
 				F47E93D42BB2E8E30080C2FC /* World.swift */,
-				F47E93D82BB2E9000080C2FC /* WorldSettings.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -345,10 +349,11 @@
 		F462F7642BA85D6300AA21DE /* Vertex Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F48E93312BB8A4F1001D3BFC /* Material.swift */,
+				F48E932D2BB8A4A6001D3BFC /* Color.swift */,
 				F41F82E22B9C627B006974CE /* Vertex.swift */,
 				F41148252BAB22DD007F052D /* GPUEncodable.swift */,
-				F45280742BA457D200BF6D92 /* Quad.swift */,
-				F4534AAC2BA9FC5300505014 /* Transformation.swift */,
+				F48E93352BB8A50F001D3BFC /* Transformation.swift */,
 			);
 			path = "Vertex Helpers";
 			sourceTree = "<group>";
@@ -703,29 +708,30 @@
 				2728F56E2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
-				F47E93D92BB2E9000080C2FC /* WorldSettings.swift in Sources */,
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
 				F411481E2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
-				F4534AAD2BA9FC5300505014 /* Transformation.swift in Sources */,
 				F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */,
+				F48E93322BB8A4F1001D3BFC /* Material.swift in Sources */,
 				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F41148222BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A942BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F48E932E2BB8A4A6001D3BFC /* Color.swift in Sources */,
 				F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D52BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148122BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F48E93262BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148162BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
-				F45280752BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A762BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB12BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
+				F48E93362BB8A50F001D3BFC /* Transformation.swift in Sources */,
 				F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B142B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
@@ -748,29 +754,30 @@
 				2728F56F2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
-				F47E93DA2BB2E9000080C2FC /* WorldSettings.swift in Sources */,
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
 				F411481F2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
-				F4534AAE2BA9FC5300505014 /* Transformation.swift in Sources */,
 				F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */,
+				F48E93332BB8A4F1001D3BFC /* Material.swift in Sources */,
 				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F41148232BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A952BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F48E932F2BB8A4A6001D3BFC /* Color.swift in Sources */,
 				F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D62BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148132BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F48E93272BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148172BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
-				F45280762BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A772BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB22BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
+				F48E93372BB8A50F001D3BFC /* Transformation.swift in Sources */,
 				F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B152B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
@@ -793,29 +800,30 @@
 				2728F5702BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
-				F47E93DB2BB2E9000080C2FC /* WorldSettings.swift in Sources */,
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
 				F41148202BAB1CC9007F052D /* EngineSettings.swift in Sources */,
-				F4534AAF2BA9FC5300505014 /* Transformation.swift in Sources */,
 				F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */,
+				F48E93342BB8A4F1001D3BFC /* Material.swift in Sources */,
 				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
 				F41148242BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A962BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
+				F48E93302BB8A4A6001D3BFC /* Color.swift in Sources */,
 				F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D72BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148142BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F48E93282BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148182BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
-				F45280772BA457D200BF6D92 /* Quad.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A782BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB32BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
+				F48E93382BB8A50F001D3BFC /* Transformation.swift in Sources */,
 				F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B162B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
@@ -1069,7 +1077,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1100,7 +1108,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1188,11 +1196,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "RTS macOS/RTS_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1206,6 +1215,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TBBT.RTS;
 				PRODUCT_NAME = RTS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "RTS Shared/ShaderTypes.h";
@@ -1219,11 +1229,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "RTS macOS/RTS_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = X43FG24ML2;
+				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1237,6 +1248,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TBBT.RTS;
 				PRODUCT_NAME = RTS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "RTS Shared/ShaderTypes.h";
