@@ -313,15 +313,6 @@
 			path = Math;
 			sourceTree = "<group>";
 		};
-		F4534A8A2BA9967700505014 /* Shading */ = {
-			isa = PBXGroup;
-			children = (
-				F47CC0F82B97415C00125D78 /* RTSRenderer.swift */,
-				F4534A862BA9965600505014 /* Map Sample.swift */,
-			);
-			path = Shading;
-			sourceTree = "<group>";
-		};
 		F4534A922BA9C77B00505014 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,9 +365,10 @@
 		F47CC0F62B97415C00125D78 /* RTS Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F47CC0F82B97415C00125D78 /* RTSRenderer.swift */,
+				F4534A862BA9965600505014 /* Map Sample.swift */,
 				F4EF7ADE2B9B950600A70A56 /* Delegates */,
 				F4EF7AE12B9B950600A70A56 /* Game Logic */,
-				F4534A8A2BA9967700505014 /* Shading */,
 				F4534A932BA9C77B00505014 /* Render Engine */,
 				F47CC0F92B97415C00125D78 /* ShaderTypes.h */,
 				F47CC0F72B97415C00125D78 /* Shaders.metal */,
