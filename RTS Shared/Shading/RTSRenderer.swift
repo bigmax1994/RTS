@@ -79,7 +79,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         
         let aspectRatio = Float(size.width / size.height)
-        self.camera.aspectRatio = aspectRatio
+        self.world.camera.aspectRatio = aspectRatio
         
     }
     
@@ -114,6 +114,12 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
                     
                     self.world.draw(to: encoder)
                     
+                    encoder.endEncoding()
+                    
+                    if let drawable = view.currentDrawable {
+                        commandBuffer.present(drawable)
+                    }
+                    
                 }
                 
             }
@@ -143,7 +149,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     func setCameraPosition(_ game:RTSGame, to:Vector2){
         let camPos = Vector3(x: to.x, y: to.y, z: cameraHeight)
-        self.camera.position = camPos
+        self.world.camera.position = camPos
     }
     
     func gameDidEnd(_ game: RTSGame) {
@@ -157,7 +163,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     func userDidClick(on pos: Vector2) {
         //adjust user click based on camera position
         let v3 = Vector3(x: pos.x, y: pos.y, z: 0)
-        let transformedV3 = self.camera.transformationMatrix * v3
+        let transformedV3 = self.world.camera.transformationMatrix * v3
         let transformedV2 = Vector2(x: transformedV3.x, y: transformedV3.y)
         
         //send new position to game

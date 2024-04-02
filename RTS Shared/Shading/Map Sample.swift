@@ -17,8 +17,6 @@ extension RTSRenderer {
             fatalError("incorrect LOD")
         }
         
-        let light = Vector3(x: 1, y: 0, z: 1).normalized()
-        
         var verticies:[Vertex] = []
         
         for x in 1...LOD {

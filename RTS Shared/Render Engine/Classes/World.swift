@@ -22,12 +22,15 @@ class World: Drawable {
     
     var camera: Camera
     
-    var objects: [Object]
+    var objects: [Drawable]
     
-    init(sunPos: Vector3 = Vector3(x: 0, y: 0, z: 1), sunColor: simd_float3 = Color.white, ambientColor: simd_float3 = Color.black) {
+    init(sunPos: Vector3 = Vector3(x: 0, y: 0, z: 1), sunColor: simd_float3 = Color.white, ambientColor: simd_float3 = Color.black, camera: Camera = Camera(), objects: [Drawable] = []) {
+
         let light = Light(mainPosition: sunPos.toSIMD(), mainColor: sunColor, ambientColor: ambientColor)
         
         self.light = light
+        self.camera = camera
+        self.objects = objects
     }
     
     func createBuffer() -> MTLBuffer? {
@@ -52,12 +55,6 @@ class World: Drawable {
                 
                 for object in objects {
                     object.draw(to: encoder)
-                }
-                
-                encoder.endEncoding()
-                
-                if let drawable = view.currentDrawable {
-                    commandBuffer.present(drawable)
                 }
                 
             }
