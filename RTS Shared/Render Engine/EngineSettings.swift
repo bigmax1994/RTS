@@ -8,7 +8,7 @@
 import Foundation
 import Metal
 
-class EngineSettings {
+extension Engine {
     
     public static var pixelFormat: MTLPixelFormat = .bgra8Unorm
     public static var depthFormat: MTLPixelFormat = .depth32Float

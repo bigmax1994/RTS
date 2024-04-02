@@ -49,9 +49,9 @@ class World: Drawable {
             
             if let worldLightBuffer = self.lightBuffer {
                 
-                encoder.setFragmentBuffer(cameraBuffer, offset: 0, index: EngineSettings.CameraBufferIndex)
-                encoder.setFragmentBuffer(worldLightBuffer, offset: 0, index: EngineSettings.WorldLightBufferIndex)
-                encoder.setVertexBuffer(cameraBuffer, offset: 0, index: EngineSettings.CameraBufferIndex)
+                encoder.setFragmentBuffer(cameraBuffer, offset: 0, index: Engine.CameraBufferIndex)
+                encoder.setFragmentBuffer(worldLightBuffer, offset: 0, index: Engine.WorldLightBufferIndex)
+                encoder.setVertexBuffer(cameraBuffer, offset: 0, index: Engine.CameraBufferIndex)
                 
                 for object in objects {
                     object.draw(to: encoder)
