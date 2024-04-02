@@ -59,7 +59,7 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             //self.objects.append(sky)
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 1000), pipelineState: .basic, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 450), pipelineState: .basic, label: "Map") {
             
             let scaleVec = Vector3(x: 1, y: 1, z: 0.2)
             mapObj.scaleTo(scaleVec)

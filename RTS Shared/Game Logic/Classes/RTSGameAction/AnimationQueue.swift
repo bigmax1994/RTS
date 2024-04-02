@@ -70,6 +70,7 @@ class PlayerMoveAnimation:Animation {
     }
     override func setState() {
         let newPos:Vector2 = startPos + self.t/self.duration*(endPos - startPos)
+        //let newPos = endPos
         if newPos != player.getCurrentPosition(){
             self.boss.game?.updateMovement(from:player.getCurrentPosition(), to: newPos, p: player)
             player.displayAt(newPos)

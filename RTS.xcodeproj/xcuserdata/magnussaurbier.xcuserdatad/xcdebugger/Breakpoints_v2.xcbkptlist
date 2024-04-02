@@ -318,8 +318,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSGameAction/AnimationQueue.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "setState()"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "RTS Shared/Game Logic/Classes/RTSGameAction/AnimationQueue.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "setState()"
             landmarkType = "7">
          </BreakpointContent>

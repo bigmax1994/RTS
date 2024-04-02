@@ -49,8 +49,8 @@ extension RTSRenderer {
                 let n1 = -1 * ((v31 - v32) *-* (v31 - v33)).normalized()
                 let n2 = -1 * ((v32 - v34) *-* (v32 - v33)).normalized()
                 
-                let l1 = abs(n1.normalized() ** light)
-                let l2 = abs(n2.normalized() ** light)
+                //let l1 = abs(n1.normalized() ** light)
+                //let l2 = abs(n2.normalized() ** light)
                 
                 let c1 = RTSRenderer.sampleMapColor(from: map, at: v1, fac: 1)
                 let c2 = RTSRenderer.sampleMapColor(from: map, at: v2, fac: 1)
@@ -90,7 +90,7 @@ extension RTSRenderer {
         case .closedPost:
             return [fac * 0.6186, fac * 0.4153, fac * 0.7561]
         case .forbidden:
-            return [fac * 1,0,0]
+            return [fac * 1,1,1]
         case .border:
             return [fac * 0.4, fac * 0.4, fac * 0.4]
         }
