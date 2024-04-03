@@ -47,6 +47,7 @@
 		F41F82E32B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E42B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E52B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
+		F4438F702BBD74550048053C /* RTS-macOS-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F47DD8882BBD643300EF559F /* RTS-macOS-Info.plist */; };
 		F4534A652BA8778800505014 /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A642BA8778800505014 /* RTSTests.swift */; };
 		F4534A762BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
 		F4534A772BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
@@ -198,6 +199,7 @@
 		F47CC1272B97415E00125D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTS_macOS.entitlements; sourceTree = "<group>"; };
 		F47DD8882BBD643300EF559F /* RTS-macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RTS-macOS-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F47DD88A2BBD672500EF559F /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		F47E93D42BB2E8E30080C2FC /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		F48E93252BB8A45B001D3BFC /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		F48E932D2BB8A4A6001D3BFC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				F4534A632BA8778800505014 /* RTSTests */,
 				F47CC1002B97415E00125D78 /* Products */,
 				2715C2A72BA8986100AAC167 /* Recovered References */,
+				F47DD8892BBD672500EF559F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -423,6 +426,14 @@
 				F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */,
 			);
 			path = "RTS macOS";
+			sourceTree = "<group>";
+		};
+		F47DD8892BBD672500EF559F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F47DD88A2BBD672500EF559F /* MultipeerConnectivity.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F4EF7ADE2B9B950600A70A56 /* Delegates */ = {
@@ -664,6 +675,7 @@
 			files = (
 				F47CC1282B97415E00125D78 /* Main.storyboard in Resources */,
 				F47CC1352B97415E00125D78 /* Assets.xcassets in Resources */,
+				F4438F702BBD74550048053C /* RTS-macOS-Info.plist in Resources */,
 				F411483C2BABB44C007F052D /* Drone.mtl in Resources */,
 				F41148392BABB44C007F052D /* Drone.obj in Resources */,
 				F47CC1322B97415E00125D78 /* ShaderTypes.h in Resources */,
