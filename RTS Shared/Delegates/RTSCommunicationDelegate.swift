@@ -59,6 +59,9 @@ class RTSCommunicationDelegate {
         }
         
         self.listener = try! NWListener(service: RTSCommunicationDelegate.service, using: .udp)
+        self.listener.newConnectionHandler = { conn in
+            return
+        }
         self.listener.start(queue: .global())
         
     }
