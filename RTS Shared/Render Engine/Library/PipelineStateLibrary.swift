@@ -54,9 +54,9 @@ class PipelineStateLibrary {
             descriptor.vertexFunction = s.getVertexFunction().getMTLFunction()
             descriptor.fragmentFunction = s.getFragmentFunction().getMTLFunction()
             
-            descriptor.colorAttachments[0].pixelFormat = EngineSettings.pixelFormat
-            descriptor.depthAttachmentPixelFormat = EngineSettings.depthFormat
-            descriptor.stencilAttachmentPixelFormat = EngineSettings.stencilFormat
+            descriptor.colorAttachments[0].pixelFormat = Engine.pixelFormat
+            descriptor.depthAttachmentPixelFormat = Engine.depthFormat
+            descriptor.stencilAttachmentPixelFormat = Engine.stencilFormat
             
             do {
                 let pipelineState = try Engine.Device.makeRenderPipelineState(descriptor: descriptor)

@@ -122,8 +122,8 @@ class Object: Drawable {
             return
         }
         
-        encoder.setVertexBuffer(transformBuffer, offset: 0, index: EngineSettings.TransformationBufferIndex)
-        encoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: EngineSettings.DataBufferIndex)
+        encoder.setVertexBuffer(transformBuffer, offset: 0, index: Engine.TransformationBufferIndex)
+        encoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: Engine.DataBufferIndex)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.verticies.count)
         
         encoder.popDebugGroup()

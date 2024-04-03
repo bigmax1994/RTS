@@ -9,7 +9,9 @@ import Foundation
 import Metal
 import MetalKit
 
-class Engine {
+struct Engine {
+    
+    @available(*, unavailable) private init() {}
     
     static var Device: MTLDevice!
     static var CommandQueue: MTLCommandQueue!
@@ -24,7 +26,7 @@ class Engine {
         Engine.Device = device
         
         view.device = Engine.Device
-        view.depthStencilPixelFormat = EngineSettings.depthFormat
+        view.depthStencilPixelFormat = Engine.depthFormat
         
         //Create Command Queue
         guard let queue = Engine.Device.makeCommandQueue() else {

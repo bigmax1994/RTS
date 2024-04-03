@@ -56,7 +56,7 @@ class RTSGame {
                 let renderer = del as! RTSRenderer
                 if renderer.mouseIsDown{
                     let v3 = Vector3(x: renderer.mousePosition.x, y: renderer.mousePosition.y, z: 0)
-                    let transformedV3 = renderer.camera.transformationMatrix * v3
+                    let transformedV3 = renderer.world.camera.transformationMatrix * v3
                     let transformedV2 = Vector2(x: transformedV3.x, y: transformedV3.y)
                     move(transformedV2)
                 }

@@ -40,7 +40,7 @@ struct Matrix {
     }
     
     init(simd: simd_float4x4) {
-        var e = [simd.columns.0.x, simd.columns.1.y, simd.columns.2.z, simd.columns.3.w,
+        let e = [simd.columns.0.x, simd.columns.1.y, simd.columns.2.z, simd.columns.3.w,
                  simd.columns.0.x, simd.columns.1.y, simd.columns.2.z, simd.columns.3.w,
                  simd.columns.0.x, simd.columns.1.y, simd.columns.2.z, simd.columns.3.w,
                  simd.columns.0.x, simd.columns.1.y, simd.columns.2.z, simd.columns.3.w]
@@ -48,7 +48,7 @@ struct Matrix {
     }
     
     init(simd: simd_float3x3) {
-        var e = [simd.columns.0.x, simd.columns.1.y, simd.columns.2.z,
+        let e = [simd.columns.0.x, simd.columns.1.y, simd.columns.2.z,
                  simd.columns.0.x, simd.columns.1.y, simd.columns.2.z,
                  simd.columns.0.x, simd.columns.1.y, simd.columns.2.z]
         self.init(elements: e, columns: 3, rows: 3)
@@ -260,8 +260,6 @@ struct Matrix {
             return Matrix.Identity(4)
         }
         
-        let isInverse = (v1 + v2).isZero()
-        
         let directionOrth:Vector3 = v1 *-* v2
         if directionOrth.isZero() {
             let orth = v1.getAnyLinearlyIndipendent()
@@ -280,8 +278,6 @@ struct Matrix {
         if (v1 - v2).isZero() {
             return Matrix.Identity(3)
         }
-        
-        let isInverse = (v1 + v2).isZero()
         
         let directionOrth:Vector3 = v1 *-* v2
         if directionOrth.isZero() {
