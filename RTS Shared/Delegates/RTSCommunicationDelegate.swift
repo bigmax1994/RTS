@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 class RTSCommunicationDelegate {
     
-    var connection: NWConnection!
+    //var connection: NWConnection!
     
     var session: MCSession
     
@@ -23,7 +23,9 @@ class RTSCommunicationDelegate {
         self.session = MCSession(peer: peer)
         
         let advertiser = MCAdvertiserAssistant(serviceType: "RTS-Game", discoveryInfo: nil, session: self.session)
+        advertiser.start()
         let browser = MCNearbyServiceBrowser(peer: peer, serviceType: "RTS-Game")
+        browser.startBrowsingForPeers()
         
         /*let host: NWEndpoint.Host = "131.159.208.167"
         let port: NWEndpoint.Port = 8461
@@ -72,7 +74,7 @@ class RTSCommunicationDelegate {
     
     func send(_ action: RTSGameAction) {
         let data = action.data
-        connection.send(content: data, completion: .idempotent)
+        //connection.send(content: data, completion: .idempotent)
     }
     
     func didRecieve(_ action: RTSGameAction) {
