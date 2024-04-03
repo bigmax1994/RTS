@@ -36,10 +36,10 @@ extension RTSRenderer {
                 let v3 = Vector2(x: xEnd, y: yStart)
                 let v4 = Vector2(x: xEnd, y: yEnd)
                 
-                let h1 = map.heightMap.evaluate(v: v1)
-                let h2 = map.heightMap.evaluate(v: v2)
-                let h3 = map.heightMap.evaluate(v: v3)
-                let h4 = map.heightMap.evaluate(v: v4)
+                let (h1, g1) = map.heightMap.evaluate(v: v1)
+                let (h2, g2) = map.heightMap.evaluate(v: v2)
+                let (h3, g3) = map.heightMap.evaluate(v: v3)
+                let (h4, g4) = map.heightMap.evaluate(v: v4)
                 
                 let v31 = Vector3(x: v1.x, y: v1.y, z: h1)
                 let v32 = Vector3(x: v2.x, y: v2.y, z: h2)
@@ -90,6 +90,8 @@ extension RTSRenderer {
             return Material(color: Color.red)
         case .border:
             return Material(color: Color.grey)
+        case .steep:
+            return Material(color: Color.grey, shininess: 100)
         }
     }
     

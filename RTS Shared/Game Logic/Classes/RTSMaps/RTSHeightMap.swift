@@ -11,11 +11,20 @@ class Heights{
     static func crater(v:Vector2) -> Float{
         return RTSGame.craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
     }
+    static func crater_grad(v:Vector2) -> Vector2{
+        return RTSGame.craterHeight*Vector2(x: craterWall_diff(v.x)*(1-craterWall(v.y)), y: (1-craterWall(v.x))*craterWall_diff(v.y))
+    }
     static func sigmoid(_ t:Float)->Float{
         return 1/(1+exp(-t))
     }
+    static func sigmoid_diff(_ t:Float)->Float{
+        return 1/(exp(t)+2+exp(-t))
+    }
     static func craterWall(_ t:Float)->Float{
         sigmoid(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth))
+    }
+    static func craterWall_diff(_ t:Float)->Float{
+        sigmoid_diff(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth)) * RTSGame.craterSharpness * 2*t
     }
     static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (-1,1)
         var value:Float = 0
@@ -27,14 +36,31 @@ class Heights{
         }
         return value * 2 - 1
     }
+    static func normalize_diff(h:Float) -> Float{
+        var value:Float = 0
+        var used:Float = 0
+        for (height, beginsAt, sharpness) in RTSGame.heightLevels{
+            let diff = height-used
+            value += diff*sigmoid_diff(sharpness*(h-beginsAt))
+            used += diff
+        }
+        return value * 2
+    }
     static func sealevel(h:Float)-> Float{
         return max(RTSGame.sealevel-0.01, h)
     }
     static func polish(h:Float, v:Vector2) -> Float{
         var x = h
-        x = x + crater(v: v)
+        //x = x + crater(v: v)
         x = normalize(h: x)
-        x = sealevel(h: x)
+        //x = sealevel(h: x)
+        return x
+    }
+    static func polish_grad(h:Float, grad:Vector2, v:Vector2) -> Vector2{
+        if h < 0 {return Vector2()}
+        var x = grad
+        x = x + crater_grad(v: v)
+        x = normalize_diff(h: h) * grad
         return x
     }
 }
@@ -51,17 +77,20 @@ class RTSHeightMap{
             self.layers.append((RTSHeightMapLayer(n:nPost), amplitude))
         }
     }
-    func evaluate(v:Vector2) -> Float{
+    func evaluate(v:Vector2) -> (Float, Vector2){
         var sum:Float = 0.0
+        var grad:Vector2 = Vector2()
         for (layer, amplitude) in self.layers{
-            sum += amplitude*layer.evaluate(v: v)
+            let (height, gradient) = layer.evaluate(v: v)
+            sum += amplitude*height
+            grad = grad + amplitude*gradient
         }
         let h = Heights.polish(h:sum, v:v)
+        let g = Heights.polish_grad(h: h, grad: grad, v: v)
         if h<min{min=h}
         if h>max{max=h}
-        return h
+        return (h, grad)
     }
-    
 }
 
 class RTSHeightMapLayer{
@@ -75,37 +104,50 @@ class RTSHeightMapLayer{
         self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
 
     }
-    func evaluate(v: Vector2) -> Float{
-        var sum:Float = 0
+    func coords_to_index(v:Vector2) -> (Int, Int){
         let a = Float(self.n+1) / Float(2)
         let i = Int(a * (v.x + 1)) - 1
         let j = Int(a * (v.y + 1)) - 1
-        
+        return (i,j)
+    }
+    func evaluate(v: Vector2) -> (Float, Vector2){
+        var sum:Float = 0
+        var gradient:Vector2 = Vector2()
+        let (i,j):(Int, Int) = self.coords_to_index(v: v)
+        if (i>1) {return (0, Vector2())}
+        if (j>2) {return (0, Vector2())}
+        if (i<1) {return (0, Vector2())}
+        if (j<2) {return (0, Vector2())}
         let grad_pos = Float(2)/Float(n+1) * Vector2(x:Float(i+1), y:Float(j+1)) - Vector2.UP - Vector2.RIGHT
         
         if i>=0 && i<n && j>=0 && j<n{
-            sum += self.calc_contribution(v: v, grad_pos:grad_pos, gradient:self.gradients[i*n+j])
+            let (h,g) = self.calc_contribution(v: v, grad_pos:grad_pos, gradient:self.gradients[i*n+j])
+            sum += h
+            gradient = gradient + g
         }
         if i<n-1 && j>=0 && j<n{
-            sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*Vector2.RIGHT, gradient:self.gradients[(i+1)*n+j])
+            let (h,g) = self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*Vector2.RIGHT, gradient:self.gradients[(i+1)*n+j])
+            sum += h
+            gradient = gradient + g
         }
         if i>=0 && i<n && j<n-1{
-            sum += self.calc_contribution(v: v, grad_pos:grad_pos+tileSize*Vector2.UP, gradient:self.gradients[i*n+j+1])
+            let (h,g) = self.calc_contribution(v: v, grad_pos:grad_pos+tileSize*Vector2.UP, gradient:self.gradients[i*n+j+1])
+            sum += h
+            gradient = gradient + g
         }
         if i<n-1 && j<n-1{
-            sum += self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*(Vector2.RIGHT+Vector2.UP), gradient:self.gradients[(i+1)*n+j+1])
+            let (h,g) = self.calc_contribution(v:v, grad_pos:grad_pos+tileSize*(Vector2.RIGHT+Vector2.UP), gradient:self.gradients[(i+1)*n+j+1])
+            sum += h
+            gradient = gradient + g
         }
-        return sum
-        
-    }
-    func evalutate(x:Float, y:Float) -> Float{
-        return self.evaluate(v: Vector2(x:x, y:y))
+        return (sum, gradient)
     }
     ///calcualtes contribution of a given gradient to the evaluation at v
-    func calc_contribution(v: Vector2, grad_pos:Vector2, gradient: Vector2)->Float{
-        
+    func calc_contribution(v: Vector2, grad_pos:Vector2, gradient: Vector2)->(Float, Vector2){
         let d:Vector2 = Float(n+1)/Float(2) * (v - grad_pos)
-        return (d ** gradient) * RTSHeightMapLayer.decay(d: d)
+        let decay = RTSHeightMapLayer.decay(d: d)
+        let decay_diff = RTSHeightMapLayer.decay_diff(d.length()) * decay / d.length()
+        return (decay * (d ** gradient), decay_diff * gradient)
     }
     ///polynomial starting at (0,1) decays to (1,0) derivative at both ends is 0
     static func decay(_ r:Float) -> Float {
@@ -114,25 +156,12 @@ class RTSHeightMapLayer{
         let lambda:Float = 1 * (2 * r * square - 3 * square + 1)
         return lambda;
     }
+    static func decay_diff(_ r:Float) -> Float {
+        let lambda:Float = 6*r*r - 6*r
+        return lambda
+    }
     ///decy in 2d
     static func decay(d: Vector2) -> Float {
-        return RTSHeightMapLayer.decay(d.x, d.y)
+        return RTSHeightMapLayer.decay(abs(d.x)) * RTSHeightMapLayer.decay(abs(d.y))
     }
-    ///decay in 2d
-    static func decay(_ dx:Float, _ dy:Float) -> Float {
-        return RTSHeightMapLayer.decay(abs(dx)) * RTSHeightMapLayer.decay(abs(dy))
-    }
-    
-    func makeMatrix() -> Matrix{
-        let k = 10
-        var M:Matrix = Matrix(columns:10, rows:10)
-        for i in 0..<k{
-            for j in 0..<k{
-                let pos = Vector2(x:Float(2*i)/Float(k)-1, y:Float(2*j)/Float(k)-1)
-                M.elements[i*k+j] = self.evaluate(v: pos)
-            }
-        }
-        return M
-    }
-
 }

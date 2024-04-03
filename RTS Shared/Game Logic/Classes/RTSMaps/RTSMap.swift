@@ -18,6 +18,7 @@ class RTSMap {
         case closedPost
         case forbidden
         case border
+        case steep
     }
     
     enum MapShape {
@@ -52,7 +53,9 @@ class RTSMap {
     func setTiles() {
         for i in 0..<tiles.count{
             let pos = tileIndex_to_position(i) + Float(tileSize)/Float(2) * (Vector2.UP+Vector2.RIGHT)
-            let height = heightMap.evaluate(v: pos)
+            let (h, gradient) = heightMap.evaluate(v: pos)
+            let height = gradient.length()-1
+            //if gradient.y < -0.5 { tiles[i] = TileType.steep }
             if height < RTSGame.sealevel{ tiles[i] = TileType.water}
             else if height < RTSGame.grasstop{ tiles[i] = TileType.grass}
             else if height < RTSGame.mountaintop{ tiles[i] = TileType.mountain}

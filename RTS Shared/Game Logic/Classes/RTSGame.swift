@@ -89,7 +89,7 @@ class RTSGame {
     ///spread out the players on the map
     func distributePlayersStep() {
         for player in players.values{
-            var disgustVect = Vector2.NULL
+            var disgustVect = Vector2()
             for otherPlayer in players.values{
                 let diff:Vector2 = otherPlayer.getCurrentPosition() - player.getCurrentPosition()
                 disgustVect = disgustVect + 1/(diff.length()*diff.length()) * diff
