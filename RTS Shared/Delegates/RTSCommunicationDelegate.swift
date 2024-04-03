@@ -9,7 +9,7 @@ import Foundation
 import Network
 import MultipeerConnectivity
 
-class RTSCommunicationDelegate {
+class RTSCommunicationDelegate: NSObject {
     
     //var connection: NWConnection!
     
@@ -17,14 +17,21 @@ class RTSCommunicationDelegate {
     
     var game: RTSGame?
     
-    init() {
+    override init() {
         
         let peer = MCPeerID(displayName: game?.selfPlayer?.name ?? "N/A")
         self.session = MCSession(peer: peer)
         
         let advertiser = MCAdvertiserAssistant(serviceType: "RTS-Game", discoveryInfo: nil, session: self.session)
-        advertiser.start()
         let browser = MCNearbyServiceBrowser(peer: peer, serviceType: "RTS-Game")
+        
+        super.init()
+        
+        session.delegate = self
+        advertiser.delegate = self
+        browser.delegate = self
+        
+        advertiser.start()
         browser.startBrowsingForPeers()
         
         /*let host: NWEndpoint.Host = "131.159.208.167"
@@ -88,5 +95,55 @@ class RTSCommunicationDelegate {
     func setGame(_ game: RTSGame) {
         self.game = game
     }
+    
+}
+
+extension RTSCommunicationDelegate: MCNearbyServiceAdvertiserDelegate {
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+        NSLog("ServiceAdvertiser didNotStartAdvertisingPeer: \(String(describing: error))")
+    }
+
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        NSLog("didReceiveInvitationFromPeer \(peerID)")
+    }
+}
+
+extension RTSCommunicationDelegate: MCNearbyServiceBrowserDelegate {
+    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
+        NSLog("ServiceBrowser didNotStartBrowsingForPeers: \(String(describing: error))")
+    }
+
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
+        NSLog("ServiceBrowser found peer: \(peerID)")
+    }
+
+    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        NSLog("ServiceBrowser lost peer: \(peerID)")
+    }
+}
+
+extension RTSCommunicationDelegate: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        NSLog("peer \(peerID) didChangeState: \(state.rawValue)")
+    }
+
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        NSLog("didReceive bytes \(data.count) bytes")
+    }
+
+    public func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        NSLog("Receiving streams is not supported")
+    }
+
+    public func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        NSLog("Receiving resources is not supported")
+    }
+
+    public func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        NSLog("Receiving resources is not supported")
+    }
+}
+
+extension RTSCommunicationDelegate: MCAdvertiserAssistantDelegate {
     
 }
