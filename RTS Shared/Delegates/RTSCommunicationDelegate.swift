@@ -20,9 +20,11 @@ class RTSCommunicationDelegate {
     
     var connectedToGame = false
     
+    var connections:[NWConnection] = []
+    
     init() {
         
-        let host: NWEndpoint.Host = "95.174.28.53"
+        let host: NWEndpoint.Host = "131.159.208.167"
         let port: NWEndpoint.Port = 8461
         self.connection = NWConnection(host: host, port: port, using: .udp)
         
@@ -59,8 +61,23 @@ class RTSCommunicationDelegate {
         }
         
         self.listener = try! NWListener(service: RTSCommunicationDelegate.service, using: .udp)
+        listener.serviceRegistrationUpdateHandler = { (serviceChange) in
+            switch serviceChange {
+            case .add(let endpoint):
+                switch endpoint {
+                case let .service(name, _, _, _):
+                    print("listening as name \(name)")
+                default:
+                    break
+                }
+            default:
+                break
+            }
+
+        }
         self.listener.newConnectionHandler = { conn in
-            return
+            conn.start(queue: .global())
+            self.connections.append(conn)
         }
         self.listener.start(queue: .global())
         
@@ -74,8 +91,8 @@ class RTSCommunicationDelegate {
     }
     
     func send(_ action: RTSGameAction) {
-        print("send")
         let data = action.data
+        print(data.base64EncodedString())
         connection.send(content: data, completion: .idempotent)
     }
     

@@ -49,7 +49,8 @@ class RTSPlayerMoveAction: RTSGameAction {
     static let byteSize: Int = UUID.byteSize + Vector2.byteSize
     
     var data: Data {
-        var data = self.uuid.data
+        var data = Data([0, RTSActionType.playerMove.rawValue])
+        data.append(self.uuid.data)
         data.append(self.pos.data)
         return data
     }
