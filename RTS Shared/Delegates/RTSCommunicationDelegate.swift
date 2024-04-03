@@ -26,6 +26,38 @@ class RTSCommunicationDelegate {
         
         let host: NWEndpoint.Host = "131.159.208.167"
         let port: NWEndpoint.Port = 8461
+        
+        self.listener = try! NWListener(service: RTSCommunicationDelegate.service, using: .udp)
+        listener.serviceRegistrationUpdateHandler = { (serviceChange) in
+            switch serviceChange {
+            case .add(let endpoint):
+                switch endpoint {
+                case let .service(name, _, _, _):
+                    print("listening as name \(name)")
+                default:
+                    break
+                }
+            default:
+                break
+            }
+
+        }
+        self.listener.newConnectionHandler = { conn in
+            conn.start(queue: .global())
+            conn.receive(minimumIncompleteLength: 0, maximumLength: Int.max) { content, contentContext, isComplete, error in
+                print("hello")
+                if (isComplete) {
+                    if let data = content {
+                        if let action = RTSActionData.initActionFrom(data) {
+                            self.didRecieve(action)
+                        }
+                    }
+                }
+            }
+            self.connections.append(conn)
+        }
+        self.listener.start(queue: .global())
+        
         self.connection = NWConnection(host: host, port: port, using: .udp)
         
         connection.stateUpdateHandler = { (newState) in
@@ -59,27 +91,6 @@ class RTSCommunicationDelegate {
                 }
             }
         }
-        
-        self.listener = try! NWListener(service: RTSCommunicationDelegate.service, using: .udp)
-        listener.serviceRegistrationUpdateHandler = { (serviceChange) in
-            switch serviceChange {
-            case .add(let endpoint):
-                switch endpoint {
-                case let .service(name, _, _, _):
-                    print("listening as name \(name)")
-                default:
-                    break
-                }
-            default:
-                break
-            }
-
-        }
-        self.listener.newConnectionHandler = { conn in
-            conn.start(queue: .global())
-            self.connections.append(conn)
-        }
-        self.listener.start(queue: .global())
         
     }
     
