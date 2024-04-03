@@ -197,6 +197,7 @@
 		F47CC1242B97415E00125D78 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F47CC1272B97415E00125D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47CC1292B97415E00125D78 /* RTS_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTS_macOS.entitlements; sourceTree = "<group>"; };
+		F47DD8882BBD643300EF559F /* RTS-macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RTS-macOS-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F47E93D42BB2E8E30080C2FC /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		F48E93252BB8A45B001D3BFC /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		F48E932D2BB8A4A6001D3BFC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -415,6 +416,7 @@
 		F47CC1212B97415E00125D78 /* RTS macOS */ = {
 			isa = PBXGroup;
 			children = (
+				F47DD8882BBD643300EF559F /* RTS-macOS-Info.plist */,
 				F47CC1222B97415E00125D78 /* AppDelegate.swift */,
 				F47CC1242B97415E00125D78 /* GameViewController.swift */,
 				F47CC1262B97415E00125D78 /* Main.storyboard */,
@@ -1196,6 +1198,7 @@
 				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RTS-macOS-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -1229,6 +1232,7 @@
 				DEVELOPMENT_TEAM = 9LSWDAPCZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RTS-macOS-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

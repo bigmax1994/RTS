@@ -19,6 +19,8 @@ class RTSCommunicationDelegate: NSObject {
     
     override init() {
         
+        print("comm del init")
+        
         let peer = MCPeerID(displayName: game?.selfPlayer?.name ?? "N/A")
         self.session = MCSession(peer: peer)
         
