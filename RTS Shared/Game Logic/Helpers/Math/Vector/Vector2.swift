@@ -44,6 +44,9 @@ struct Vector2: Byteable, Equatable {
     static func random() -> Vector2 {
         return Vector2(x: Float.random(in: -1 ... 1), y: Float.random(in: -1 ... 1))
     }
+    static func random(using rng: inout RandomNumberGenerator) -> Vector2{
+        return Vector2(x: Float.random(in: -1 ... 1, using: &rng), y: Float.random(in: -1 ... 1, using: &rng))
+    }
     
     static let byteSize: Int = 2 * Float.byteSize
     

@@ -56,9 +56,9 @@ class RTSMap {
             let (h, gradient) = heightMap.evaluate(v: pos)
             let height = gradient.length()-1
             //if gradient.y < -0.5 { tiles[i] = TileType.steep }
-            if height < RTSGame.sealevel{ tiles[i] = TileType.water}
-            else if height < RTSGame.grasstop{ tiles[i] = TileType.grass}
-            else if height < RTSGame.mountaintop{ tiles[i] = TileType.mountain}
+            if height < RTSGame.mapSettings.sealevel{ tiles[i] = TileType.water}
+            else if height < RTSGame.mapSettings.grasstop{ tiles[i] = TileType.grass}
+            else if height < RTSGame.mapSettings.mountaintop{ tiles[i] = TileType.mountain}
             else {tiles[i] = TileType.forbidden}
         }
         print("min: \(heightMap.min), max:\(heightMap.max)")

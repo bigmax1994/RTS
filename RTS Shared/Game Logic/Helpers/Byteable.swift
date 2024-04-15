@@ -11,7 +11,6 @@ protocol Byteable {
     
     static var byteSize: Int { get }
     var data: Data { get }
-    
     init(_ data: Data)
     
 }
@@ -20,10 +19,28 @@ extension Float: Byteable {
     var data: Data {
         Data(withUnsafeBytes(of: self, Array.init))
     }
-    static let byteSize = 4
+    static var byteSize:Int = 4
     
     init(_ data: Data) {
         self = data.withUnsafeBytes { $0.load(as: Float.self) }
+    }
+}
+extension UInt8: Byteable {
+    var data: Data {
+        Data(withUnsafeBytes(of: self, Array.init))
+    }
+    static var byteSize: Int = 1
+    init(_ data: Data) {
+        self = data.withUnsafeBytes { $0.load(as: UInt8.self) }
+    }
+}
+extension Int: Byteable {
+    var data: Data {
+        Data(withUnsafeBytes(of: self, Array.init))
+    }
+    static var byteSize: Int = 1
+    init(_ data: Data) {
+        self = data.withUnsafeBytes { $0.load(as: Int.self) }
     }
 }
 
@@ -38,7 +55,7 @@ extension UUID: Byteable {
         return Data(self.asUInt8Array())
     }
     
-    static let byteSize = 16
+    static var byteSize:Int = 16
     
     init(_ data: Data) {
         self = data.withUnsafeBytes{

@@ -9,10 +9,10 @@ import Foundation
 
 class Heights{
     static func crater(v:Vector2) -> Float{
-        return RTSGame.craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
+        return RTSGame.mapSettings.craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
     }
     static func crater_grad(v:Vector2) -> Vector2{
-        return RTSGame.craterHeight*Vector2(x: craterWall_diff(v.x)*(1-craterWall(v.y)), y: (1-craterWall(v.x))*craterWall_diff(v.y))
+        return RTSGame.mapSettings.craterHeight*Vector2(x: craterWall_diff(v.x)*(1-craterWall(v.y)), y: (1-craterWall(v.x))*craterWall_diff(v.y))
     }
     static func sigmoid(_ t:Float)->Float{
         return 1/(1+exp(-t))
@@ -21,15 +21,15 @@ class Heights{
         return 1/(exp(t)+2+exp(-t))
     }
     static func craterWall(_ t:Float)->Float{
-        sigmoid(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth))
+        sigmoid(RTSGame.mapSettings.craterSharpness*(t*t - RTSGame.mapSettings.craterWidth*RTSGame.mapSettings.craterWidth))
     }
     static func craterWall_diff(_ t:Float)->Float{
-        sigmoid_diff(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth)) * RTSGame.craterSharpness * 2*t
+        sigmoid_diff(RTSGame.mapSettings.craterSharpness*(t*t - RTSGame.mapSettings.craterWidth*RTSGame.mapSettings.craterWidth)) * RTSGame.mapSettings.craterSharpness * 2*t
     }
     static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (-1,1)
         var value:Float = 0
         var used:Float = 0
-        for (height, beginsAt, sharpness) in RTSGame.heightLevels{
+        for (height, beginsAt, sharpness) in RTSGame.mapSettings.heightLevels{
             let diff = height-used
             value += diff*sigmoid(sharpness*(h-beginsAt))
             used += diff
@@ -39,7 +39,7 @@ class Heights{
     static func normalize_diff(h:Float) -> Float{
         var value:Float = 0
         var used:Float = 0
-        for (height, beginsAt, sharpness) in RTSGame.heightLevels{
+        for (height, beginsAt, sharpness) in RTSGame.mapSettings.heightLevels{
             let diff = height-used
             value += diff*sigmoid_diff(sharpness*(h-beginsAt))
             used += diff
@@ -47,7 +47,7 @@ class Heights{
         return value * 2
     }
     static func sealevel(h:Float)-> Float{
-        return max(RTSGame.sealevel-0.01, h)
+        return max(RTSGame.mapSettings.sealevel-0.01, h)
     }
     static func polish(h:Float, v:Vector2) -> Float{
         var x = h
@@ -64,17 +64,26 @@ class Heights{
         return x
     }
 }
+class MyRNG:RandomNumberGenerator{
+    init(seed: Int) { srand48(seed) }
+    func next() -> UInt64 { return UInt64(drand48() * Double(UInt64.max)) }
+}
 class RTSHeightMap{
     let n: Int
     var layers: [(RTSHeightMapLayer, Float)] = []//Layer, amplitude
     var min:Float = 0
     var max:Float = 0
     init(n:Int){
+        let data:Data = RTSGame.mapSettings.data
+        print(data.base64EncodedString())
+        let settings:MapSettings = MapSettings(data)
+        print(settings.nPosts)
+        var rng:RandomNumberGenerator = MyRNG(seed:0)
         self.n = n
-        for (nPost, amplitude) in RTSGame.nPosts.enumerated().map({ (i, nPost) in
-            return (nPost, RTSGame.amplitudes[i])
+        for (nPost, amplitude) in RTSGame.mapSettings.nPosts.enumerated().map({ (i, nPost) in
+            return (nPost, RTSGame.mapSettings.amplitudes[i])
         }) {
-            self.layers.append((RTSHeightMapLayer(n:nPost), amplitude))
+            self.layers.append((RTSHeightMapLayer(n:nPost, using: &rng), amplitude))
         }
     }
     func evaluate(v:Vector2) -> (Float, Vector2){
@@ -97,11 +106,11 @@ class RTSHeightMapLayer{
     let gradients: [Vector2]
     let n: Int
     let tileSize:Float
-    init(n: Int){
+    init(n: Int, using rng: inout RandomNumberGenerator){
         // random 2d vectors
         self.n = n
         self.tileSize = 2/Float(n+1)
-        self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random()})
+        self.gradients = [Vector2](repeating: Vector2(), count: n*n).map({ _ in Vector2.random(using: &rng)})
 
     }
     func coords_to_index(v:Vector2) -> (Int, Int){
