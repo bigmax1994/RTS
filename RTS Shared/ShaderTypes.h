@@ -51,6 +51,12 @@ typedef struct {
     float shininess;
 } Material;
 
+typedef struct {
+    simd_float2 texturePosition;
+    float opacity;
+    float shininess;
+} TexturedMaterial;
+
 typedef struct
 {
     simd_float3 pos;
@@ -58,6 +64,14 @@ typedef struct
     Material material;
     
 } Vertex;
+
+typedef struct
+{
+    simd_float3 pos;
+    simd_float3 normal;
+    TexturedMaterial material;
+    
+} TexturedVertex;
 
 typedef struct
 {

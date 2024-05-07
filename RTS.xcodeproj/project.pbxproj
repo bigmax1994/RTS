@@ -10,9 +10,6 @@
 		2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
 		2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
 		2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */; };
-		2728F56E2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */; };
-		2728F56F2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */; };
-		2728F5702BB75C1F00F1F03B /* AnimationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */; };
 		27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
 		27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */; };
@@ -32,9 +29,9 @@
 		F41148222BAB1F40007F052D /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148212BAB1F40007F052D /* Drawable.swift */; };
 		F41148232BAB1F40007F052D /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148212BAB1F40007F052D /* Drawable.swift */; };
 		F41148242BAB1F40007F052D /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148212BAB1F40007F052D /* Drawable.swift */; };
-		F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
-		F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
-		F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* GPUEncodable.swift */; };
+		F41148262BAB22DD007F052D /* ShaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* ShaderType.swift */; };
+		F41148272BAB22DD007F052D /* ShaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* ShaderType.swift */; };
+		F41148282BAB22DD007F052D /* ShaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148252BAB22DD007F052D /* ShaderType.swift */; };
 		F411482A2BABAA20007F052D /* StencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148292BABAA20007F052D /* StencilStateLibrary.swift */; };
 		F411482B2BABAA20007F052D /* StencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148292BABAA20007F052D /* StencilStateLibrary.swift */; };
 		F411482C2BABAA20007F052D /* StencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41148292BABAA20007F052D /* StencilStateLibrary.swift */; };
@@ -48,6 +45,36 @@
 		F41F82E42B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F41F82E52B9C627B006974CE /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F82E22B9C627B006974CE /* Vertex.swift */; };
 		F4438F702BBD74550048053C /* RTS-macOS-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F47DD8882BBD643300EF559F /* RTS-macOS-Info.plist */; };
+		F4438F772BBD8A3E0048053C /* RTSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F762BBD8A3E0048053C /* RTSClient.swift */; };
+		F4438F782BBD8A3E0048053C /* RTSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F762BBD8A3E0048053C /* RTSClient.swift */; };
+		F4438F792BBD8A3E0048053C /* RTSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F762BBD8A3E0048053C /* RTSClient.swift */; };
+		F4438F7B2BBD93D50048053C /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F7A2BBD93D50048053C /* UI.swift */; };
+		F4438F7C2BBD93D50048053C /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F7A2BBD93D50048053C /* UI.swift */; };
+		F4438F7D2BBD93D50048053C /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F7A2BBD93D50048053C /* UI.swift */; };
+		F4438F802BBD95310048053C /* UIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F7F2BBD95310048053C /* UIDelegate.swift */; };
+		F4438F812BBD95310048053C /* UIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F7F2BBD95310048053C /* UIDelegate.swift */; };
+		F4438F822BBD95310048053C /* UIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F7F2BBD95310048053C /* UIDelegate.swift */; };
+		F4438F842BBD975A0048053C /* UIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F832BBD975A0048053C /* UIObject.swift */; };
+		F4438F852BBD975A0048053C /* UIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F832BBD975A0048053C /* UIObject.swift */; };
+		F4438F862BBD975A0048053C /* UIObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F832BBD975A0048053C /* UIObject.swift */; };
+		F4438F882BBD9A930048053C /* AnimationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F872BBD9A930048053C /* AnimationSet.swift */; };
+		F4438F892BBD9A930048053C /* AnimationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F872BBD9A930048053C /* AnimationSet.swift */; };
+		F4438F8A2BBD9A930048053C /* AnimationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F872BBD9A930048053C /* AnimationSet.swift */; };
+		F4438F8E2BBD9D450048053C /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F8D2BBD9D450048053C /* Animation.swift */; };
+		F4438F8F2BBD9D450048053C /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F8D2BBD9D450048053C /* Animation.swift */; };
+		F4438F902BBD9D450048053C /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F8D2BBD9D450048053C /* Animation.swift */; };
+		F4438F922BBD9D6E0048053C /* InterpolationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F912BBD9D6E0048053C /* InterpolationFunction.swift */; };
+		F4438F932BBD9D6E0048053C /* InterpolationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F912BBD9D6E0048053C /* InterpolationFunction.swift */; };
+		F4438F942BBD9D6E0048053C /* InterpolationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F912BBD9D6E0048053C /* InterpolationFunction.swift */; };
+		F4438F9B2BBDA6E50048053C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F9A2BBDA6E50048053C /* Button.swift */; };
+		F4438F9C2BBDA6E50048053C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F9A2BBDA6E50048053C /* Button.swift */; };
+		F4438F9D2BBDA6E50048053C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F9A2BBDA6E50048053C /* Button.swift */; };
+		F4438F9F2BBEBDD20048053C /* simd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F9E2BBEBDD20048053C /* simd.swift */; };
+		F4438FA02BBEBDD20048053C /* simd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F9E2BBEBDD20048053C /* simd.swift */; };
+		F4438FA12BBEBDD20048053C /* simd.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438F9E2BBEBDD20048053C /* simd.swift */; };
+		F4438FA32BBED4F90048053C /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438FA22BBED4F90048053C /* Interpolatable.swift */; };
+		F4438FA42BBED4F90048053C /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438FA22BBED4F90048053C /* Interpolatable.swift */; };
+		F4438FA52BBED4F90048053C /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4438FA22BBED4F90048053C /* Interpolatable.swift */; };
 		F4534A652BA8778800505014 /* RTSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A642BA8778800505014 /* RTSTests.swift */; };
 		F4534A762BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
 		F4534A772BA893F900505014 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534A752BA893F900505014 /* Matrix.swift */; };
@@ -64,6 +91,12 @@
 		F4534AB12BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
 		F4534AB22BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
 		F4534AB32BA9FF3900505014 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4534AB02BA9FF3900505014 /* Camera.swift */; };
+		F47635872BD15E420001AE45 /* FontLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635862BD15E420001AE45 /* FontLibrary.swift */; };
+		F47635882BD15E420001AE45 /* FontLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635862BD15E420001AE45 /* FontLibrary.swift */; };
+		F47635892BD15E420001AE45 /* FontLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635862BD15E420001AE45 /* FontLibrary.swift */; };
+		F47635912BD160C20001AE45 /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635902BD160C20001AE45 /* BezierPath.swift */; };
+		F47635922BD160C20001AE45 /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635902BD160C20001AE45 /* BezierPath.swift */; };
+		F47635932BD160C20001AE45 /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635902BD160C20001AE45 /* BezierPath.swift */; };
 		F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1022B97415E00125D78 /* AppDelegate.swift */; };
 		F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CC1042B97415E00125D78 /* GameViewController.swift */; };
 		F47CC1082B97415E00125D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CC1062B97415E00125D78 /* Main.storyboard */; };
@@ -102,6 +135,21 @@
 		F48E93362BB8A50F001D3BFC /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93352BB8A50F001D3BFC /* Transformation.swift */; };
 		F48E93372BB8A50F001D3BFC /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93352BB8A50F001D3BFC /* Transformation.swift */; };
 		F48E93382BB8A50F001D3BFC /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E93352BB8A50F001D3BFC /* Transformation.swift */; };
+		F4A171482BC2BC59008C37FA /* ComputeStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A171472BC2BC59008C37FA /* ComputeStateLibrary.swift */; };
+		F4A171492BC2BC59008C37FA /* ComputeStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A171472BC2BC59008C37FA /* ComputeStateLibrary.swift */; };
+		F4A1714A2BC2BC59008C37FA /* ComputeStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A171472BC2BC59008C37FA /* ComputeStateLibrary.swift */; };
+		F4A1714C2BC2C89D008C37FA /* ColorTextureLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1714B2BC2C89D008C37FA /* ColorTextureLibrary.swift */; };
+		F4A1714D2BC2C89D008C37FA /* ColorTextureLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1714B2BC2C89D008C37FA /* ColorTextureLibrary.swift */; };
+		F4A1714E2BC2C89D008C37FA /* ColorTextureLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1714B2BC2C89D008C37FA /* ColorTextureLibrary.swift */; };
+		F4A171502BC2EC0F008C37FA /* SecondOrderDynamics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1714F2BC2EC0F008C37FA /* SecondOrderDynamics.swift */; };
+		F4A171512BC2EC0F008C37FA /* SecondOrderDynamics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1714F2BC2EC0F008C37FA /* SecondOrderDynamics.swift */; };
+		F4A171522BC2EC0F008C37FA /* SecondOrderDynamics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1714F2BC2EC0F008C37FA /* SecondOrderDynamics.swift */; };
+		F4A171542BC30433008C37FA /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A171532BC30433008C37FA /* Text.swift */; };
+		F4A171552BC30433008C37FA /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A171532BC30433008C37FA /* Text.swift */; };
+		F4A171562BC30433008C37FA /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A171532BC30433008C37FA /* Text.swift */; };
+		F4A1715C2BC312D7008C37FA /* TexturedVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */; };
+		F4A1715D2BC312D7008C37FA /* TexturedVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */; };
+		F4A1715E2BC312D7008C37FA /* TexturedVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */; };
 		F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
@@ -144,6 +192,10 @@
 		F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
 		F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
 		F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
+		F4F2F6C22BE63F2F004AB04C /* FontFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F6C12BE63F2F004AB04C /* FontFileParser.swift */; };
+		F4F2F6C32BE63F2F004AB04C /* FontFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F6C12BE63F2F004AB04C /* FontFileParser.swift */; };
+		F4F2F6C42BE63F2F004AB04C /* FontFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F6C12BE63F2F004AB04C /* FontFileParser.swift */; };
+		F4F2F6C62BE65598004AB04C /* RTSFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F6C52BE65598004AB04C /* RTSFontTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,7 +210,6 @@
 
 /* Begin PBXFileReference section */
 		2715C2AC2BA8992C00AAC167 /* RTSHeightMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSHeightMap.swift; sourceTree = "<group>"; };
-		2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationQueue.swift; sourceTree = "<group>"; };
 		27A2D8B92BA85DA900F215AA /* RTSMap_types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSMap_types.swift; sourceTree = "<group>"; };
 		27A2D8F52BA8791800F215AA /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A2D8F72BA8791800F215AA /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
@@ -167,11 +218,21 @@
 		F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineStateLibrary.swift; sourceTree = "<group>"; };
 		F411481D2BAB1CC9007F052D /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
 		F41148212BAB1F40007F052D /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
-		F41148252BAB22DD007F052D /* GPUEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUEncodable.swift; sourceTree = "<group>"; };
+		F41148252BAB22DD007F052D /* ShaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderType.swift; sourceTree = "<group>"; };
 		F41148292BABAA20007F052D /* StencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StencilStateLibrary.swift; sourceTree = "<group>"; };
 		F41148352BABB44C007F052D /* Drone.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.obj; sourceTree = "<group>"; };
 		F41148362BABB44C007F052D /* Drone.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drone.mtl; sourceTree = "<group>"; };
 		F41F82E22B9C627B006974CE /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		F4438F762BBD8A3E0048053C /* RTSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSClient.swift; sourceTree = "<group>"; };
+		F4438F7A2BBD93D50048053C /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		F4438F7F2BBD95310048053C /* UIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDelegate.swift; sourceTree = "<group>"; };
+		F4438F832BBD975A0048053C /* UIObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIObject.swift; sourceTree = "<group>"; };
+		F4438F872BBD9A930048053C /* AnimationSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSet.swift; sourceTree = "<group>"; };
+		F4438F8D2BBD9D450048053C /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		F4438F912BBD9D6E0048053C /* InterpolationFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpolationFunction.swift; sourceTree = "<group>"; };
+		F4438F9A2BBDA6E50048053C /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		F4438F9E2BBEBDD20048053C /* simd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simd.swift; sourceTree = "<group>"; };
+		F4438FA22BBED4F90048053C /* Interpolatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpolatable.swift; sourceTree = "<group>"; };
 		F4534A622BA8778800505014 /* RTSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4534A642BA8778800505014 /* RTSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSTests.swift; sourceTree = "<group>"; };
 		F4534A752BA893F900505014 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
@@ -179,6 +240,8 @@
 		F4534A862BA9965600505014 /* Map Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Map Sample.swift"; sourceTree = "<group>"; };
 		F4534A912BA9C77B00505014 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		F4534AB02BA9FF3900505014 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		F47635862BD15E420001AE45 /* FontLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLibrary.swift; sourceTree = "<group>"; };
+		F47635902BD160C20001AE45 /* BezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
 		F47CC0F72B97415C00125D78 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		F47CC0F82B97415C00125D78 /* RTSRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSRenderer.swift; sourceTree = "<group>"; };
 		F47CC0F92B97415C00125D78 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -205,6 +268,11 @@
 		F48E932D2BB8A4A6001D3BFC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F48E93312BB8A4F1001D3BFC /* Material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		F48E93352BB8A50F001D3BFC /* Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		F4A171472BC2BC59008C37FA /* ComputeStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeStateLibrary.swift; sourceTree = "<group>"; };
+		F4A1714B2BC2C89D008C37FA /* ColorTextureLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTextureLibrary.swift; sourceTree = "<group>"; };
+		F4A1714F2BC2EC0F008C37FA /* SecondOrderDynamics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOrderDynamics.swift; sourceTree = "<group>"; };
+		F4A171532BC30433008C37FA /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexturedVertex.swift; sourceTree = "<group>"; };
 		F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSCommunicationDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE32B9B950600A70A56 /* RTSGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGame.swift; sourceTree = "<group>"; };
@@ -219,6 +287,8 @@
 		F4EF7AEE2B9B950600A70A56 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		F4EF7AF02B9B950600A70A56 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F4EF7AF22B9B950600A70A56 /* Byteable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Byteable.swift; sourceTree = "<group>"; };
+		F4F2F6C12BE63F2F004AB04C /* FontFileParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontFileParser.swift; sourceTree = "<group>"; };
+		F4F2F6C52BE65598004AB04C /* RTSFontTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSFontTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,15 +355,51 @@
 			children = (
 				F41148112BAB1821007F052D /* FunctionLibrary.swift */,
 				F41148192BAB1B52007F052D /* PipelineStateLibrary.swift */,
+				F4A171472BC2BC59008C37FA /* ComputeStateLibrary.swift */,
+				F4A1714B2BC2C89D008C37FA /* ColorTextureLibrary.swift */,
 				F41148292BABAA20007F052D /* StencilStateLibrary.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		F4438F752BBD8A2B0048053C /* Communication Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				F4438F762BBD8A3E0048053C /* RTSClient.swift */,
+			);
+			path = "Communication Handlers";
+			sourceTree = "<group>";
+		};
+		F4438F7E2BBD94190048053C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F4438F7A2BBD93D50048053C /* UI.swift */,
+				F4A171532BC30433008C37FA /* Text.swift */,
+				F476358A2BD15EF30001AE45 /* Text Rendering */,
+				F4438F7F2BBD95310048053C /* UIDelegate.swift */,
+				F4438F832BBD975A0048053C /* UIObject.swift */,
+				F4438F9A2BBDA6E50048053C /* Button.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F4438F8C2BBD9D340048053C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				F4438F872BBD9A930048053C /* AnimationSet.swift */,
+				F4438F8D2BBD9D450048053C /* Animation.swift */,
+				F4A1714F2BC2EC0F008C37FA /* SecondOrderDynamics.swift */,
+				F4438F912BBD9D6E0048053C /* InterpolationFunction.swift */,
+				F4438FA22BBED4F90048053C /* Interpolatable.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		F4534A632BA8778800505014 /* RTSTests */ = {
 			isa = PBXGroup;
 			children = (
 				F4534A642BA8778800505014 /* RTSTests.swift */,
+				F4F2F6C52BE65598004AB04C /* RTSFontTests.swift */,
 			);
 			path = RTSTests;
 			sourceTree = "<group>";
@@ -312,6 +418,7 @@
 			children = (
 				F4EF7AEA2B9B950600A70A56 /* Vector */,
 				F4534A7D2BA8950900505014 /* Matrix */,
+				F4438F9E2BBEBDD20048053C /* simd.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -321,6 +428,7 @@
 			children = (
 				F48E93252BB8A45B001D3BFC /* Light.swift */,
 				F41148212BAB1F40007F052D /* Drawable.swift */,
+				F4438F7E2BBD94190048053C /* UI */,
 				F4534A912BA9C77B00505014 /* Object.swift */,
 				F4534AB02BA9FF3900505014 /* Camera.swift */,
 				F47E93D42BB2E8E30080C2FC /* World.swift */,
@@ -331,8 +439,9 @@
 		F4534A932BA9C77B00505014 /* Render Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F4438F8C2BBD9D340048053C /* Animation */,
 				F41148102BAB180D007F052D /* Library */,
-				F462F7642BA85D6300AA21DE /* Vertex Helpers */,
+				F462F7642BA85D6300AA21DE /* Shader Types */,
 				F4534A922BA9C77B00505014 /* Classes */,
 				F41148152BAB18D4007F052D /* Engine.swift */,
 				F411481D2BAB1CC9007F052D /* EngineSettings.swift */,
@@ -340,16 +449,27 @@
 			path = "Render Engine";
 			sourceTree = "<group>";
 		};
-		F462F7642BA85D6300AA21DE /* Vertex Helpers */ = {
+		F462F7642BA85D6300AA21DE /* Shader Types */ = {
 			isa = PBXGroup;
 			children = (
+				F41148252BAB22DD007F052D /* ShaderType.swift */,
 				F48E93312BB8A4F1001D3BFC /* Material.swift */,
 				F48E932D2BB8A4A6001D3BFC /* Color.swift */,
 				F41F82E22B9C627B006974CE /* Vertex.swift */,
-				F41148252BAB22DD007F052D /* GPUEncodable.swift */,
+				F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */,
 				F48E93352BB8A50F001D3BFC /* Transformation.swift */,
 			);
-			path = "Vertex Helpers";
+			path = "Shader Types";
+			sourceTree = "<group>";
+		};
+		F476358A2BD15EF30001AE45 /* Text Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				F47635862BD15E420001AE45 /* FontLibrary.swift */,
+				F4F2F6C12BE63F2F004AB04C /* FontFileParser.swift */,
+				F47635902BD160C20001AE45 /* BezierPath.swift */,
+			);
+			path = "Text Rendering";
 			sourceTree = "<group>";
 		};
 		F47CC0F12B97415C00125D78 = {
@@ -439,6 +559,7 @@
 		F4EF7ADE2B9B950600A70A56 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				F4438F752BBD8A2B0048053C /* Communication Handlers */,
 				F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */,
 				F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */,
 			);
@@ -472,7 +593,6 @@
 				F4EF7AE52B9B950600A70A56 /* RTSPlayerMoveAction.swift */,
 				F4EF7AE62B9B950600A70A56 /* RTSGameAction.swift */,
 				F4EF7AE72B9B950600A70A56 /* RTSData.swift */,
-				2728F56D2BB75C1F00F1F03B /* AnimationQueue.swift */,
 			);
 			path = RTSGameAction;
 			sourceTree = "<group>";
@@ -697,6 +817,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F2F6C62BE65598004AB04C /* RTSFontTests.swift in Sources */,
 				F4534A652BA8778800505014 /* RTSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,24 +827,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EF7B082B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
+				F4438F9B2BBDA6E50048053C /* Button.swift in Sources */,
 				F411481A2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
+				F4F2F6C22BE63F2F004AB04C /* FontFileParser.swift in Sources */,
+				F4A1715C2BC312D7008C37FA /* TexturedVertex.swift in Sources */,
+				F4438F772BBD8A3E0048053C /* RTSClient.swift in Sources */,
 				F47CC12D2B97415E00125D78 /* RTSRenderer.swift in Sources */,
+				F4A1714C2BC2C89D008C37FA /* ColorTextureLibrary.swift in Sources */,
+				F4438FA32BBED4F90048053C /* Interpolatable.swift in Sources */,
 				F4EF7AF62B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
+				F4438F882BBD9A930048053C /* AnimationSet.swift in Sources */,
 				F4534A872BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12A2B97415E00125D78 /* Shaders.metal in Sources */,
-				2728F56E2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E32B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
+				F4438F7B2BBD93D50048053C /* UI.swift in Sources */,
 				F47CC1052B97415E00125D78 /* GameViewController.swift in Sources */,
 				F411481E2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
 				F4EF7AF92B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F48E93322BB8A4F1001D3BFC /* Material.swift in Sources */,
 				F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F47635872BD15E420001AE45 /* FontLibrary.swift in Sources */,
 				F41148222BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A942BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F48E932E2BB8A4A6001D3BFC /* Color.swift in Sources */,
-				F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */,
+				F4A171502BC2EC0F008C37FA /* SecondOrderDynamics.swift in Sources */,
+				F41148262BAB22DD007F052D /* ShaderType.swift in Sources */,
+				F4438F842BBD975A0048053C /* UIObject.swift in Sources */,
+				F4438F8E2BBD9D450048053C /* Animation.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D52BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
@@ -731,19 +863,25 @@
 				F48E93262BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148162BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
+				F4A171542BC30433008C37FA /* Text.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A762BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB12BA9FF3900505014 /* Camera.swift in Sources */,
+				F47635912BD160C20001AE45 /* BezierPath.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F48E93362BB8A50F001D3BFC /* Transformation.swift in Sources */,
 				F4EF7B112B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B142B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AD2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
+				F4438F9F2BBEBDD20048053C /* simd.swift in Sources */,
+				F4A171482BC2BC59008C37FA /* ComputeStateLibrary.swift in Sources */,
+				F4438F802BBD95310048053C /* UIDelegate.swift in Sources */,
 				F411482A2BABAA20007F052D /* StencilStateLibrary.swift in Sources */,
 				F4EF7B172B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B022B9B950600A70A56 /* RTSData.swift in Sources */,
+				F4438F922BBD9D6E0048053C /* InterpolationFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,24 +890,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EF7B092B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
+				F4438F9C2BBDA6E50048053C /* Button.swift in Sources */,
 				F411481B2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
+				F4F2F6C32BE63F2F004AB04C /* FontFileParser.swift in Sources */,
+				F4A1715D2BC312D7008C37FA /* TexturedVertex.swift in Sources */,
+				F4438F782BBD8A3E0048053C /* RTSClient.swift in Sources */,
 				F47CC12E2B97415E00125D78 /* RTSRenderer.swift in Sources */,
+				F4A1714D2BC2C89D008C37FA /* ColorTextureLibrary.swift in Sources */,
+				F4438FA42BBED4F90048053C /* Interpolatable.swift in Sources */,
 				F4EF7AF72B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
+				F4438F892BBD9A930048053C /* AnimationSet.swift in Sources */,
 				F4534A882BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12B2B97415E00125D78 /* Shaders.metal in Sources */,
-				2728F56F2BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E42B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
+				F4438F7C2BBD93D50048053C /* UI.swift in Sources */,
 				F47CC1152B97415E00125D78 /* GameViewController.swift in Sources */,
 				F411481F2BAB1CC9007F052D /* EngineSettings.swift in Sources */,
 				F4EF7AFA2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F48E93332BB8A4F1001D3BFC /* Material.swift in Sources */,
 				F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F47635882BD15E420001AE45 /* FontLibrary.swift in Sources */,
 				F41148232BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A952BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F48E932F2BB8A4A6001D3BFC /* Color.swift in Sources */,
-				F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */,
+				F4A171512BC2EC0F008C37FA /* SecondOrderDynamics.swift in Sources */,
+				F41148272BAB22DD007F052D /* ShaderType.swift in Sources */,
+				F4438F852BBD975A0048053C /* UIObject.swift in Sources */,
+				F4438F8F2BBD9D450048053C /* Animation.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D62BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
@@ -777,19 +926,25 @@
 				F48E93272BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148172BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
+				F4A171552BC30433008C37FA /* Text.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A772BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB22BA9FF3900505014 /* Camera.swift in Sources */,
+				F47635922BD160C20001AE45 /* BezierPath.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F48E93372BB8A50F001D3BFC /* Transformation.swift in Sources */,
 				F4EF7B122B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B152B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AE2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
+				F4438FA02BBEBDD20048053C /* simd.swift in Sources */,
+				F4A171492BC2BC59008C37FA /* ComputeStateLibrary.swift in Sources */,
+				F4438F812BBD95310048053C /* UIDelegate.swift in Sources */,
 				F411482B2BABAA20007F052D /* StencilStateLibrary.swift in Sources */,
 				F4EF7B182B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B032B9B950600A70A56 /* RTSData.swift in Sources */,
+				F4438F932BBD9D6E0048053C /* InterpolationFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,24 +953,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4EF7B0A2B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
+				F4438F9D2BBDA6E50048053C /* Button.swift in Sources */,
 				F411481C2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
+				F4F2F6C42BE63F2F004AB04C /* FontFileParser.swift in Sources */,
+				F4A1715E2BC312D7008C37FA /* TexturedVertex.swift in Sources */,
+				F4438F792BBD8A3E0048053C /* RTSClient.swift in Sources */,
 				F47CC12F2B97415E00125D78 /* RTSRenderer.swift in Sources */,
+				F4A1714E2BC2C89D008C37FA /* ColorTextureLibrary.swift in Sources */,
+				F4438FA52BBED4F90048053C /* Interpolatable.swift in Sources */,
 				F4EF7AF82B9B950600A70A56 /* RTSCommunicationDelegate.swift in Sources */,
+				F4438F8A2BBD9A930048053C /* AnimationSet.swift in Sources */,
 				F4534A892BA9965600505014 /* Map Sample.swift in Sources */,
 				F47CC12C2B97415E00125D78 /* Shaders.metal in Sources */,
-				2728F5702BB75C1F00F1F03B /* AnimationQueue.swift in Sources */,
 				F41F82E52B9C627B006974CE /* Vertex.swift in Sources */,
 				F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */,
+				F4438F7D2BBD93D50048053C /* UI.swift in Sources */,
 				F47CC1252B97415E00125D78 /* GameViewController.swift in Sources */,
 				F41148202BAB1CC9007F052D /* EngineSettings.swift in Sources */,
 				F4EF7AFB2B9B950600A70A56 /* RTSGame.swift in Sources */,
 				F48E93342BB8A4F1001D3BFC /* Material.swift in Sources */,
 				F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */,
+				F47635892BD15E420001AE45 /* FontLibrary.swift in Sources */,
 				F41148242BAB1F40007F052D /* Drawable.swift in Sources */,
 				F4534A962BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F48E93302BB8A4A6001D3BFC /* Color.swift in Sources */,
-				F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */,
+				F4A171522BC2EC0F008C37FA /* SecondOrderDynamics.swift in Sources */,
+				F41148282BAB22DD007F052D /* ShaderType.swift in Sources */,
+				F4438F862BBD975A0048053C /* UIObject.swift in Sources */,
+				F4438F902BBD9D450048053C /* Animation.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D72BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,
@@ -823,19 +989,25 @@
 				F48E93282BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148182BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
+				F4A171562BC30433008C37FA /* Text.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A782BA893F900505014 /* Matrix.swift in Sources */,
 				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
 				F4534AB32BA9FF3900505014 /* Camera.swift in Sources */,
+				F47635932BD160C20001AE45 /* BezierPath.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
 				F48E93382BB8A50F001D3BFC /* Transformation.swift in Sources */,
 				F4EF7B132B9B950600A70A56 /* Vector4.swift in Sources */,
 				F4EF7B162B9B950600A70A56 /* Vector3.swift in Sources */,
 				2715C2AF2BA8992C00AAC167 /* RTSHeightMap.swift in Sources */,
+				F4438FA12BBEBDD20048053C /* simd.swift in Sources */,
+				F4A1714A2BC2BC59008C37FA /* ComputeStateLibrary.swift in Sources */,
+				F4438F822BBD95310048053C /* UIDelegate.swift in Sources */,
 				F411482C2BABAA20007F052D /* StencilStateLibrary.swift in Sources */,
 				F4EF7B192B9B950600A70A56 /* Player.swift in Sources */,
 				F4EF7B042B9B950600A70A56 /* RTSData.swift in Sources */,
+				F4438F942BBD9D6E0048053C /* InterpolationFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

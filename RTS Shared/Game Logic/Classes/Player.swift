@@ -7,15 +7,18 @@
 
 import Foundation
 
-class Player {
+class Player: Equatable {
+    
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
     
     var name: String
     var uuid: UUID
     
     var isFree: Bool = true
     
-    private var currentPosition: Vector2 = Vector2()
-    private var futurePosition: Vector2 = Vector2()
+    internal var position: Vector2 = Vector2()
     
     var playerChar: Object? = nil
     
@@ -23,20 +26,15 @@ class Player {
         self.name = name
         self.uuid = UUID()
     }
-    func displayAt(_ pos: Vector2){
-        currentPosition = pos
-    }
+    
     func moveBy(_ vec: Vector2) {
-        futurePosition = futurePosition + vec
+        position = position + vec
     }
     func moveTo(_ pos: Vector2) {
-        futurePosition = pos
+        position = pos
     }
-    func getCurrentPosition() -> Vector2 {
-        return self.currentPosition
-    }
-    func getFuturePosition() -> Vector2 {
-        return self.futurePosition
+    func getPosition() -> Vector2 {
+        return self.position
     }
     
 }

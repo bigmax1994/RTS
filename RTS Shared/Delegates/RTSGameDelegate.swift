@@ -8,6 +8,7 @@
 import Foundation
 
 protocol RTSGameDelegate {
+    
     var mousePosition:Vector2 {get}
     var mouseIsDown:Bool {get}
     
@@ -15,8 +16,7 @@ protocol RTSGameDelegate {
     
     func gameDidStart(_ game: RTSGame)
     
-    func renderPlayerMovement(_ game: RTSGame, player: Player, to position: Vector2, from oldPosition: Vector2)
-    func setCameraPosition(_ game:RTSGame, to:Vector2)
+    func game(_ game: RTSGame, player: Player, didMoveTo position: Vector2, from oldPosition: Vector2)
     
     func gameDidEnd(_ game: RTSGame)
     

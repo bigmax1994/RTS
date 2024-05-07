@@ -8,7 +8,7 @@
 import Foundation
 import simd
 
-extension Light: GPUEncodable {
+extension Light: ShaderType {
     
     /*init(pos: simd_float3, color: simd_float3 = simd_float3(1, 1, 1), ambientColor: simd_float3 = simd_float3(0, 0, 0)) {
         self.init()

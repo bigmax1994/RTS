@@ -9,10 +9,10 @@ import Foundation
 
 class Heights{
     static func crater(v:Vector2) -> Float{
-        return RTSGame.craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
+        return RTSGame.mapSettings.craterHeight*(1-(1-craterWall(v.x))*(1-craterWall(v.y)))
     }
     static func crater_grad(v:Vector2) -> Vector2{
-        return RTSGame.craterHeight*Vector2(x: craterWall_diff(v.x)*(1-craterWall(v.y)), y: (1-craterWall(v.x))*craterWall_diff(v.y))
+        return RTSGame.mapSettings.craterHeight*Vector2(x: craterWall_diff(v.x)*(1-craterWall(v.y)), y: (1-craterWall(v.x))*craterWall_diff(v.y))
     }
     static func sigmoid(_ t:Float)->Float{
         return 1/(1+exp(-t))
@@ -21,15 +21,15 @@ class Heights{
         return 1/(exp(t)+2+exp(-t))
     }
     static func craterWall(_ t:Float)->Float{
-        sigmoid(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth))
+        sigmoid(RTSGame.mapSettings.craterSharpness*(t*t - RTSGame.mapSettings.craterWidth*RTSGame.mapSettings.craterWidth))
     }
     static func craterWall_diff(_ t:Float)->Float{
-        sigmoid_diff(RTSGame.craterSharpness*(t*t - RTSGame.craterWidth*RTSGame.craterWidth)) * RTSGame.craterSharpness * 2*t
+        sigmoid_diff(RTSGame.mapSettings.craterSharpness*(t*t - RTSGame.mapSettings.craterWidth*RTSGame.mapSettings.craterWidth)) * RTSGame.mapSettings.craterSharpness * 2*t
     }
     static func normalize(h:Float) -> Float{ //smushes the height function so that more space will fall into the specified HeightLevels. Returns h in (-1,1)
         var value:Float = 0
         var used:Float = 0
-        for (height, beginsAt, sharpness) in RTSGame.heightLevels{
+        for (height, beginsAt, sharpness) in RTSGame.mapSettings.heightLevels{
             let diff = height-used
             value += diff*sigmoid(sharpness*(h-beginsAt))
             used += diff
@@ -39,7 +39,7 @@ class Heights{
     static func normalize_diff(h:Float) -> Float{
         var value:Float = 0
         var used:Float = 0
-        for (height, beginsAt, sharpness) in RTSGame.heightLevels{
+        for (height, beginsAt, sharpness) in RTSGame.mapSettings.heightLevels{
             let diff = height-used
             value += diff*sigmoid_diff(sharpness*(h-beginsAt))
             used += diff
@@ -47,7 +47,7 @@ class Heights{
         return value * 2
     }
     static func sealevel(h:Float)-> Float{
-        return max(RTSGame.sealevel-0.01, h)
+        return max(RTSGame.mapSettings.sealevel-0.01, h)
     }
     static func polish(h:Float, v:Vector2) -> Float{
         var x = h
@@ -71,8 +71,8 @@ class RTSHeightMap{
     var max:Float = 0
     init(n:Int){
         self.n = n
-        for (nPost, amplitude) in RTSGame.nPosts.enumerated().map({ (i, nPost) in
-            return (nPost, RTSGame.amplitudes[i])
+        for (nPost, amplitude) in RTSGame.mapSettings.nPosts.enumerated().map({ (i, nPost) in
+            return (nPost, RTSGame.mapSettings.amplitudes[i])
         }) {
             self.layers.append((RTSHeightMapLayer(n:nPost), amplitude))
         }
@@ -114,10 +114,10 @@ class RTSHeightMapLayer{
         var sum:Float = 0
         var gradient:Vector2 = Vector2()
         let (i,j):(Int, Int) = self.coords_to_index(v: v)
-        if (i>1) {return (0, Vector2())}
+        /*if (i>1) {return (0, Vector2())}
         if (j>2) {return (0, Vector2())}
         if (i<1) {return (0, Vector2())}
-        if (j<2) {return (0, Vector2())}
+        if (j<2) {return (0, Vector2())}*/
         let grad_pos = Float(2)/Float(n+1) * Vector2(x:Float(i+1), y:Float(j+1)) - Vector2.UP - Vector2.RIGHT
         
         if i>=0 && i<n && j>=0 && j<n{

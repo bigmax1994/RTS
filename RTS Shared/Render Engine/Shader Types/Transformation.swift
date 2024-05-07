@@ -9,7 +9,7 @@ import Foundation
 import simd
 import Metal
 
-extension Transformation: GPUEncodable {
+extension Transformation: ShaderType {
     
     init(matrix: Matrix, position: Vector3, size: Vector3) {
         

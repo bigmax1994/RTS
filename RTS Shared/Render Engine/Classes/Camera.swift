@@ -67,6 +67,11 @@ class Camera {
         }
         
     }
+    
+    func setPosition(_ vec: Vector3) {
+        self.position = vec
+    }
+    
     var direction: Vector3 {
         
         get {
@@ -208,7 +213,7 @@ class Camera {
     
 }
 
-struct CameraTransformation: GPUEncodable {
+struct CameraTransformation: ShaderType {
     
     var position: simd_float3
     var rotationMatrix: simd_float3x3

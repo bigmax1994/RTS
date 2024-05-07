@@ -8,7 +8,7 @@
 import Foundation
 import simd
 
-extension Material: GPUEncodable {
+extension Material: ShaderType {
     
     static let DefaultColor: simd_float3 = simd_float3(1, 1, 1);
     static let DefaultOpacity: Float = 1;

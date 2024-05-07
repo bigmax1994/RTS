@@ -15,18 +15,28 @@ enum PipelineState: String, CaseIterable {
     }
     
     case basic = "basic"
+    case plane = "plane"
+    case texture = "texture"
     
     func getVertexFunction() -> MetalVertexFunction {
         switch self {
         case .basic:
-            return .vertex
+            return .vertexColor
+        case.plane:
+            return .planeVertex
+        case .texture:
+            return .vertexTexture
         }
     }
     
     func getFragmentFunction() -> MetalFragmentFunction {
         switch self {
         case .basic:
-            return .fragment
+            return .fragmentColor
+        case.plane:
+            return .fragmentColor
+        case .texture:
+            return .fragmentTexture
         }
     }
     
@@ -41,7 +51,9 @@ enum PipelineState: String, CaseIterable {
     
 }
 
-class PipelineStateLibrary {
+struct PipelineStateLibrary {
+    
+    @available(*, unavailable) private init() {}
     
     fileprivate static var states: [PipelineState: MTLRenderPipelineState] = [:]
     
@@ -55,6 +67,12 @@ class PipelineStateLibrary {
             descriptor.fragmentFunction = s.getFragmentFunction().getMTLFunction()
             
             descriptor.colorAttachments[0].pixelFormat = Engine.pixelFormat
+            descriptor.colorAttachments[0].isBlendingEnabled = true
+            descriptor.colorAttachments[0].rgbBlendOperation = .add
+            descriptor.colorAttachments[0].alphaBlendOperation = .add
+            descriptor.colorAttachments[0].sourceAlphaBlendFactor = .sourceAlpha
+            descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+            descriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
             descriptor.depthAttachmentPixelFormat = Engine.depthFormat
             descriptor.stencilAttachmentPixelFormat = Engine.stencilFormat
             

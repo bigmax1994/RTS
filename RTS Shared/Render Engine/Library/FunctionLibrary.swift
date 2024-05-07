@@ -11,10 +11,12 @@ import Metal
 enum MetalVertexFunction: String, CaseIterable {
     
     static func getDefault() -> MetalVertexFunction {
-        return .vertex
+        return .vertexColor
     }
     
-    case vertex = "vertexShader"
+    case vertexColor = "colorVertexShader"
+    case planeVertex = "planeVertexShader"
+    case vertexTexture = "textureVertexShader"
     
     func getMTLFunction() -> MTLFunction? {
         
@@ -27,15 +29,29 @@ enum MetalVertexFunction: String, CaseIterable {
         
     }
     
+    func getInputs() -> [ShaderTypes] {
+        
+        switch self {
+        case .vertexColor:
+            return [.CameraTransformation, .Transformation, .Vertex]
+        case .planeVertex:
+            return [.Vertex]
+        case .vertexTexture:
+            return [.CameraTransformation, .Transformation, .TextureVertex]
+        }
+        
+    }
+    
 }
 
 enum MetalFragmentFunction: String, CaseIterable {
     
     static func getDefault() -> MetalFragmentFunction {
-        return .fragment
+        return .fragmentColor
     }
     
-    case fragment = "fragmentShader"
+    case fragmentColor = "colorFragmentShader"
+    case fragmentTexture = "textureFragmentShader"
     
     func getMTLFunction() -> MTLFunction? {
         
@@ -48,14 +64,65 @@ enum MetalFragmentFunction: String, CaseIterable {
         
     }
     
+    func getInputs() -> [ShaderTypes] {
+        
+        switch self {
+        case .fragmentColor:
+            return [.CameraTransformation, .Light]
+        case .fragmentTexture:
+            return [.CameraTransformation, .Light]
+        }
+        
+    }
+    
+    func getTextures() -> Int {
+        
+        switch self {
+        case .fragmentColor:
+            return 0
+        case .fragmentTexture:
+            return 1
+        }
+        
+    }
+    
 }
 
-class FunctionLibrary {
+enum MetalComputeFunction: String, CaseIterable {
+    
+    case computePerlinHeight = "computePerlinHeight"
+    
+    func getMTLFunction() -> MTLFunction? {
+        
+        guard let function = FunctionLibrary.computeFunctions[self] else {
+            NSLog("Couldn't find Function '\(self.rawValue)'")
+            return nil
+        }
+        
+        return function
+        
+    }
+    
+    func getInputs() -> [ShaderTypes] {
+        
+        switch self {
+        case .computePerlinHeight:
+            return []
+        }
+        
+    }
+    
+}
+
+struct FunctionLibrary {
+    
+    @available(*, unavailable) private init() {}
     
     public static var library: MTLLibrary!
     
     fileprivate static var vertexFunctions: [MetalVertexFunction: MTLFunction] = [:]
     fileprivate static var fragmentFunctions: [MetalFragmentFunction: MTLFunction] = [:]
+    fileprivate static var computeFunctions: [MetalComputeFunction: MTLFunction] = [:]
     
     public static func Boot() {
         
@@ -75,6 +142,16 @@ class FunctionLibrary {
             
             if let function = FunctionLibrary.library.makeFunction(name: f.rawValue) {
                 FunctionLibrary.fragmentFunctions.updateValue(function, forKey: f)
+            }else{
+                NSLog("failed to create '\(f.rawValue)' Function")
+            }
+            
+        }
+        
+        for f in MetalComputeFunction.allCases {
+            
+            if let function = FunctionLibrary.library.makeFunction(name: f.rawValue) {
+                FunctionLibrary.computeFunctions.updateValue(function, forKey: f)
             }else{
                 NSLog("failed to create '\(f.rawValue)' Function")
             }

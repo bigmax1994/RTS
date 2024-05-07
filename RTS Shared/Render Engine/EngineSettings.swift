@@ -14,10 +14,4 @@ extension Engine {
     public static var depthFormat: MTLPixelFormat = .depth32Float
     public static var stencilFormat: MTLPixelFormat = .invalid
     
-    internal static let CameraBufferIndex: Int = 0
-    internal static let TransformationBufferIndex: Int = 1
-    internal static let DataBufferIndex: Int = 2
-    
-    internal static let WorldLightBufferIndex: Int = 1
-    
 }

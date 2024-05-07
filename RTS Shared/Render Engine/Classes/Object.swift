@@ -16,12 +16,12 @@ class Object: Drawable {
     
     let label:String?
     
-    private var transformation: Transformation
+    internal var transformation: Transformation
     
     var verticies: [Vertex]
     
-    private var transformationBuffer: MTLBuffer? = nil
-    private var vertexBuffer: MTLBuffer? = nil
+    internal var transformationBuffer: MTLBuffer? = nil
+    internal var vertexBuffer: MTLBuffer? = nil
     
     init?(verticies: [Vertex], at pos: Vector3 = Vector3(), rotated: Matrix = Matrix.Identity(3), scale: Vector3 = Vector3(x: 1, y: 1, z: 1), pipelineState: PipelineState = PipelineState.getDefault(), stencilState: StencilState = StencilState.getDefault(), label: String? = nil) {
         
@@ -98,32 +98,26 @@ class Object: Drawable {
         self.transformationBuffer = Engine.Device.makeBuffer(bytes: [self.transformation], length: Transformation.bufferSize(count: 1))
     }
     
-    func draw(to encoder: MTLRenderCommandEncoder) {
+    func draw(to encoder: MTLRenderCommandEncoder, with inputs: inout [ShaderTypes : ShaderContainer]) {
         
         encoder.pushDebugGroup("Encoder for \(self.getName())")
         
-        guard let pipelineState = self.pipelineState.getMTLState() else {
-            NSLog("Failed to get pipeline State")
-            return
-        }
-        encoder.setRenderPipelineState(pipelineState)
-        
-        guard let stencilState = self.stencilState.getMTLState() else {
-            NSLog("Failed to get stencil State")
-            return
-        }
-        encoder.setDepthStencilState(stencilState)
-        
-        if self.transformationBuffer == nil {
+        if self.transformationBuffer == nil || self.vertexBuffer == nil {
             self.createBuffers()
         }
         guard let transformBuffer = self.transformationBuffer else {
             NSLog("Could Not Create Transformation Buffer")
             return
         }
+        inputs.updateValue(.buffer(transformBuffer), forKey: .Transformation)
         
-        encoder.setVertexBuffer(transformBuffer, offset: 0, index: Engine.TransformationBufferIndex)
-        encoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: Engine.DataBufferIndex)
+        guard let vertexBuffer = self.vertexBuffer else {
+            NSLog("Could Not Create Vertex Buffer")
+            return
+        }
+        inputs.updateValue(.buffer(vertexBuffer), forKey: .Vertex)
+        
+        Engine.encodeRenderCommand(inputs: inputs, pipeline: self.pipelineState, stencil: self.stencilState, encoder: encoder)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.verticies.count)
         
         encoder.popDebugGroup()

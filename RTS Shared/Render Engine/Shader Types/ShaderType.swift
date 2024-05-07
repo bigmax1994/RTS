@@ -6,10 +6,16 @@
 //
 
 import Foundation
+import Metal
 
-protocol GPUEncodable { }
+enum ShaderContainer {
+    case buffer(MTLBuffer)
+    case texture([MTLTexture])
+}
 
-extension GPUEncodable {
+protocol ShaderType { }
+
+extension ShaderType {
     
     static func bufferSize(count elements: Int) -> Int {
         return MemoryLayout<Self>.size * elements
@@ -19,4 +25,15 @@ extension GPUEncodable {
         return MemoryLayout<Self>.stride * elements
     }
     
+}
+
+internal enum ShaderTypes: CaseIterable {
+    case Material
+    case TextureMaterial
+    case Vertex
+    case TextureVertex
+    case Transformation
+    case CameraTransformation
+    case Light
+    case Texture
 }

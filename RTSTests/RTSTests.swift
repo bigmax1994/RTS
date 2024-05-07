@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import RTS
+import simd
 
 final class RTSTests: XCTestCase {
 
@@ -88,6 +89,20 @@ final class RTSTests: XCTestCase {
         measure {
             let _ = RTSRenderer.sampleMap(from: map, with: 300)
         }
+    }
+    
+    func testPointers() throws {
+        
+        let simd = simd_float3(1, 2, 3)
+        withUnsafePointer(to: simd, { point in
+            withUnsafePointer(to: point.pointee.x, { point in
+                let mutable = UnsafeMutablePointer<Float>(mutating: point)
+                mutable.pointee = 4
+            })
+        })
+        
+        assert(simd.x == 4, "did not set")
+        
     }
 
 }

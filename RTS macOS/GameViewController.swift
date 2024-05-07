@@ -21,6 +21,8 @@ class GameViewController: NSViewController {
             print("View attached to GameViewController is not an MTKView")
             return
         }
+        
+        mtkView.framebufferOnly = false
 
         Engine.Boot(to: mtkView)
 
@@ -34,6 +36,8 @@ class GameViewController: NSViewController {
         renderer.mtkView(mtkView, drawableSizeWillChange: mtkView.drawableSize)
 
         mtkView.delegate = renderer
+        
+        
     }
     
     override func mouseDown(with event: NSEvent) {

@@ -10,6 +10,6 @@ import Metal
 
 protocol Drawable {
     
-    func draw(to encoder: MTLRenderCommandEncoder)
+    func draw(to encoder: MTLRenderCommandEncoder, with inputs: inout [ShaderTypes : ShaderContainer])
     
 }

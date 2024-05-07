@@ -12,13 +12,26 @@ import simd
 
 class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
-    static let renderedFrames = 3
-    let inFlightSemaphore: DispatchSemaphore = DispatchSemaphore(value: renderedFrames)
+    enum State {
+        case startScreen
+        case game
+    }
     
-    var world: World
+    var _state: State = .startScreen
+    var state: State {
+        get {
+            return _state
+        }
+        set {
+            self._state = newValue
+            self.updateRenderedWorld()
+        }
+    }
+    var renderedWorld:World? = nil
     
     var commDelegate: RTSCommunicationDelegate
     
+    var gameWorld: World
     var game: RTSGame?
     
     var updated = true
@@ -31,14 +44,13 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     init?(metalKitView: MTKView) {
         
-        self.world = World(sunPos: Vector3(x: 0.5, y: 0, z: 1))
+        self.gameWorld = World(sunPos: Vector3(x: 0.5, y: 0, z: 1))
         
-        commDelegate = RTSCommunicationDelegate()
         let cameraTiltMatrix = Matrix.matrix3x3_rotation(radians: 0.2, axis: Vector3(x: 1, y: 0, z: 0))
         let cDir = cameraTiltMatrix * Vector3(x: 0, y: 0, z: -1)
         let cUp = cameraTiltMatrix * Vector3(x: 0, y: 1, z: 0)
         
-        self.world.camera = Camera(pos: Vector3(x: 0, y: 0, z: cameraHeight),
+        self.gameWorld.camera = Camera(pos: Vector3(x: 0, y: 0, z: cameraHeight),
                              dir: cDir,
                              up: cUp,
                              nearClip: 0.001, farClip: 100)
@@ -46,19 +58,21 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         let map = RTSMap_square(width: 200, height: 200)
         let players = [Player(name: "Max"), Player(name: "Magnus"), Player(name:"Thomas"), Player(name:"Tabea")]
             
-        game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: commDelegate)
+        game = RTSGame(players: players, map: map, selfPlayer: players[0], delegate: nil, commDelegate: nil)
+        
+        commDelegate = RTSCommunicationDelegate(to: metalKitView, startGame: self.game?.startGame)
         
         if let sky = Object.MakeCube(color: simd_float3(38.0 / 255.0, 194.0 / 255.0, 220.0 / 255.0), label: "Skybox") {
             sky.scaleTo(10)
             //self.objects.append(sky)
         }
         
-        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 100), pipelineState: .basic, label: "Map") {
+        if let mapObj = Object(verticies: RTSRenderer.sampleMap(from: map, with: 250), pipelineState: .basic, label: "Map") {
             
             let scaleVec = Vector3(x: 1, y: 1, z: 0.2)
             mapObj.scaleTo(scaleVec)
             
-            self.world.objects.append(mapObj)
+            self.gameWorld.objects.append(mapObj)
         }
         
         do {
@@ -66,78 +80,77 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
             if let obj = Object(verticies: p, pipelineState: .basic, label: "Drone") {
                 obj.moveTo(Vector3(x: 0, y: 0, z: droneHeight))
                 obj.scaleTo(0.025)
-                self.world.objects.append(obj)
+                self.gameWorld.objects.append(obj)
                 players[0].playerChar = obj
             }
         }catch{
             print("error reading file")
         }
         super.init()
+        
         game?.delegate = self
+        game?.commDelegate = self.commDelegate
+        
+        self.state = .startScreen
+        
+        let attrString = NSAttributedString(string: "Hello", attributes: [.foregroundColor: CGColor.white])
+        guard let img = CIFilter(name: "CIAttributedTextImageGenerator", parameters: [
+            "inputText": attrString
+        ])?.outputImage else {
+            return
+        }
+        
+        /*try! Engine.CIContext.pngRepresentation(of: img, format: .RGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())?.write(to: URL(fileURLWithPath: "/Users/maxgasslitterstrobl/Downloads/test.png"))
+        guard let draw = metalKitView.currentDrawable else { return }
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        guard let buff = Engine.CommandQueue.makeCommandBuffer() else {return}
+        Engine.CIContext.render(img, to: draw.texture, commandBuffer: buff, bounds: img.extent, colorSpace: colorSpace)
+        buff.present(draw)
+        buff.commit()*/
+    }
+    
+    func updateRenderedWorld() {
+        
+        switch self.state {
+        case .startScreen:
+            self.renderedWorld = self.commDelegate.selectScreen
+        case .game:
+            self.renderedWorld = self.gameWorld
+        }
+        
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         
         let aspectRatio = Float(size.width / size.height)
-        self.world.camera.aspectRatio = aspectRatio
+        self.gameWorld.camera.aspectRatio = aspectRatio
         
     }
     
     private func updateGameState() {
         /// Update any game state before rendering
         
-        game?.onTick()
+        
     }
     
     func draw(in view: MTKView) {
         
-        _ = inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
-
-        if let commandBuffer = Engine.CommandQueue.makeCommandBuffer() {
-            
-            let semaphore = inFlightSemaphore
-            commandBuffer.addCompletedHandler { (_ commandBuffer)-> Swift.Void in
-                semaphore.signal()
-            }
-            
-            self.updateGameState()
-            
-            view.clearDepth = 1
-            
-            /// Delay getting the currentRenderPassDescriptor until we absolutely need it to avoid
-            ///   holding onto the drawable and blocking the display pipeline any longer than necessary
-            let renderPassDescriptor = view.currentRenderPassDescriptor
-                
-            if let passDesc = renderPassDescriptor {
-                
-                if let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: passDesc) {
-                    
-                    self.world.draw(to: encoder)
-                    
-                    encoder.endEncoding()
-                    
-                    if let drawable = view.currentDrawable {
-                        commandBuffer.present(drawable)
-                    }
-                    
-                }
-                
-            }
-            
-            commandBuffer.commit()
-            
-        }
+        renderedWorld?.render(to: view)
         
     }
     
     func gameDidStart(_ game: RTSGame) {
         
+        self.state = .game
+        
     }
     
-    func renderPlayerMovement(_ game: RTSGame, player: Player, to position: Vector2, from oldPosition: Vector2) {
+    func game(_ game: RTSGame, player: Player, didMoveTo position: Vector2, from oldPosition: Vector2) {
         
-        let playerPos = Vector3(x: position.x, y: position.y, z: droneHeight)
-        player.playerChar?.moveTo(playerPos)
+        let new3 = Vector3(x: position.x, y: position.y, z: droneHeight)
+        let old3 = Vector3(x: oldPosition.x, y: oldPosition.y, z: droneHeight)
+        guard let playerChar = player.playerChar else { return }
+        self.gameWorld.animationSet.addAnimation(to: new3, from: old3, callback: playerChar.moveTo(_:), time: 0.1)
         let movement = (position - oldPosition).normalized()
         
         let v1 = Vector3(x: 0, y: -1, z: 0)
@@ -145,11 +158,13 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
         
         let m = Matrix.solveForRotation3x3(from: v1, to: v2)
         player.playerChar?.rotateTo(m)
-    }
-    
-    func setCameraPosition(_ game:RTSGame, to:Vector2){
-        let camPos = Vector3(x: to.x, y: to.y, z: cameraHeight)
-        self.world.camera.position = camPos
+        
+        if player == game.selfPlayer {
+            let camPos = Vector3(x: position.x, y: position.y, z: cameraHeight)
+            
+            self.gameWorld.animationSet.addAnimation(to: camPos, from: self.gameWorld.camera.position, callback: self.gameWorld.camera.setPosition(_:), time: 0.1)
+        }
+        
     }
     
     func gameDidEnd(_ game: RTSGame) {
@@ -161,14 +176,17 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     }
     
     func userDidClick(on pos: Vector2) {
+        
+        self.commDelegate.selectScreen.ui?.clicked(at: pos)
+        
         //adjust user click based on camera position
         let v3 = Vector3(x: pos.x, y: pos.y, z: 0)
-        let transformedV3 = self.world.camera.transformationMatrix * v3
+        let transformedV3 = self.gameWorld.camera.transformationMatrix * v3
         let transformedV2 = Vector2(x: transformedV3.x, y: transformedV3.y)
         
         //send new position to game
         self.mouseIsDown = true
-        self.game?.move(transformedV2)
+        self.game?.moveSelfTowards(transformedV2)
     }
     func mouseDidMove(to pos: Vector2) {
         mousePosition = pos

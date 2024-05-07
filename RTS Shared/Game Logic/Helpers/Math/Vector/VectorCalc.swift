@@ -8,7 +8,11 @@
 import Foundation
 
 infix operator ** : MultiplicationPrecedence
-extension Vector2 {
+extension Vector2: Interpolatable {
+    
+    static var zero: Vector2 {
+        return Vector2()
+    }
     
     func length() -> Float {
         return sqrtf(x * x + y * y)
@@ -18,8 +22,10 @@ extension Vector2 {
         return x * x + y * y
     }
     
-    func isZero() -> Bool {
-        return self.lengthSquared() < 2 * Float.ulpOfOne
+    var magnitude: Float {
+        get {
+            return lengthSquared()
+        }
     }
     
     mutating func normalize() {
@@ -62,7 +68,11 @@ extension Vector2 {
 }
 
 infix operator *-* : MultiplicationPrecedence
-extension Vector3 {
+extension Vector3: Interpolatable {
+    
+    static var zero: Vector3 {
+        return Vector3()
+    }
     
     func length() -> Float {
         return sqrtf(x * x + y * y + z * z)
@@ -72,8 +82,10 @@ extension Vector3 {
         return x * x + y * y + z * z
     }
     
-    func isZero() -> Bool {
-        return self.lengthSquared() < 3 * Float.ulpOfOne
+    var magnitude: Float {
+        get {
+            return lengthSquared()
+        }
     }
     
     mutating func normalize() {
@@ -126,7 +138,11 @@ infix operator -*- : MultiplicationPrecedence
 infix operator *** : MultiplicationPrecedence
 infix operator --- : AdditionPrecedence
 infix operator +++ : AdditionPrecedence
-extension Vector4 {
+extension Vector4: Interpolatable {
+    
+    static var zero: Vector4 {
+        return Vector4()
+    }
     
     func length() -> Float {
         return sqrtf(x * x + y * y + z * z + t * t)
@@ -148,8 +164,10 @@ extension Vector4 {
         return x * x + y * y + z * z + t * t
     }
     
-    func isZero() -> Bool {
-        return self.lengthSquared() < 4 * Float.ulpOfOne
+    var magnitude: Float {
+        get {
+            return lengthSquared()
+        }
     }
     
     mutating func normalize() {

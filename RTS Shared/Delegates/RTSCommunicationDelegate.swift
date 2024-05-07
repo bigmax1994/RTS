@@ -7,27 +7,74 @@
 
 import Foundation
 import Network
-import MultipeerConnectivity
+import MetalKit
 
 class RTSCommunicationDelegate {
     
+    enum DeviceType {
+        case server
+        case client
+    }
+    
     static let service: NWListener.Service = NWListener.Service(applicationService: "RTS-Game")
+    static let port: NWEndpoint.Port = 8461
     
-    var connection: NWConnection!
-    var listener: NWListener!
+    static let host: NWEndpoint.Host = "131.159.208.167"
     
-    var game: RTSGame?
+    var type: DeviceType? = nil
     
-    var connectedToGame = false
+    var connection: NWConnection? = nil
     
+    var game: RTSGame? = nil
+    
+    var listener: NWListener? = nil
     var connections:[NWConnection] = []
     
-    init() {
+    var selectScreen: World!
+    
+    var startGame: (() -> Void)?
+    
+    init(to view: MTKView, startGame: (() -> Void)?) {
         
-        let host: NWEndpoint.Host = "131.159.208.167"
-        let port: NWEndpoint.Port = 8461
+        self.startGame = startGame
         
-        self.listener = try! NWListener(service: RTSCommunicationDelegate.service, using: .udp)
+        guard let clientButton = Button(onClick: self.becomeClient, pos: Vector2(x: -1, y: -1), size: Vector2(x: 1, y: 2), color: Color.green, text: "Client") else { return }
+        guard let serverButton = Button(onClick: self.becomeServer, pos: Vector2(x: 0, y: -1), size: Vector2(x: 1, y: 2), color: Color.red, text: "Server") else { return }
+        
+        self.selectScreen = World(ui: UI(objects: [clientButton, serverButton]))
+        
+    }
+    
+    func playerDidMove(_ player: Player, to position: Vector2) {
+        
+        let action = RTSPlayerMoveAction(uuid: player.uuid, position: player.getPosition())
+        send(action)
+        
+    }
+    
+    func send(_ action: RTSGameAction) {
+        let data = action.data
+        print(data.base64EncodedString())
+        connection?.send(content: data, completion: .idempotent)
+    }
+    
+    func didRecieve(_ action: RTSGameAction) {
+        if let game = self.game {
+            if !action.applyAction(to: game) {
+                fatalError("failed to apply Action")
+            }
+        }
+    }
+    
+    func setGame(_ game: RTSGame) {
+        self.game = game
+    }
+    
+    func becomeServer() {
+        self.type = .server
+        
+        self.listener = try? NWListener(using: .udp, on: RTSCommunicationDelegate.port)
+        guard let listener = self.listener else { return }
         listener.serviceRegistrationUpdateHandler = { (serviceChange) in
             switch serviceChange {
             case .add(let endpoint):
@@ -42,7 +89,7 @@ class RTSCommunicationDelegate {
             }
 
         }
-        self.listener.newConnectionHandler = { conn in
+        listener.newConnectionHandler = { conn in
             conn.start(queue: .global())
             conn.receive(minimumIncompleteLength: 0, maximumLength: Int.max) { content, contentContext, isComplete, error in
                 print("hello")
@@ -56,9 +103,26 @@ class RTSCommunicationDelegate {
             }
             self.connections.append(conn)
         }
-        self.listener.start(queue: .global())
+        listener.start(queue: .global())
         
-        self.connection = NWConnection(host: host, port: port, using: .udp)
+        if let start = self.startGame {
+            start()
+        }
+        
+    }
+    
+    func becomeClient() {
+        self.type = .client
+        
+        self.connectToHost(RTSCommunicationDelegate.host)
+        
+    }
+    
+    func connectToHost(_ ip: NWEndpoint.Host) {
+        
+        self.connection = NWConnection(host: ip, port: RTSCommunicationDelegate.port, using: .udp)
+        
+        guard let connection = self.connection else { return }
         
         connection.stateUpdateHandler = { (newState) in
             switch (newState) {
@@ -92,31 +156,6 @@ class RTSCommunicationDelegate {
             }
         }
         
-    }
-    
-    func playerDidMove(_ player: Player, to position: Vector2) {
-        
-        let action = RTSPlayerMoveAction(uuid: player.uuid, position: player.getFuturePosition())
-        send(action)
-        
-    }
-    
-    func send(_ action: RTSGameAction) {
-        let data = action.data
-        print(data.base64EncodedString())
-        connection.send(content: data, completion: .idempotent)
-    }
-    
-    func didRecieve(_ action: RTSGameAction) {
-        if let game = self.game {
-            if !action.applyAction(to: game) {
-                fatalError("failed to apply Action")
-            }
-        }
-    }
-    
-    func setGame(_ game: RTSGame) {
-        self.game = game
     }
     
 }

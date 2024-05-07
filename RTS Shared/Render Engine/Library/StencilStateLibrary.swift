@@ -54,7 +54,9 @@ enum StencilState: String, CaseIterable {
     
 }
 
-class StencilStateLibrary {
+struct StencilStateLibrary {
+    
+    @available(*, unavailable) private init() {}
     
     fileprivate static var states: [StencilState: MTLDepthStencilState] = [:]
     

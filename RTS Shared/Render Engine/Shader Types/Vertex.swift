@@ -8,7 +8,7 @@
 import Foundation
 import simd
 
-extension Vertex: GPUEncodable {
+extension Vertex: ShaderType {
     
     init(pos: simd_float3, normal: simd_float3 = simd_float3(0, 0, 1), material: Material = Material(color: Color.black)) {
         self.init()
@@ -90,6 +90,36 @@ extension Vertex: GPUEncodable {
         let normal = simd_float3(xN, yN, zN)
         
         return Vertex(pos: point, normal: normal, color: Color.red)
+        
+    }
+    
+    static func makeQuad(in rect: CGRect, material: Material) -> [Vertex] {
+        
+        let minX = Float(rect.minX)
+        let maxX = Float(rect.maxX)
+        let minY = Float(rect.minY)
+        let maxY = Float(rect.maxY)
+        
+        return [Vertex(pos: simd_float3(minX, minY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(minX, maxY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(maxX, minY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(minX, maxY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(maxX, minY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(maxX, maxY, 1), normal: simd_float3(0, 0, -1), material: material)]
+        
+    }
+    
+    static func makeStripQuad(in rect: CGRect, material: Material) -> [Vertex] {
+        
+        let minX = Float(rect.minX)
+        let maxX = Float(rect.maxX)
+        let minY = Float(rect.minY)
+        let maxY = Float(rect.maxY)
+        
+        return [Vertex(pos: simd_float3(minX, minY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(minX, maxY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(maxX, minY, 1), normal: simd_float3(0, 0, -1), material: material),
+                                    Vertex(pos: simd_float3(maxX, maxY, 1), normal: simd_float3(0, 0, -1), material: material)]
         
     }
     
