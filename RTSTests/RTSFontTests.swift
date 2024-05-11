@@ -10,6 +10,8 @@ import XCTest
 
 final class RTSFontTests: XCTestCase {
 
+    let testBundle = Bundle(for: RTSFontTests.self)
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         FontLibrary.Boot()
@@ -26,20 +28,45 @@ final class RTSFontTests: XCTestCase {
         
     }
     
-    func testArialValues() throws {
+    func testAhemValues() throws {
         
-        guard let fontFile: Data = NSDataAsset(name: Font.Name.Arial.rawValue)?.data else { fatalError("failed to find font") }
+        guard let fontFile: Data = NSDataAsset(name: "Ahem", bundle: self.testBundle)?.data else { fatalError("failed to find font") }
         let parser = FontFileParser(data: fontFile)
         
+        assert(parser.numTables == 11)
+        assert(parser.numGlyphs == 245)
+        assert(parser.unitsPerEM == 1000)
+        assert(parser.offsetFormat == 0)
+        assert(parser.glyphFormat == 4)
+        assert(parser.glyphRanges.count == 245)
         
+    }
+    
+    func testReadSimpleGlyph() throws {
         
-        print(parser.numTables)
+        guard let fontFile: Data = NSDataAsset(name: "Arial")?.data else { fatalError("failed to find font") }
+        let parser:FontFileParser = FontFileParser(data: fontFile)
+        
+        let symbol:Symbol? = parser.getSymbol("A")
+        assert(symbol != nil)
+        print(symbol!.glyphs[0].beziers)
+        
+    }
+    
+    func testReadCompoundGlyph() throws {
+        
+        guard let fontFile: Data = NSDataAsset(name: "Arial")?.data else { fatalError("failed to find font") }
+        let parser:FontFileParser = FontFileParser(data: fontFile)
+        
         print(parser.numGlyphs)
-        print(parser.unitsPerEM)
+        print(parser.glyphRanges.count)
+        print(parser.getTableRange(.Location))
         print(parser.offsetFormat)
-        print(parser.glyphRanges)
-        print(parser.glyphFormat)
-        print(parser.glyphIndecies)
+        
+        let symbol:Symbol? = parser.getSymbol("i")
+        assert(symbol != nil)
+        print(symbol!.glyphs[0].beziers)
+        
     }
     
 }

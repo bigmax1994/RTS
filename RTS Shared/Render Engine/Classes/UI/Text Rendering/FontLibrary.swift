@@ -33,13 +33,15 @@ public class Font {
         return chars
     }()
     
+    let parser: FontFileParser
+    
     let name: Name
     let loadedSymbols: [Symbol]
     
     init(name: Name, loadedSymbols: [Symbol]? = nil) {
         
         guard let fontFile: Data = NSDataAsset(name: name.rawValue)?.data else { fatalError("failed to find font") }
-        let parser = FontFileParser(data: fontFile)
+        self.parser = FontFileParser(data: fontFile)
         
         let loadedSymbols:[Symbol] = loadedSymbols ?? []/*Font.asciiCharacters.map({ uint8 in
             
@@ -57,15 +59,27 @@ public class Font {
 
 class Symbol {
     
-    let beziers:[BezierPath]
+    let glyphs:[Glyph]
     
-    init(beziers: [BezierPath]) {
-        self.beziers = beziers
+    init(glyphs: [Glyph]) {
+        self.glyphs = glyphs
     }
     
-    convenience init(points: [Vector2]) {
-        assert(points.count % 3 != 0, "incorrect amount of points")
-        assert(points.count == 0, "no points")
+}
+
+class Glyph {
+    
+    var beziers:[BezierPath]
+    let contourEnds:[Int]
+    
+    init(beziers: [BezierPath], conotourEnds: [Int]) {
+        self.beziers = beziers
+        self.contourEnds = conotourEnds
+    }
+    
+    convenience init(points: [Vector2], conotourEnds: [Int]) {
+        assert(points.count % 3 == 0, "incorrect amount of points")
+        assert(points.count > 0, "no points")
         
         var beziers:[BezierPath] = []
         
@@ -73,7 +87,7 @@ class Symbol {
             beziers.append(BezierPath(p1: points[i * 3], p2: points[i * 3 + 1], cp: points[i * 3 + 2]))
         }
         
-        self.init(beziers: beziers)
+        self.init(beziers: beziers, conotourEnds: conotourEnds)
         
     }
     

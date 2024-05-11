@@ -150,6 +150,7 @@
 		F4A1715C2BC312D7008C37FA /* TexturedVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */; };
 		F4A1715D2BC312D7008C37FA /* TexturedVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */; };
 		F4A1715E2BC312D7008C37FA /* TexturedVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */; };
+		F4BBEAA72BEA2B5F0026C331 /* Test Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4BBEAA62BEA2B5F0026C331 /* Test Assets.xcassets */; };
 		F4EF7AF32B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF42B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
 		F4EF7AF52B9B950600A70A56 /* RTSGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */; };
@@ -273,6 +274,7 @@
 		F4A1714F2BC2EC0F008C37FA /* SecondOrderDynamics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOrderDynamics.swift; sourceTree = "<group>"; };
 		F4A171532BC30433008C37FA /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		F4A1715B2BC312D7008C37FA /* TexturedVertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexturedVertex.swift; sourceTree = "<group>"; };
+		F4BBEAA62BEA2B5F0026C331 /* Test Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Test Assets.xcassets"; sourceTree = "<group>"; };
 		F4EF7ADF2B9B950600A70A56 /* RTSGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGameDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE02B9B950600A70A56 /* RTSCommunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSCommunicationDelegate.swift; sourceTree = "<group>"; };
 		F4EF7AE32B9B950600A70A56 /* RTSGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSGame.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			children = (
 				F4534A642BA8778800505014 /* RTSTests.swift */,
 				F4F2F6C52BE65598004AB04C /* RTSFontTests.swift */,
+				F4BBEAA62BEA2B5F0026C331 /* Test Assets.xcassets */,
 			);
 			path = RTSTests;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4BBEAA72BEA2B5F0026C331 /* Test Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
