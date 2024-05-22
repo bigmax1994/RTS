@@ -74,9 +74,10 @@ class RTSHeightMap{
     var min:Float = 0
     var max:Float = 0
     init(n:Int){
+        ///MARK: TAKES DATA AND CONVERTS IT BACK TO ORIGINAL OBJET FOR SOME REASON (THIS FAILES)
         let data:Data = RTSGame.mapSettings.data
         print(data.base64EncodedString())
-        let settings:MapSettings = MapSettings(data)
+        let settings:MapSettings = RTSGame.mapSettings//MapSettings(data)
         print(settings.nPosts)
         var rng:RandomNumberGenerator = MyRNG(seed:0)
         self.n = n
