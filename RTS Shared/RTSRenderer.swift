@@ -135,7 +135,24 @@ class RTSRenderer: NSObject, MTKViewDelegate, RTSGameDelegate {
     
     func draw(in view: MTKView) {
         
-        renderedWorld?.render(to: view)
+        //renderedWorld?.render(to: view)
+        
+        let arial = FontLibrary.getFont(.Arial)
+        let textObjects = arial.parser.getSymbol("A").glyphs.map { glyph in
+            let obj = Object(verticies: glyph.beziers.flatMap { bezier in
+                let p1 = Vector3(x: bezier.p1.x, y: bezier.p1.y, z: 1)
+                let p2 = Vector3(x: bezier.cp.x, y: bezier.cp.y, z: 1)
+                let p3 = Vector3(x: bezier.p2.x, y: bezier.p2.y, z: 1)
+                let v1 = Vertex(pos: p1, color: Color.white)
+                let v2 = Vertex(pos: p2, color: Color.white)
+                let v3 = Vertex(pos: p3, color: Color.white)
+                return [v1, v2, v3]
+            })
+            obj?.pipelineState = .beziers
+            return obj
+        }.filter({ $0 != nil }).map({ $0! })
+        let world = World(objects: textObjects)
+        world.render(to: view)
         
     }
     

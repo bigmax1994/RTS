@@ -10,10 +10,22 @@ import AppKit
 
 struct FontLibrary {
     
-    static var fonts: [Font.Name : Font] = [:]
+    private static var fonts: [Font.Name : Font] = [:]
     
     static func Boot() {
-        self.fonts.updateValue(Font(name: .Arial), forKey: .Arial)
+        FontLibrary.addFont(Engine.defaultFont)
+    }
+    
+    static func addFont(_ name: Font.Name, loadCharacters: [Character]? = nil) {
+        self.fonts.updateValue(Font(name: name, loadSymbols: loadCharacters), forKey: .Arial)
+    }
+    
+    public static func getFont(_ name: Font.Name) -> Font {
+        if let font = FontLibrary.fonts[name] {
+            return font
+        }
+        FontLibrary.addFont(name)
+        return FontLibrary.fonts[name]!
     }
     
 }
@@ -24,33 +36,25 @@ public class Font {
         case Arial = "Arial"
     }
     
-    static let asciiCharacters:[UInt8] = {
-        let ascii:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-        var chars: [UInt8] = []
-        for c in ascii.utf8 {
-            chars.append(c)
-        }
-        return chars
-    }()
+    static let asciiCharacters:[Character] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"]
     
     let parser: FontFileParser
     
     let name: Name
     let loadedSymbols: [Symbol]
     
-    init(name: Name, loadedSymbols: [Symbol]? = nil) {
+    init(name: Name, loadSymbols: [Character]? = nil) {
         
         guard let fontFile: Data = NSDataAsset(name: name.rawValue)?.data else { fatalError("failed to find font") }
-        self.parser = FontFileParser(data: fontFile)
+        let parser = FontFileParser(data: fontFile)
         
-        let loadedSymbols:[Symbol] = loadedSymbols ?? []/*Font.asciiCharacters.map({ uint8 in
+        let loadedSymbols:[Symbol] = (loadSymbols ?? Font.asciiCharacters).map({ char in
             
-            let points:[Vector2] = []
+            return parser.getSymbol(char)
             
-            return Symbol(points: points)
-            
-        })*/
+        })
         
+        self.parser = parser
         self.name = name
         self.loadedSymbols = loadedSymbols
     }

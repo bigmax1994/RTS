@@ -22,6 +22,8 @@ class FontFileParser {
         case CharacterMap = "cmap"
         case Header = "head"
         case MaximumProfile = "maxp"
+        case HorizontalHeader = "hhea"
+        case HorizontalMetrics = "htmx"
     }
     
     let data: Data
@@ -487,6 +489,10 @@ class FontFileParser {
         
         for i in 1..<totalPoints {
             
+            if let lp = lastPoint {
+                points.append(lp)
+            }
+            
             let x = Float(xPoints[i])
             let y = Float(yPoints[i])
             let p = Vector2(x: x / pointsPerEm, y: y / pointsPerEm)
@@ -498,14 +504,17 @@ class FontFileParser {
                 let midPoint = lp + 0.5 * p
                 points.append(midPoint)
                 
+                points.append(p)
+                
             }
             
-            points.append(p)
             lastPoint = p
             lastFlag = flag
             
             //close contour
             if endPoints.contains(i) {
+                
+                points.append(p)
                 
                 let x = Float(xPoints[contourStart])
                 let y = Float(yPoints[contourStart])
@@ -522,6 +531,9 @@ class FontFileParser {
                 
                 points.append(p)
                 contourStart = i + 1
+                
+                lastPoint = nil
+                lastFlag = nil
                 
             }
             

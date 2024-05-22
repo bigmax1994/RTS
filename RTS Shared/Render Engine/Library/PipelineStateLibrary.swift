@@ -17,6 +17,7 @@ enum PipelineState: String, CaseIterable {
     case basic = "basic"
     case plane = "plane"
     case texture = "texture"
+    case beziers = "beziers"
     
     func getVertexFunction() -> MetalVertexFunction {
         switch self {
@@ -26,6 +27,8 @@ enum PipelineState: String, CaseIterable {
             return .planeVertex
         case .texture:
             return .vertexTexture
+        case .beziers:
+            return .planeBezier
         }
     }
     
@@ -37,6 +40,8 @@ enum PipelineState: String, CaseIterable {
             return .fragmentColor
         case .texture:
             return .fragmentTexture
+        case .beziers:
+            return .fillBezier
         }
     }
     

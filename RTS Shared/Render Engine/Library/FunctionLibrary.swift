@@ -17,6 +17,7 @@ enum MetalVertexFunction: String, CaseIterable {
     case vertexColor = "colorVertexShader"
     case planeVertex = "planeVertexShader"
     case vertexTexture = "textureVertexShader"
+    case planeBezier = "planeBezierShader"
     
     func getMTLFunction() -> MTLFunction? {
         
@@ -38,6 +39,8 @@ enum MetalVertexFunction: String, CaseIterable {
             return [.Vertex]
         case .vertexTexture:
             return [.CameraTransformation, .Transformation, .TextureVertex]
+        case .planeBezier:
+            return [.Vertex]
         }
         
     }
@@ -52,6 +55,7 @@ enum MetalFragmentFunction: String, CaseIterable {
     
     case fragmentColor = "colorFragmentShader"
     case fragmentTexture = "textureFragmentShader"
+    case fillBezier = "fillBezier"
     
     func getMTLFunction() -> MTLFunction? {
         
@@ -71,6 +75,8 @@ enum MetalFragmentFunction: String, CaseIterable {
             return [.CameraTransformation, .Light]
         case .fragmentTexture:
             return [.CameraTransformation, .Light]
+        case .fillBezier:
+            return []
         }
         
     }
@@ -82,6 +88,8 @@ enum MetalFragmentFunction: String, CaseIterable {
             return 0
         case .fragmentTexture:
             return 1
+        case .fillBezier:
+            return 0
         }
         
     }

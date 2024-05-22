@@ -14,4 +14,6 @@ extension Engine {
     public static var depthFormat: MTLPixelFormat = .depth32Float
     public static var stencilFormat: MTLPixelFormat = .invalid
     
+    public static var defaultFont: Font.Name = .Arial
+    
 }

@@ -32,6 +32,14 @@ struct TextureInOut
     
 };
 
+struct BezierInOut
+{
+    float4 position [[position]];
+    float2 uvPosition;
+    bool above;
+    float4 color;
+};
+
 vertex ColorInOut colorVertexShader(uint vid [[vertex_id]], constant CameraTransformation & cameraTransformation [[ buffer(0) ]], constant Transformation & transformation [[ buffer(1) ]], constant Vertex* vertices [[buffer(2)]])
 {
     ColorInOut out;
@@ -118,5 +126,53 @@ vertex ColorInOut planeVertexShader(uint vid [[vertex_id]], constant Vertex* ver
     out.normal = vertices[vid].normal;
 
     return out;
+    
+}
+
+vertex BezierInOut planeBezierShader(uint vid [[vertex_id]], constant Vertex* vertices [[buffer(0)]]) {
+    
+    BezierInOut out;
+    
+    out.position = float4(vertices[vid].pos, 1);
+    out.color = float4(vertices[vid].material.color, vertices[vid].material.opacity);
+    out.above = true;
+    
+    int pointIndex = vid % 3;
+    bool firstPoint = pointIndex == 0;
+    bool secondPoint = pointIndex == 1;
+    bool thirdPoint = pointIndex == 2;
+    out.uvPosition = firstPoint * float2(0) + secondPoint * float2(0, 0.5) + thirdPoint * float2(1);
+    
+    return out;
+    
+}
+
+fragment float4 fillBezier(BezierInOut in [[stage_in]]) {
+    
+    bool fill = in.above && (in.uvPosition.x * in.uvPosition.x >= in.uvPosition.y);
+    return fill * in.color + !fill * float4(0);
+    
+}
+
+float2 calculateQuadraticRoot(float3 coefficients) {
+    
+    float2 roots = float2(-9999);
+    
+    //helper bools
+    bool linear = abs(coefficients.x) < 1e-7;
+    bool constantFunc = linear && abs(coefficients.y) < 1e-7;
+    
+    //linear intersection if function is linear
+    float linearIntersection = !constantFunc * roots.x - constantFunc * coefficients.z / coefficients.y;
+    roots.x = !linear * roots.x + linear * linearIntersection;
+    
+    //quadratic intersection if function is quadratic
+    float discriminant = coefficients.y * coefficients.y - 4 * coefficients.x * coefficients.z;
+    bool vaildDiscriminant = discriminant > -1e-7;
+    discriminant = sqrt(max(discriminant, 0.0));
+    roots.x = !linear * roots.x + linear * (-coefficients.y + discriminant) / coefficients.x;
+    roots.x = !linear * roots.x + linear * (-coefficients.y - discriminant) / coefficients.x;
+    
+    return roots;
     
 }
