@@ -14,7 +14,6 @@ class RTSGame {
     var players: [UUID : Player]
     var selfPlayer: Player?
     var map: RTSMap
-    var animationQueue:AnimationQueue
     var lastUpdate:TimeInterval
     
     //function to initialize the game
@@ -27,8 +26,6 @@ class RTSGame {
         self.selfPlayer = selfPlayer
         self.map = map
         self.lastUpdate = Date().timeIntervalSince1970
-        self.animationQueue = AnimationQueue(game:nil)
-        self.animationQueue = AnimationQueue(game:self)
         
         
         commDelegate?.setGame(self)
@@ -48,20 +45,7 @@ class RTSGame {
     }
     func onTick(){
         let now = Date().timeIntervalSince1970
-        self.animationQueue.update(timeSinceLastUpate: Float(now - lastUpdate))
         self.lastUpdate = now
-        
-        if animationQueue.queue.isEmpty{
-            if let del = delegate{
-                let renderer = del as! RTSRenderer
-                if renderer.mouseIsDown{
-                    let v3 = Vector3(x: renderer.mousePosition.x, y: renderer.mousePosition.y, z: 0)
-                    let transformedV3 = renderer.world.camera.transformationMatrix * v3
-                    let transformedV2 = Vector2(x: transformedV3.x, y: transformedV3.y)
-                    move(transformedV2)
-                }
-            }
-        }
     }
     
     //function to move player
@@ -101,7 +85,6 @@ class RTSGame {
     func movePlayerTowards(p:Player, direction:Vector2){
         if direction.length() < 0.001 {return}
         let vec = RTSGame.movementSpeed * direction.normalized()
-        self.animationQueue.addMovement(to:p.getFuturePosition()+vec, p: p)
         p.moveBy(vec)
         self.commDelegate?.playerDidMove(p, to: p.getFuturePosition())
     }
