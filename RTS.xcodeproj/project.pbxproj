@@ -144,6 +144,21 @@
 		F4EF7B1A2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
 		F4EF7B1B2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
 		F4EF7B1C2B9B950600A70A56 /* Byteable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF7AF22B9B950600A70A56 /* Byteable.swift */; };
+		F4F0C0532BFE2EC9001B9410 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04D2BFE2EC9001B9410 /* Animation.swift */; };
+		F4F0C0542BFE2EC9001B9410 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04D2BFE2EC9001B9410 /* Animation.swift */; };
+		F4F0C0552BFE2EC9001B9410 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04D2BFE2EC9001B9410 /* Animation.swift */; };
+		F4F0C0562BFE2EC9001B9410 /* AnimationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04E2BFE2EC9001B9410 /* AnimationSet.swift */; };
+		F4F0C0572BFE2EC9001B9410 /* AnimationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04E2BFE2EC9001B9410 /* AnimationSet.swift */; };
+		F4F0C0582BFE2EC9001B9410 /* AnimationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04E2BFE2EC9001B9410 /* AnimationSet.swift */; };
+		F4F0C0592BFE2EC9001B9410 /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04F2BFE2EC9001B9410 /* Interpolatable.swift */; };
+		F4F0C05A2BFE2EC9001B9410 /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04F2BFE2EC9001B9410 /* Interpolatable.swift */; };
+		F4F0C05B2BFE2EC9001B9410 /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C04F2BFE2EC9001B9410 /* Interpolatable.swift */; };
+		F4F0C05C2BFE2EC9001B9410 /* InterpolationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C0502BFE2EC9001B9410 /* InterpolationFunction.swift */; };
+		F4F0C05D2BFE2EC9001B9410 /* InterpolationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C0502BFE2EC9001B9410 /* InterpolationFunction.swift */; };
+		F4F0C05E2BFE2EC9001B9410 /* InterpolationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C0502BFE2EC9001B9410 /* InterpolationFunction.swift */; };
+		F4F0C05F2BFE2EC9001B9410 /* SecondOrderDynamics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C0512BFE2EC9001B9410 /* SecondOrderDynamics.swift */; };
+		F4F0C0602BFE2EC9001B9410 /* SecondOrderDynamics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C0512BFE2EC9001B9410 /* SecondOrderDynamics.swift */; };
+		F4F0C0612BFE2EC9001B9410 /* SecondOrderDynamics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F0C0512BFE2EC9001B9410 /* SecondOrderDynamics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +234,11 @@
 		F4EF7AEE2B9B950600A70A56 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		F4EF7AF02B9B950600A70A56 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F4EF7AF22B9B950600A70A56 /* Byteable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Byteable.swift; sourceTree = "<group>"; };
+		F4F0C04D2BFE2EC9001B9410 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		F4F0C04E2BFE2EC9001B9410 /* AnimationSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationSet.swift; sourceTree = "<group>"; };
+		F4F0C04F2BFE2EC9001B9410 /* Interpolatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolatable.swift; sourceTree = "<group>"; };
+		F4F0C0502BFE2EC9001B9410 /* InterpolationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpolationFunction.swift; sourceTree = "<group>"; };
+		F4F0C0512BFE2EC9001B9410 /* SecondOrderDynamics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOrderDynamics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +351,7 @@
 		F4534A932BA9C77B00505014 /* Render Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F4F0C0522BFE2EC9001B9410 /* Animation */,
 				F41148102BAB180D007F052D /* Library */,
 				F462F7642BA85D6300AA21DE /* Vertex Helpers */,
 				F4534A922BA9C77B00505014 /* Classes */,
@@ -495,6 +516,18 @@
 				F4EF7AF22B9B950600A70A56 /* Byteable.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F4F0C0522BFE2EC9001B9410 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				F4F0C04D2BFE2EC9001B9410 /* Animation.swift */,
+				F4F0C04E2BFE2EC9001B9410 /* AnimationSet.swift */,
+				F4F0C04F2BFE2EC9001B9410 /* Interpolatable.swift */,
+				F4F0C0502BFE2EC9001B9410 /* InterpolationFunction.swift */,
+				F4F0C0512BFE2EC9001B9410 /* SecondOrderDynamics.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -705,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F0C05F2BFE2EC9001B9410 /* SecondOrderDynamics.swift in Sources */,
 				F4EF7B082B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F411481A2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
 				F47CC12D2B97415E00125D78 /* RTSRenderer.swift in Sources */,
@@ -723,17 +757,21 @@
 				F4534A942BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1032B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F48E932E2BB8A4A6001D3BFC /* Color.swift in Sources */,
+				F4F0C0532BFE2EC9001B9410 /* Animation.swift in Sources */,
 				F41148262BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0B2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D52BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7A2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148122BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F4F0C05C2BFE2EC9001B9410 /* InterpolationFunction.swift in Sources */,
 				F48E93262BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148162BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0E2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F4EF7AFC2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A762BA893F900505014 /* Matrix.swift in Sources */,
+				F4F0C0592BFE2EC9001B9410 /* Interpolatable.swift in Sources */,
 				27A2D8BA2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
+				F4F0C0562BFE2EC9001B9410 /* AnimationSet.swift in Sources */,
 				F4534AB12BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7AFF2B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B052B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -751,6 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F0C0602BFE2EC9001B9410 /* SecondOrderDynamics.swift in Sources */,
 				F4EF7B092B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F411481B2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
 				F47CC12E2B97415E00125D78 /* RTSRenderer.swift in Sources */,
@@ -769,17 +808,21 @@
 				F4534A952BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1132B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F48E932F2BB8A4A6001D3BFC /* Color.swift in Sources */,
+				F4F0C0542BFE2EC9001B9410 /* Animation.swift in Sources */,
 				F41148272BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0C2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D62BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7B2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148132BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F4F0C05D2BFE2EC9001B9410 /* InterpolationFunction.swift in Sources */,
 				F48E93272BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148172BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B0F2B9B950600A70A56 /* Vector2.swift in Sources */,
 				F4EF7AFD2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A772BA893F900505014 /* Matrix.swift in Sources */,
+				F4F0C05A2BFE2EC9001B9410 /* Interpolatable.swift in Sources */,
 				27A2D8BB2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
+				F4F0C0572BFE2EC9001B9410 /* AnimationSet.swift in Sources */,
 				F4534AB22BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7B002B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B062B9B950600A70A56 /* RTSMap.swift in Sources */,
@@ -797,6 +840,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F0C0612BFE2EC9001B9410 /* SecondOrderDynamics.swift in Sources */,
 				F4EF7B0A2B9B950600A70A56 /* RTSGameSettings.swift in Sources */,
 				F411481C2BAB1B52007F052D /* PipelineStateLibrary.swift in Sources */,
 				F47CC12F2B97415E00125D78 /* RTSRenderer.swift in Sources */,
@@ -815,17 +859,21 @@
 				F4534A962BA9C77B00505014 /* Object.swift in Sources */,
 				F47CC1232B97415E00125D78 /* AppDelegate.swift in Sources */,
 				F48E93302BB8A4A6001D3BFC /* Color.swift in Sources */,
+				F4F0C0552BFE2EC9001B9410 /* Animation.swift in Sources */,
 				F41148282BAB22DD007F052D /* GPUEncodable.swift in Sources */,
 				F4EF7B0D2B9B950600A70A56 /* VectorCalc.swift in Sources */,
 				F47E93D72BB2E8E30080C2FC /* World.swift in Sources */,
 				F4534A7C2BA8950400505014 /* MatrixCalc.swift in Sources */,
 				F41148142BAB1821007F052D /* FunctionLibrary.swift in Sources */,
+				F4F0C05E2BFE2EC9001B9410 /* InterpolationFunction.swift in Sources */,
 				F48E93282BB8A45B001D3BFC /* Light.swift in Sources */,
 				F41148182BAB18D4007F052D /* Engine.swift in Sources */,
 				F4EF7B102B9B950600A70A56 /* Vector2.swift in Sources */,
 				F4EF7AFE2B9B950600A70A56 /* RTSPlayerMoveAction.swift in Sources */,
 				F4534A782BA893F900505014 /* Matrix.swift in Sources */,
+				F4F0C05B2BFE2EC9001B9410 /* Interpolatable.swift in Sources */,
 				27A2D8BC2BA85DA900F215AA /* RTSMap_types.swift in Sources */,
+				F4F0C0582BFE2EC9001B9410 /* AnimationSet.swift in Sources */,
 				F4534AB32BA9FF3900505014 /* Camera.swift in Sources */,
 				F4EF7B012B9B950600A70A56 /* RTSGameAction.swift in Sources */,
 				F4EF7B072B9B950600A70A56 /* RTSMap.swift in Sources */,
